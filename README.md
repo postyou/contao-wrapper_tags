@@ -23,7 +23,7 @@ This is an example of a structure without error.
  
 This is an example of a structure with error.
 
-![Structure with error](docs/backend-ok.png?raw=true "Structure with error")
+![Structure with error](docs/backend-error.png?raw=true "Structure with error")
 
 ### Copyright
 This project has been created and is maintained by [Ostrowski Maciej](http://contao-developer.pl).
