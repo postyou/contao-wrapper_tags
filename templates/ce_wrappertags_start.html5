@@ -1,0 +1,4 @@
+<?php foreach ($this->multiWrapperStart as $wrapper): ?>
+    <<?php echo $wrapper['tag'] ?> <?php if ($wrapper['id']): ?>id="<?php echo $wrapper['id']; ?>"<?php endif; ?> <?php if ($wrapper['class']): ?>class="<?php echo $wrapper['class']; ?>"<?php endif; ?> >
+<?php endforeach; ?>
+
