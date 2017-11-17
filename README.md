@@ -9,15 +9,15 @@ Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other
 
 ## How to use it
 
-##### Use content element "Opening tags" to open any number of html tags you need.
+#### Use content element "Opening tags" to open any number of html tags you need.
  
 ![Opening tags](docs/backend-opening-tags.png?raw=true "Opening tags")
 
-##### Then close all of these opened html tags using "Closing tags" content element.
+#### Then close all of these opened html tags using "Closing tags" content element.
 
 ![Closing tags](docs/backend-closing-tags.png?raw=true "Closing tags")
 
-##### This is an example of a built, correct structure.
+#### This is an example of a built, correct structure.
 
 ![Structure ok](docs/backend-ok.png?raw=true "Structure ok")
 
@@ -40,7 +40,7 @@ Html structure result looks like:
 </article>
 ```
  
-##### This is an example of a structure with error.
+#### This is an example of a structure with error.
 
 ![Structure with error](docs/backend-error.png?raw=true "Structure with error")
 
