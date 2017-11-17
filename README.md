@@ -13,13 +13,21 @@ Use content element "Opening tags" to open any number of html tags you need.
  
 ![Opening tags](docs/backend-opening-tags.png?raw=true "Opening tags")
 
+
+
+
 Then close all of these opened html tags using "Closing tags" content element.
 
 ![Closing tags](docs/backend-closing-tags.png?raw=true "Closing tags")
 
+
+
+
 This is an example of a built structure without error.
 
 ![Structure ok](docs/backend-ok.png?raw=true "Structure ok")
+ 
+ 
  
 This is an example of a built structure with error.
 
