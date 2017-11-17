@@ -17,7 +17,7 @@ Then close all of these opened html tags using "Closing tags" content element.
 
 ![Closing tags](docs/backend-closing-tags.png?raw=true "Closing tags")
 
-This is an example of a built structure without error.
+This is an example of a built, correct structure.
 
 ![Structure ok](docs/backend-ok.png?raw=true "Structure ok")
 
@@ -40,7 +40,7 @@ Html structure result looks like:
 </article>
 ```
  
-This is an example of a built structure with error.
+This is an example of a structure with error.
 
 ![Structure with error](docs/backend-error.png?raw=true "Structure with error")
 
