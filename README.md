@@ -24,9 +24,9 @@ This is an example of a built structure without error.
 Html structure result looks like:
 
 ```html
-<article id="article-id" class="article-class">
-  <div id="div-id">
-    <span>
+<article id="id-1" class="class-1">
+  <div class="class-2">
+    <span id="id-3">
       <h1 class="ce_headline" style="margin-bottom:100px;">
         Hello, this is first element wrapped by html tags
       </h1>
