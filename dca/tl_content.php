@@ -116,7 +116,16 @@ class tl_content_cte_wrapper extends Backend
         foreach ($ctes as $index => $cte) {
 
             if ('wrapperStart' === $cte->type) {
-                $stack[] = [$cte->id, 'wrapperStart', unserialize($cte->multiWrapperStart)];
+
+                $startTags = unserialize($cte->multiWrapperStart);
+
+                if (!is_array($startTags)) {
+                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Data corrupted</span>';
+                    break;
+                }
+
+                $stack[] = [$cte->id, 'wrapperStart', $startTags];
+
             } else {
                 // wrapperStop, check related wrapperStart
 
@@ -131,6 +140,11 @@ class tl_content_cte_wrapper extends Backend
 
                 $startTags = $start[2];
                 $stopTags = unserialize($cte->multiWrapperStop);
+
+                if (!is_array($stopTags)) {
+                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Data corrupted</span>';
+                    break;
+                }
 
                 foreach ($stopTags as $stopTag) {
                     $startTag = array_pop($startTags);
