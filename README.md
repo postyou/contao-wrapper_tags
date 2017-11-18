@@ -5,7 +5,7 @@ Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other
 
 * Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10000019.en.html "Contao extension catalog")
 
-## Compatibility
+## System requirements
 - Contao 3.2.x - 3.5.x
 - PHP 5.6.x - 7.x
 
@@ -47,4 +47,4 @@ Html structure result looks like:
 ![Structure with error](docs/backend-error.png?raw=true "Structure with error")
 
 ## Copyright
-This project has been created and is maintained by [Ostrowski Maciej](http://contao-developer.pl).
+This project has been created and is maintained by [Maciej](http://contao-developer.pl).
