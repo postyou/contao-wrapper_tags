@@ -13,5 +13,5 @@ $GLOBALS['TL_LANG']['tl_content']['closingTags'] = ['Closing tags', 'Choose clos
 $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings';
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = ['Tag', 'Select html tag'];
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = ['Class', 'Type in html classes'];
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = ['Id', 'Type id value'];
+$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = ['Id', 'Type in id value'];
 
