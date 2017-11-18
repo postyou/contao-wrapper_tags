@@ -8,6 +8,6 @@
  * @license LGPL
  */
 
-$GLOBALS['TL_LANG']['CTE']['openingTags'] = ['Opening tags', 'Opening wrapper\'s tags'];
-$GLOBALS['TL_LANG']['CTE']['closingTags'] = ['Closing tags', 'Closing wrapper\'s tags'];
+$GLOBALS['TL_LANG']['CTE']['openingTags'] = ['Opening tags', 'Allows to open multiple html tags.'];
+$GLOBALS['TL_LANG']['CTE']['closingTags'] = ['Closing tags', 'Allows to close multiple html tags.'];
 $GLOBALS['TL_LANG']['CTE']['wrapperTags'] = 'Wrapper tags';
