@@ -102,7 +102,7 @@ class tl_content_cte_wrapper extends Backend
      */
     public function validate($add, DataContainer $dc)
     {
-        $ctes = ContentModel::findBy(array('tl_content.pid=?', 'tl_content.invisible=?', "tl_content.type IN ('wrapperStart','wrapperStop')"), array($dc->id, ''));
+        $ctes = ContentModel::findBy(array('tl_content.pid=?', 'tl_content.invisible!=?', "tl_content.type IN ('wrapperStart','wrapperStop')"), array($dc->id, '1'));
 
         if (is_null($ctes) || !$ctes instanceof \Model\Collection) {
             // no wrappers in article
