@@ -1,0 +1,4 @@
+<?php foreach ($this->openingTags as $tag): ?>
+    <<?php echo $tag['tag'] ?> <?php if ($tag['id']): ?>id="<?php echo $tag['id']; ?>"<?php endif; ?> <?php if ($tag['class']): ?>class="<?php echo $tag['class']; ?>"<?php endif; ?> >
+<?php endforeach; ?>
+

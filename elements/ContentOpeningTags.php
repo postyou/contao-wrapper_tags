@@ -12,9 +12,9 @@ namespace Zmyslni;
 
 use Contao\ContentElement;
 
-class ContentWrapperStart extends ContentElement
+class ContentOpeningTags extends ContentElement
 {
-    protected $strTemplate = 'ce_wrappertags_start';
+    protected $strTemplate = 'ce_wrappertags_opening';
 
     public function generate()
     {
@@ -25,10 +25,10 @@ class ContentWrapperStart extends ContentElement
 
             $title = '';
 
-            if (is_array($wrappers = unserialize($this->multiWrapperStart))) {
+            if (is_array($tags = unserialize($this->openingTags))) {
 
-                foreach ($wrappers as $wrapper) {
-                    $title .= '&lt;' . $wrapper['tag'] . '&gt;' . (($wrapper['id']) ? ' id: ' . $wrapper['id'] : '') . (($wrapper['class']) ? (($wrapper['id']) ? ' |' : '') . ' class: ' . $wrapper['class'] : '') . '<br>';
+                foreach ($tags as $tag) {
+                    $title .= '&lt;' . $tag['tag'] . '&gt;' . (($tag['id']) ? ' id: ' . $tag['id'] : '') . (($tag['class']) ? (($tag['id']) ? ' |' : '') . ' class: ' . $tag['class'] : '') . '<br>';
                 }
 
             } else {
@@ -45,6 +45,6 @@ class ContentWrapperStart extends ContentElement
 
     protected function compile()
     {
-        $this->Template->multiWrapperStart = unserialize($this->multiWrapperStart);
+        $this->Template->openingTags = unserialize($this->openingTags);
     }
 }

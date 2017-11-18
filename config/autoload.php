@@ -19,8 +19,8 @@ ClassLoader::addNamespaces(array('Zmyslni'));
 ClassLoader::addClasses(array
 (
     // Content elements
-    'Zmyslni\ContentWrapperStart' => 'system/modules/wrapper_tags/elements/ContentWrapperStart.php',
-    'Zmyslni\ContentWrapperStop' => 'system/modules/wrapper_tags/elements/ContentWrapperStop.php'
+    'Zmyslni\ContentOpeningTags' => 'system/modules/wrapper_tags/elements/ContentOpeningTags.php',
+    'Zmyslni\ContentClosingTags' => 'system/modules/wrapper_tags/elements/ContentClosingTags.php'
 
 ));
 
@@ -28,7 +28,7 @@ ClassLoader::addClasses(array
  * Register the templates
  */
 TemplateLoader::addFiles(array(
-    'ce_wrappertags_start' => 'system/modules/wrapper_tags/templates/',
-    'ce_wrappertags_stop' => 'system/modules/wrapper_tags/templates/'
+    'ce_wrappertags_opening' => 'system/modules/wrapper_tags/templates/',
+    'ce_wrappertags_closing' => 'system/modules/wrapper_tags/templates/'
 ));
 

@@ -12,9 +12,9 @@ namespace Zmyslni;
 
 use Contao\ContentElement;
 
-class ContentWrapperStop extends ContentElement
+class ContentClosingTags extends ContentElement
 {
-    protected $strTemplate = 'ce_wrappertags_stop';
+    protected $strTemplate = 'ce_wrappertags_closing';
 
     public function generate()
     {
@@ -25,10 +25,10 @@ class ContentWrapperStop extends ContentElement
 
             $title = '';
 
-            if (is_array($wrappers = unserialize($this->multiWrapperStop))) {
+            if (is_array($tags = unserialize($this->closingTags))) {
 
-                foreach ($wrappers as $wrapper) {
-                    $title .= '&lt;&#47;' . $wrapper['tag'] . '&gt;' . '<br>';
+                foreach ($tags as $tag) {
+                    $title .= '&lt;&#47;' . $tag['tag'] . '&gt;' . '<br>';
                 }
 
             } else {
@@ -45,6 +45,6 @@ class ContentWrapperStop extends ContentElement
 
     protected function compile()
     {
-        $this->Template->multiWrapperStop = unserialize($this->multiWrapperStop);
+        $this->Template->closingTags = unserialize($this->closingTags);
     }
 }

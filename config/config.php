@@ -11,7 +11,7 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_CTE']['cteWrapper']['wrapperStart'] = 'ContentWrapperStart';
-$GLOBALS['TL_CTE']['cteWrapper']['wrapperStop'] = 'ContentWrapperStop';
-$GLOBALS['TL_WRAPPERS']['start'][] = 'wrapperStart';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'wrapperStop';
+$GLOBALS['TL_CTE']['wrapperTags']['openingTags'] = 'ContentOpeningTags';
+$GLOBALS['TL_CTE']['wrapperTags']['closingTags'] = 'ContentClosingTags';
+$GLOBALS['TL_WRAPPERS']['start'][] = 'openingTags';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
