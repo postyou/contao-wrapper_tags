@@ -1,7 +1,9 @@
-wrapper_tags Changelog
-================================
+# wrapper_tags change log
 
-Version 1.0.0 (2017-11-17)
----------------------------
+### 1.0.1 (2017-11-17)
 
-Initial release
+* Better documentation, minor fixes
+
+### 1.0.0 (2017-11-17)
+
+* Initial commit
