@@ -149,6 +149,11 @@ class tl_content_cte_wrapper extends Backend
 
                     $openedTag = array_pop($openedTagsStack);
 
+                    if ($openedTag === null) {
+                        $status[$statusTitle] = '<span class="tl_red">Error: Closing tag "' . $closingTag['tag'] . '" (id:' . $cte->id . ') is without opening tag.</span>';
+                        break 2;
+                    }
+
                     if ($closingTag['tag'] !== $openedTag[1]['tag']) {
                         $status[$statusTitle] = '<span class="tl_red">Error: Opening tag "' . $openedTag[1]['tag'] . '"  (id:' . $openedTag[0] . ') is paired with closing tag "' . $closingTag['tag'] . '" (id:' . $cte->id . ').</span>';
                         break 2;
