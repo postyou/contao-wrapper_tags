@@ -9,7 +9,7 @@ Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other
 - Contao 3.2.x - 3.5.x
 - PHP 5.6.x - 7.x
 
-## How to use it
+## Usage
 
 ### Use content element "Opening tags" to open any number of html tags you need.
  
