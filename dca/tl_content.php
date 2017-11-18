@@ -105,71 +105,67 @@ class tl_content_cte_wrapper extends Backend
         $ctes = ContentModel::findBy(array('tl_content.pid=?', 'tl_content.invisible!=?', "tl_content.type IN ('wrapperStart','wrapperStop')"), array($dc->id, '1'));
 
         if (is_null($ctes) || !$ctes instanceof \Model\Collection) {
-            // no wrappers in article
+            // no wrapper_tags in article
             return $add;
         }
 
-        $headerTitle = $GLOBALS['TL_LANG']['CTE']['cteWrapper'];
-        $wrapperStatus = array();
-        $stack = array();
+        $statusTitle = $GLOBALS['TL_LANG']['CTE']['cteWrapper'];
+        $openedTagsStack = array();
+        $status = array();
 
         foreach ($ctes as $index => $cte) {
 
             if ('wrapperStart' === $cte->type) {
 
+                // every opened tag put on stack
+
                 $startTags = unserialize($cte->multiWrapperStart);
 
                 if (!is_array($startTags)) {
-                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Data corrupted</span>';
+                    $status[$statusTitle] = '<span class="tl_red">Data corrupted</span>';
                     break;
                 }
 
-                $stack[] = [$cte->id, 'wrapperStart', $startTags];
+                foreach ($startTags as $index => $tag) {
+                    $openedTagsStack[] = array($cte->id, $tag, $index);
+                }
 
             } else {
-                // wrapperStop, check related wrapperStart
 
-                if (count($stack) === 0) {
-                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Closing tags (id:' . $cte->id . ') without opening tags</span>';
+                // every closing tag in cte should have corresponding opening tag
+
+                $closingTags = unserialize($cte->multiWrapperStop);
+                if (!is_array($closingTags)) {
+                    $status[$statusTitle] = '<span class="tl_red">Data corrupted</span>';
                     break;
                 }
 
-                $start = array_pop($stack);
-
-                // check tags matching
-
-                $startTags = $start[2];
-                $stopTags = unserialize($cte->multiWrapperStop);
-
-                if (!is_array($stopTags)) {
-                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Data corrupted</span>';
+                if (count($openedTagsStack) === 0) {
+                    $status[$statusTitle] = '<span class="tl_red">Error: Closing tag "' . $closingTags[0]['tag'] . '" (id:' . $cte->id . ') is without opening tag</span>';
                     break;
                 }
 
-                foreach ($stopTags as $stopTag) {
-                    $startTag = array_pop($startTags);
-                    if ($stopTag['tag'] !== $startTag['tag']) {
-                        $wrapperStatus[$headerTitle] = '<span class="tl_red">Closing tags (id:' . $cte->id . ') are not matching structure of opening tags (id:' . $start[0] . ')</span>';
+                foreach ($closingTags as $closingTag) {
+
+                    $openedTag = array_pop($openedTagsStack);
+
+                    if ($closingTag['tag'] !== $openedTag[1]['tag']) {
+                        $status[$statusTitle] = '<span class="tl_red">Error: Opening tag "' . $openedTag[1]['tag'] . '"  (id:' . $openedTag[0] . ') is paired with closing tag "' . $closingTag['tag'] . '" (id:' . $cte->id . ')</span>';
                         break 2;
                     }
                 }
-
-                // start wrapper has more tags than stop wrapper
-                if (count($startTags)) {
-                    $wrapperStatus[$headerTitle] = '<span class="tl_red">Closing tags (id:' . $cte->id . ') are not matching structure of opening tags (id:' . $start[0] . ')</span>';
-                    break;
-                }
             }
         }
 
-        if (count($wrapperStatus) === 0) {
-            if (count($stack)) {
-                $wrapperStatus[$headerTitle] = '<span class="tl_red">Opening tags (id:' . array_pop($stack)[0] . ') without closing tags</span>';
+        if (count($status) === 0) {
+            if (count($openedTagsStack)) {
+                $openedTag = array_pop($openedTagsStack);
+                $status[$statusTitle] = '<span class="tl_red">Error: Opening tag "' . $openedTag[1]['tag'] . '" (id:' . $openedTag[0] . ') is without closing tag</span>';
             } else {
-                $wrapperStatus[$headerTitle] = 'Opening tags match closing tags';
+                $status[$statusTitle] = 'Opening tags match closing tags';
             }
         }
 
-        return $add + $wrapperStatus;
+        return $add + $status;
     }
 }
