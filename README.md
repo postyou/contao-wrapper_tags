@@ -3,7 +3,7 @@ wrapper_tags extension for Contao Open Source CMS
 
 Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other content elements with ease. It **validates** the resulting html structure. 
 
-* Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10000019.en.html "Contao extension catalog")
+* Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10010009.en.html "Contao extension catalog")
 
 ## System requirements
 - Contao 3.2.x - 3.5.x
