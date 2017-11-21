@@ -15,3 +15,11 @@ $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = ['Tag', 'Select html tag']
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = ['Class', 'Type in html classes'];
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = ['Id', 'Type in id value'];
 
+/**
+ * Wrapper-tags status messages
+ */
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'Opening tags match closing tags';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Data corrupted';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'] = 'Error: Closing tag "&lt;/%s&gt;" (id:%d) is without opening tag.';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningNoClosing'] = 'Error: Opening tag "&lt;%s&gt;" (id:%d) is without closing tag.';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'] = 'Error: Opening tag "&lt;%s&gt;" (id:%d) is paired with closing tag "&lt;/%s&gt;" (id:%d)';

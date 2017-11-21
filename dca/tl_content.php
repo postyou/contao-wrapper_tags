@@ -122,7 +122,7 @@ class tl_content_cte_wrapper extends Backend
                 $startTags = unserialize($cte->openingTags);
 
                 if (!is_array($startTags)) {
-                    $status[$statusTitle] = '<span class="tl_red">Data corrupted</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
                     break;
                 }
 
@@ -136,12 +136,12 @@ class tl_content_cte_wrapper extends Backend
 
                 $closingTags = unserialize($cte->closingTags);
                 if (!is_array($closingTags)) {
-                    $status[$statusTitle] = '<span class="tl_red">Data corrupted</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
                     break;
                 }
 
                 if (count($openedTagsStack) === 0) {
-                    $status[$statusTitle] = '<span class="tl_red">Error: Closing tag "&lt;/' . $closingTags[0]['tag'] . '&gt;" (id:' . $cte->id . ') is without opening tag.</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTags[0]['tag'], $cte->id) . '</span>';
                     break;
                 }
 
@@ -150,12 +150,12 @@ class tl_content_cte_wrapper extends Backend
                     $openedTag = array_pop($openedTagsStack);
 
                     if ($openedTag === null) {
-                        $status[$statusTitle] = '<span class="tl_red">Error: Closing tag &lt;/"' . $closingTag['tag'] . '&gt;" (id:' . $cte->id . ') is without opening tag.</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte->id) . '</span>';
                         break 2;
                     }
 
                     if ($closingTag['tag'] !== $openedTag[1]['tag']) {
-                        $status[$statusTitle] = '<span class="tl_red">Error: Opening tag "&lt;' . $openedTag[1]['tag'] . '&gt;"  (id:' . $openedTag[0] . ') is paired with closing tag "&lt;/' . $closingTag['tag'] . '&gt;" (id:' . $cte->id . ').</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openedTag[1]['tag'], $openedTag[0], $closingTag['tag'], $cte->id) . '</span>';
                         break 2;
                     }
                 }
@@ -165,9 +165,9 @@ class tl_content_cte_wrapper extends Backend
         if (count($status) === 0) {
             if (count($openedTagsStack)) {
                 $openedTag = array_pop($openedTagsStack);
-                $status[$statusTitle] = '<span class="tl_red">Error: Opening tag "&lt;' . $openedTag[1]['tag'] . '&gt;" (id:' . $openedTag[0] . ') is without closing tag.</span>';
+                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningNoClosing'], $openedTag[1]['tag'], $openedTag[0]) . '</span>';
             } else {
-                $status[$statusTitle] = 'Opening tags match closing tags';
+                $status[$statusTitle] = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'];
             }
         }
 
