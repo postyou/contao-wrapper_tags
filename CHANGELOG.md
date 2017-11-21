@@ -1,5 +1,9 @@
 # wrapper_tags change log
 
+### 1.1.2 (2017-11-21)
+
+* Statuses are translated
+
 ### 1.1.0 (2017-11-18)
 
 * More precise validation

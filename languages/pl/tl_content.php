@@ -18,7 +18,7 @@ $GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = ['Id', 'Wpisz wartość id'
 
 /**
  * Wrapper-tags status messages
- */ 
+ */
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'Struktura znaczników jest poprawna';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Dane są uszkodzone';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'] = 'Błąd: Domknięcie znacznika "&lt;/%s&gt;" (id:%d) nie ma znacznika otwierającego.';
