@@ -15,3 +15,12 @@ $GLOBALS['TL_CTE']['wrapperTags']['openingTags'] = 'ContentOpeningTags';
 $GLOBALS['TL_CTE']['wrapperTags']['closingTags'] = 'ContentClosingTags';
 $GLOBALS['TL_WRAPPERS']['start'][] = 'openingTags';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
+
+
+/**
+ * stylesheets
+ */
+if (TL_MODE === 'BE') {
+
+    $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags.css';
+}
