@@ -8,7 +8,7 @@
  * @license LGPL
  */
 
-namespace Zmyslni;
+namespace Zmyslny\WrapperTags;
 
 use Contao\ContentElement;
 

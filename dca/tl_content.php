@@ -136,14 +136,18 @@ class tl_content_wrapper_tags extends tl_content
         }
 
         // get all content elements from this article
-        $result = $this->Database
-            ->prepare('
-                SELECT id, type, openingTags, closingTags, invisible
-                FROM `tl_content`
-                WHERE pid = ? 
-                ORDER BY sorting ASC
-                ')
-            ->execute($dc->id);
+        $query = '
+            SELECT id, type, openingTags, closingTags, invisible
+            FROM `tl_content`
+            WHERE pid = ? 
+            ORDER BY sorting ASC
+        ';
+
+        $stmt = $this->Database->prepare($query);
+
+        // ! do not set limit - validation needs all elements
+
+        $result = $stmt->execute($dc->id);
 
         $statusTitle = $GLOBALS['TL_LANG']['CTE']['wrapperTags'];
         $status = array();
@@ -255,7 +259,7 @@ class tl_content_wrapper_tags extends tl_content
 
                     if (!$isVisible) {
 
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']]['value'] += 1;
+                        $GLOBALS['WrapperTags']['indents'][$cte['id']]['value'] += $indentLevel > 0 ? 1 : 0;
 
                     } else {
 
@@ -357,27 +361,25 @@ class tl_content_wrapper_tags extends tl_content
 
                                     $openingTags = &$openStack[count($openStack) - 1];
 
-                                    if ($ctes[$openingTags['id']]['invisible'] != '1') {
 
-                                        $openingTag = array_pop($openingTags['tags']);
-                                        $lastPairedId = (int)$openingTags['id'];
+                                    $openingTag = array_pop($openingTags['tags']);
+                                    $lastPairedId = (int)$openingTags['id'];
 
-                                        if ($closingTag['tag'] !== $openingTag['tag']) {
+                                    if ($closingTag['tag'] !== $openingTag['tag']) {
 
-                                            if (!$hasError) {
-                                                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
-                                                $hasError = true;
-                                            }
+                                        if (!$hasError) {
+                                            $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
+                                            $hasError = true;
                                         }
+                                    }
 
-                                        if (count($openingTags['tags']) === 0) {
+                                    if (count($openingTags['tags']) === 0) {
 
-                                            $openingTagsPaired[$openingTags['id']] = $openingTags;
-                                            array_pop($openStack);
-                                            $lastElementWasPaired = true;
+                                        $openingTagsPaired[$openingTags['id']] = $openingTags;
+                                        array_pop($openStack);
+                                        $lastElementWasPaired = true;
 
-                                            ++$indentDown;
-                                        }
+                                        ++$indentDown;
                                     }
                                 }
 
@@ -449,12 +451,46 @@ class tl_content_wrapper_tags extends tl_content
         /*
          * Indents will be used in childRecordCallback.
          *
-         * When we set child_record_class in childRecordCallback, it will be set for the next element then element
+         * First element child_record_class must be set before child_record_callback is called, e.g. in this function.
+         */
+
+        if (class_exists('ReflectionClass')) {
+
+            $reflectionClass = new ReflectionClass('DC_Table');
+            $reflectionProperty = $reflectionClass->getProperty('limit');
+            $reflectionProperty->setAccessible(true);
+            $limit = $reflectionProperty->getValue($dc);
+
+            if (strlen($limit)) {
+                $limit = explode(',', $limit);
+                $offset = (int)$limit[0];
+
+                // set first child_record_class when paging
+                if ($offset > 0) {
+                    $index = 1;
+                    $firstElementOnPage = $offset + 1;
+                    foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
+                        if ($index === $firstElementOnPage) {
+                            $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
+                            $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
+                            break;
+                        }
+                        ++$index;
+                    }
+                }
+            }
+        }
+
+        /*
+         * When we set child_record_class in child_record_callback, it will be set for the next element then element
          * for which that function is called. So indent values must be offset. Every element id must point to the indent
          * value of the next element.
          */
 
-        $lastIndent = 0;
+        end($GLOBALS['WrapperTags']['indents']);
+        $lastKey = key($GLOBALS['WrapperTags']['indents']);
+        $lastIndent = $GLOBALS['WrapperTags']['indents'][$lastKey];
+
         $reversed = array_reverse($GLOBALS['WrapperTags']['indents'], true);
 
         foreach ($reversed as $id => &$indent) {
