@@ -43,8 +43,7 @@ class tl_content_wrapper_tags extends tl_content
             $indent = $GLOBALS['WrapperTags']['indents'][$arrRow['id']];
 
             if ($indent !== null) {
-                $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-                $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
+                $this->setChildRecordClass($indent);
             }
         }
 
@@ -360,8 +359,6 @@ class tl_content_wrapper_tags extends tl_content
                                     }
 
                                     $openingTags = &$openStack[count($openStack) - 1];
-
-
                                     $openingTag = array_pop($openingTags['tags']);
                                     $lastPairedId = (int)$openingTags['id'];
 
@@ -471,8 +468,7 @@ class tl_content_wrapper_tags extends tl_content
                     $firstElementOnPage = $offset + 1;
                     foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
                         if ($index === $firstElementOnPage) {
-                            $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-                            $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
+                            $this->setChildRecordClass($indent);
                             break;
                         }
                         ++$index;
@@ -502,6 +498,12 @@ class tl_content_wrapper_tags extends tl_content
         $GLOBALS['WrapperTags']['indents'] = array_reverse($reversed, true);
 
         return $add + $status;
+    }
+
+    protected function setChildRecordClass($indent)
+    {
+        $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
     }
 
 }
