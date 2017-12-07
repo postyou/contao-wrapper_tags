@@ -73,11 +73,17 @@ class tl_content_wrapper_tags extends tl_content
     }
 
     /**
+     * Feeds opening tag element with html tags.
+     *
      * @return array
      */
     public function getTags()
     {
-        return array('div', 'span', 'article', 'p', 'pre', 'aside', 'ul', 'ol', 'li');
+        $tags = trimsplit('><', \Config::get('wrapperTagsAllowedTags'));
+        $tags[0] = str_replace('<', '', $tags[0]);
+        $tags[count($tags) - 1] = str_replace('>', '', $tags[count($tags) - 1]);
+
+        return $tags;
     }
 
     /**
