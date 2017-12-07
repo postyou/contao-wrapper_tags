@@ -15,12 +15,16 @@ Provides wrapper content elements that allow **advance** wrapping functionalitie
 - open many divs (or other html tags) in one wrapper element, all by just clicking
 - close those divs using one or many wrapper elements
 - resulting structure in colors
-- get precise validation info of resulting structure 
+- indents are recalculate and preserved even in paging
+- get precise validation info of resulting structure
 
 ## Example screenshots
 
 ### Colors
 ![Showcase](docs/showcase.jpg?raw=true "Show case")
+
+### Colors and indent in paging
+![Paging](docs/paging.jpg?raw=true "Paging")
 
 ### 3 elements with the same indent
 
