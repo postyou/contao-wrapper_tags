@@ -247,6 +247,8 @@ class tl_content_wrapper_tags extends tl_content
             $status[$statusTitle] = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'];
         }
 
+        $useColors = \Config::get('wrapperTagsUseColors');
+
         /*
          * Indents will be used in childRecordCallback.
          *
@@ -272,7 +274,7 @@ class tl_content_wrapper_tags extends tl_content
                     $firstElementOnPage = $offset + 1;
                     foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
                         if ($index === $firstElementOnPage) {
-                            $this->setChildRecordClass($indent);
+                            $this->setChildRecordClass($indent + array('colorize-class' => ($useColors ? 'indent-colorize' : '')));
                             break;
                         }
                         ++$index;
@@ -280,9 +282,7 @@ class tl_content_wrapper_tags extends tl_content
                 }
             }
         }
-
-        $useColors = \Config::get('wrapperTagsUseColors');
-
+ 
         /*
          * When we set child_record_class in child_record_callback, it will be set for the next element then element
          * for which that function is called. So indent values must be offset. Every element id must point to the indent
