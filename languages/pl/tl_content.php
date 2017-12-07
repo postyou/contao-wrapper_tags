@@ -5,8 +5,9 @@
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
  * @author  Ostrowski Maciej <maciek@zmyslni.pl>
- * @license LGPL
+ * @license LGPL-3.0+
  */
+
 
 $GLOBALS['TL_LANG']['tl_content']['openingTags'] = ['Otwieranie znaczników', 'Wybierz znaczniki do otwarcia. W odpowiadającym elemencie treści [Domykanie znaczników] ta struktura musi być odwzorowana. Każdy otwarty znacznik np. &lt;DIV&gt; musi mieć domknięty znacznik &lt;/DIV&gt;'];
 $GLOBALS['TL_LANG']['tl_content']['closingTags'] = ['Domykanie znaczników', 'Choose closing tags that match structure in corresponding [Opening Tags] content element.'];
@@ -15,6 +16,7 @@ $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Ustawienia HTML-owych
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = ['Znacznik', 'Wybierz znacznik'];
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = ['Class', 'Wpisz klasy'];
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = ['Id', 'Wpisz wartość id'];
+
 
 /**
  * Wrapper-tags status messages

@@ -5,13 +5,15 @@
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
  * @author  Ostrowski Maciej <maciek@zmyslni.pl>
- * @license LGPL
+ * @license LGPL-3.0+
  */
+
 
 /**
  * Register the namespaces
  */
 ClassLoader::addNamespaces(array('Zmyslny\WrapperTags'));
+
 
 /**
  * Register the classes
@@ -23,6 +25,7 @@ ClassLoader::addClasses(array
     'Zmyslny\WrapperTags\ContentClosingTags' => 'system/modules/wrapper_tags/elements/ContentClosingTags.php'
 
 ));
+
 
 /**
  * Register the templates

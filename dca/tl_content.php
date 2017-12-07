@@ -5,8 +5,9 @@
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
  * @author  Ostrowski Maciej <maciek@zmyslni.pl>
- * @license LGPL
+ * @license LGPL-3.0+
  */
+
 
 $tl_content = &$GLOBALS['TL_DCA']['tl_content'];
 
@@ -36,11 +37,20 @@ $tl_content['fields']['closingTags'] = array(
 class tl_content_wrapper_tags extends tl_content
 {
 
-    public function childRecordCallback($arrRow)
+    /**
+     * Set html class on each CTE from list view.
+     *
+     * Class being set in this function will be set to the next CTE then CTE of $row element. That is why
+     * $GLOBALS['WrapperTags']['indents'] array was offset so every cteId point to class of the next element.
+     *
+     * @param $row
+     * @return string
+     */
+    public function childRecordCallback($row)
     {
         if (isset($GLOBALS['WrapperTags']['indents']) && is_array($GLOBALS['WrapperTags']['indents'])) {
 
-            $indent = $GLOBALS['WrapperTags']['indents'][$arrRow['id']];
+            $indent = $GLOBALS['WrapperTags']['indents'][$row['id']];
 
             if ($indent !== null) {
                 $this->setChildRecordClass($indent);
@@ -48,7 +58,18 @@ class tl_content_wrapper_tags extends tl_content
         }
 
         // standard Contao child-record-callback
-        return parent::addCteType($arrRow);
+        return parent::addCteType($row);
+    }
+
+    /**
+     * Sets html class to Contao config.
+     *
+     * @param $indent
+     */
+    protected function setChildRecordClass($indent)
+    {
+        $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
     }
 
     /**
@@ -109,9 +130,10 @@ class tl_content_wrapper_tags extends tl_content
         );
     }
 
-
     /**
      * Checks whether every start wrapper has its corresponding stop wrapper.
+     *
+     * It also build new indent information witch will be then applied to content list view.
      *
      * @param $add
      * @param DataContainer $dc
@@ -156,13 +178,6 @@ class tl_content_wrapper_tags extends tl_content
             return $add + $status;
         }
 
-        /*
-         * There are some wrapper-tags elements so validate their structure and correct indents
-         */
-
-        $ctes = $result->fetchAllAssoc();
-        unset($result); // free memory
-
         $indentLevel = 0;
         $openStack = array();
         $status = array();
@@ -170,7 +185,7 @@ class tl_content_wrapper_tags extends tl_content
         // helps to show only the first error
         $hasError = false;
 
-        foreach ($ctes as $cte) {
+        foreach ($result->fetchAllAssoc() as $cte) {
 
             $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']);
             $isWrapperStop = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['stop']);
@@ -178,243 +193,11 @@ class tl_content_wrapper_tags extends tl_content
 
             if ($isWrapperStart) {
 
-                if ('openingTags' !== $cte['type']) {
-
-                    if ($isVisible) {
-
-                        // put wrapper start (whatever type it is) on stack
-                        $openStack[] = array(
-                            'id' => $cte['id'],
-                            'type' => $cte['type']
-                        );
-
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-                        ++$indentLevel;
-
-                    } else {
-
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-                    }
-
-                } else {
-
-                    if ($isVisible) {
-
-                        // every opened tag from openingTags put on stack
-
-                        $startTags = unserialize($cte['openingTags']);
-
-                        if (!$hasError) {
-                            if (!is_array($startTags)) {
-                                $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
-                                $hasError = true;
-                            }
-                        }
-
-                        $openStack[] = array(
-                            'id' => $cte['id'],
-                            'type' => 'openingTags',
-                            'tags' => $startTags,
-                            'count' => count($startTags)
-                        );
-
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-                        ++$indentLevel;
-
-                    } else {
-
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-                    }
-                }
+                $this->wrapperStart($cte, $isVisible, $statusTitle, $openStack, $indentLevel, $hasError, $status);
 
             } elseif ($isWrapperStop) {
 
-                if ('closingTags' !== $cte['type']) {
-
-                    if ($isVisible) {
-
-                        $openingTags = $openStack[count($openStack) - 1];
-
-                        if (!$hasError) {
-
-                            // Last opened wrapper is of type 'openingTags'. Because now we are stepping on closing element
-                            // not of type 'closingTags' so the pairing is wrong.
-                            if ($openingTags !== null && $openingTags['type'] === 'openingTags') {
-
-                                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
-                                $hasError = true;
-                            }
-                        }
-
-                        array_pop($openStack);
-                        --$indentLevel;
-                    }
-
-                    $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-
-                } else {
-
-                    $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => ($indentLevel > 1 ? $indentLevel - 1 : 0));
-
-                    if (!$isVisible) {
-
-                        $GLOBALS['WrapperTags']['indents'][$cte['id']]['value'] += $indentLevel > 0 ? 1 : 0;
-
-                    } else {
-
-                        $closingTags = unserialize($cte['closingTags']);
-
-                        if (!$hasError) {
-                            if (!is_array($closingTags)) {
-                                $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
-                                $hasError = true;
-                            }
-                        }
-
-                        if (count($openStack) === 0) {
-                            // case 1: no more opened tags on stack
-
-                            if (!$hasError) {
-                                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTags[count($closingTags) - 1]['tag'], $cte['id']) . '</span>';
-                                $hasError = true;
-                            }
-
-                        } elseif ('openingTags' !== $openStack[count($openStack) - 1]['type']) {
-                            // case 2: closing element is paired with wrong opening element - it is not of type 'openingTags'
-
-                            $openingTags = array_pop($openStack);
-
-                            if (!$hasError) {
-                                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingWithOther'], $closingTags[0]['tag'], $cte['id'], $GLOBALS['TL_LANG']['CTE'][$openingTags['type']][0], $openingTags['id']) . '</span>';
-                                $hasError = true;
-                            }
-
-                            --$indentLevel;
-
-                        } else {
-                            // case 3: proper pairing with type 'openingTags'
-
-                            if ($openStack[count($openStack) - 1]['count'] >= count($closingTags)) {
-                                // case 3.1: ONE big openingTags element paired with ONE or MORE smaller closingTags elements
-
-                                $openingWasPaired = false;
-
-                                foreach ($closingTags as $closingTag) {
-
-                                    if (count($openStack) === 0) {
-
-                                        if (!$hasError) {
-                                            $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
-                                            $hasError = true;
-                                        }
-
-                                        break;
-                                    }
-
-                                    $openingTag = array_pop($openStack[count($openStack) - 1]['tags']);
-
-                                    if ($closingTag['tag'] !== $openingTag['tag']) {
-
-                                        if (!$hasError) {
-                                            $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openStack[count($openStack) - 1]['id'], $closingTag['tag'], $cte['id']) . '</span>';
-                                            $hasError = true;
-                                        }
-                                    }
-
-                                    if (count($openStack[count($openStack) - 1]['tags']) === 0) {
-
-                                        array_pop($openStack);
-                                        --$indentLevel;
-
-                                        $openingWasPaired = true;
-                                    }
-                                }
-
-                                if (!$openingWasPaired) {
-                                    // closingTag element was not the last one, it is the middle closingTags element
-                                    $GLOBALS['WrapperTags']['indents'][$cte['id']]['middle'] = true;
-                                }
-
-                            } else {
-                                // case 3.2: MANY small openingTags elements paired with ONE bigger closingTags element
-
-                                $indentDown = 0;
-                                $lastPairedId = 0;
-                                $lastElementWasPaired = false;
-                                $openingTagsPaired = array();
-
-                                foreach ($closingTags as $closingTag) {
-
-                                    if (count($openStack) === 0) {
-
-                                        if (!$hasError) {
-                                            $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
-                                            $hasError = true;
-                                        }
-
-                                        break;
-
-                                    } else {
-                                        $lastElementWasPaired = false;
-                                    }
-
-                                    $openingTags = &$openStack[count($openStack) - 1];
-                                    $openingTag = array_pop($openingTags['tags']);
-                                    $lastPairedId = (int)$openingTags['id'];
-
-                                    if ($closingTag['tag'] !== $openingTag['tag']) {
-
-                                        if (!$hasError) {
-                                            $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
-                                            $hasError = true;
-                                        }
-                                    }
-
-                                    if (count($openingTags['tags']) === 0) {
-
-                                        $openingTagsPaired[$openingTags['id']] = $openingTags;
-                                        array_pop($openStack);
-                                        $lastElementWasPaired = true;
-
-                                        ++$indentDown;
-                                    }
-                                }
-
-                                // Last paired opening tags element is still has not paired, has single html tag left
-                                if (!$lastElementWasPaired) {
-
-                                    if (!$hasError) {
-                                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingNeedSplit'], $cte['id'], $openStack[count($openStack) - 1]['id']) . '</span>';
-                                        $hasError = true;
-                                    }
-
-                                    ++$indentDown;
-                                }
-
-                                $indentLevel = $indentLevel - $indentDown;
-                                $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
-
-                                // iterate backwards and correct indents
-                                $ids = array_keys($GLOBALS['WrapperTags']['indents']);
-                                for ($i = count($ids) - 2; $i >= 0; --$i) {
-
-                                    if ($ids[$i] === $lastPairedId) {
-                                        break;
-                                    }
-
-                                    $element = &$GLOBALS['WrapperTags']['indents'][$ids[$i]];
-                                    $element['value'] = $element['value'] - $indentDown + 1;
-
-                                    if (isset($openingTagsPaired[$ids[$i]])) {
-                                        --$indentDown;
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-                }
+                $this->wrapperStop($cte, $isVisible, $statusTitle, $openStack, $indentLevel, $hasError, $status);
 
             } else {
 
@@ -453,6 +236,8 @@ class tl_content_wrapper_tags extends tl_content
 
         if (class_exists('ReflectionClass')) {
 
+            // need to use ReflectionClass in order to get $dc->limit property
+
             $reflectionClass = new ReflectionClass('DC_Table');
             $reflectionProperty = $reflectionClass->getProperty('limit');
             $reflectionProperty->setAccessible(true);
@@ -462,7 +247,7 @@ class tl_content_wrapper_tags extends tl_content
                 $limit = explode(',', $limit);
                 $offset = (int)$limit[0];
 
-                // set first child_record_class when paging
+                // set child_record_class for first CTE on list view - paging is taken into account
                 if ($offset > 0) {
                     $index = 1;
                     $firstElementOnPage = $offset + 1;
@@ -500,10 +285,305 @@ class tl_content_wrapper_tags extends tl_content
         return $add + $status;
     }
 
-    protected function setChildRecordClass($indent)
+    /**
+     * @param $cte
+     * @param $isVisible
+     * @param $statusTitle
+     * @param $openStack
+     * @param $indentLevel
+     * @param $hasError
+     * @param $status
+     */
+    protected function wrapperStart($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
     {
-        $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
+        if ('openingTags' !== $cte['type']) {
+
+            if ($isVisible) {
+
+                // put wrapper start (whatever type it is) on stack
+                $openStack[] = array(
+                    'id' => $cte['id'],
+                    'type' => $cte['type']
+                );
+
+                $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+                ++$indentLevel;
+
+            } else {
+
+                $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+            }
+
+        } else {
+
+            if ($isVisible) {
+
+                // every opened tag from openingTags put on stack
+
+                $startTags = unserialize($cte['openingTags']);
+
+                if (!$hasError) {
+                    if (!is_array($startTags)) {
+                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
+                        $hasError = true;
+                    }
+                }
+
+                $openStack[] = array(
+                    'id' => $cte['id'],
+                    'type' => 'openingTags',
+                    'tags' => $startTags,
+                    'count' => count($startTags)
+                );
+
+                $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+                ++$indentLevel;
+
+            } else {
+
+                $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+            }
+        }
+    }
+
+    /**
+     * @param $cte
+     * @param $isVisible
+     * @param $statusTitle
+     * @param $openStack
+     * @param $indentLevel
+     * @param $hasError
+     * @param $status
+     */
+    protected function wrapperStop($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
+    {
+        if ('closingTags' !== $cte['type']) {
+
+            if ($isVisible) {
+
+                $openingTags = $openStack[count($openStack) - 1];
+
+                if (!$hasError) {
+
+                    // Last opened wrapper is of type 'openingTags'. Because now we are stepping on closing element
+                    // not of type 'closingTags' so the pairing is wrong.
+                    if ($openingTags !== null && $openingTags['type'] === 'openingTags') {
+
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
+                        $hasError = true;
+                    }
+                }
+
+                array_pop($openStack);
+                --$indentLevel;
+            }
+
+            $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+
+        } else {
+
+            $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => ($indentLevel > 1 ? $indentLevel - 1 : 0));
+
+            if (!$isVisible) {
+
+                $GLOBALS['WrapperTags']['indents'][$cte['id']]['value'] += $indentLevel > 0 ? 1 : 0;
+
+            } else {
+
+                $closingTags = unserialize($cte['closingTags']);
+
+                if (!$hasError) {
+                    if (!is_array($closingTags)) {
+                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
+                        $hasError = true;
+                    }
+                }
+
+                if (count($openStack) === 0) {
+
+                    /*
+                     * case 1: no more opened tags on stack
+                     */
+
+                    if (!$hasError) {
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTags[count($closingTags) - 1]['tag'], $cte['id']) . '</span>';
+                        $hasError = true;
+                    }
+
+                } elseif ('openingTags' !== $openStack[count($openStack) - 1]['type']) {
+
+                    /*
+                     * case 2: closing element is paired with wrong opening element - it is not of type 'openingTags'
+                     */
+
+                    $openingTags = array_pop($openStack);
+
+                    if (!$hasError) {
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingWithOther'], $closingTags[0]['tag'], $cte['id'], $GLOBALS['TL_LANG']['CTE'][$openingTags['type']][0], $openingTags['id']) . '</span>';
+                        $hasError = true;
+                    }
+
+                    --$indentLevel;
+
+                } else {
+
+                    /*
+                     * case 3: proper pairing with type 'openingTags'
+                     */
+
+                    if ($openStack[count($openStack) - 1]['count'] >= count($closingTags)) {
+
+                        /*
+                         * case 3.1: ONE big openingTags element paired with ONE or MORE smaller closingTags elements
+                         */
+
+                        $this->wrapperStopOneToMany($cte, $closingTags, $statusTitle, $openStack, $indentLevel, $hasError, $status);
+
+                    } else {
+
+                        /*
+                         * case 3.2: MANY small openingTags elements paired with ONE bigger closingTags element
+                         */
+
+                        $this->wrapperStopManyToOne($cte, $closingTags, $statusTitle, $openStack, $indentLevel, $hasError, $status);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $cte
+     * @param $closingTags
+     * @param $statusTitle
+     * @param $openStack
+     * @param $indentLevel
+     * @param $hasError
+     * @param $status
+     */
+    protected function wrapperStopOneToMany($cte, $closingTags, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
+    {
+        $openingWasPaired = false;
+
+        foreach ($closingTags as $closingTag) {
+
+            if (count($openStack) === 0) {
+
+                if (!$hasError) {
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $hasError = true;
+                }
+
+                break;
+            }
+
+            $openingTag = array_pop($openStack[count($openStack) - 1]['tags']);
+
+            if ($closingTag['tag'] !== $openingTag['tag']) {
+
+                if (!$hasError) {
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openStack[count($openStack) - 1]['id'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $hasError = true;
+                }
+            }
+
+            if (count($openStack[count($openStack) - 1]['tags']) === 0) {
+
+                array_pop($openStack);
+                --$indentLevel;
+
+                $openingWasPaired = true;
+            }
+        }
+
+        if (!$openingWasPaired) {
+            // closingTag element was not the last one, it is the middle closingTags element
+            $GLOBALS['WrapperTags']['indents'][$cte['id']]['middle'] = true;
+        }
+    }
+
+    /**
+     * @param $cte
+     * @param $closingTags
+     * @param $statusTitle
+     * @param $openStack
+     * @param $indentLevel
+     * @param $hasError
+     * @param $status
+     */
+    protected function wrapperStopManyToOne($cte, $closingTags, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
+    {
+        $indentDown = 0;
+        $lastPairedId = 0;
+        $lastElementWasPaired = false;
+        $openingTagsPaired = array();
+
+        foreach ($closingTags as $closingTag) {
+
+            if (count($openStack) === 0) {
+
+                if (!$hasError) {
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $hasError = true;
+                }
+
+                break;
+
+            } else {
+                $lastElementWasPaired = false;
+            }
+
+            $openingTags = &$openStack[count($openStack) - 1];
+            $openingTag = array_pop($openingTags['tags']);
+            $lastPairedId = (int)$openingTags['id'];
+
+            if ($closingTag['tag'] !== $openingTag['tag']) {
+
+                if (!$hasError) {
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $hasError = true;
+                }
+            }
+
+            if (count($openingTags['tags']) === 0) {
+
+                $openingTagsPaired[$openingTags['id']] = $openingTags;
+                array_pop($openStack);
+                $lastElementWasPaired = true;
+
+                ++$indentDown;
+            }
+        }
+
+        // Last paired opening tags element is still has not paired, has single html tag left
+        if (!$lastElementWasPaired) {
+
+            if (!$hasError) {
+                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingNeedSplit'], $cte['id'], $openStack[count($openStack) - 1]['id']) . '</span>';
+                $hasError = true;
+            }
+
+            ++$indentDown;
+        }
+
+        $indentLevel = $indentLevel - $indentDown;
+        $GLOBALS['WrapperTags']['indents'][$cte['id']] = array('type' => $cte['type'], 'value' => $indentLevel);
+
+        // iterate backwards and correct indents
+        $ids = array_keys($GLOBALS['WrapperTags']['indents']);
+        for ($i = count($ids) - 2; $i >= 0; --$i) {
+
+            if ($ids[$i] === $lastPairedId) {
+                break;
+            }
+
+            $element = &$GLOBALS['WrapperTags']['indents'][$ids[$i]];
+            $element['value'] = $element['value'] - $indentDown + 1;
+
+            if (isset($openingTagsPaired[$ids[$i]])) {
+                --$indentDown;
+            }
+        }
     }
 
 }

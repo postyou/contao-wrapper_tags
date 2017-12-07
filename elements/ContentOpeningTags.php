@@ -5,7 +5,7 @@
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
  * @author  Ostrowski Maciej <maciek@zmyslni.pl>
- * @license LGPL
+ * @license LGPL-3.0+
  */
 
 namespace Zmyslny\WrapperTags;
