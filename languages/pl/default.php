@@ -9,6 +9,6 @@
  */
 
 
-$GLOBALS['TL_LANG']['CTE']['openingTags'] = ['Otwieranie znaczników', 'Pozwala na otwarcie wielu znaczników html-a.'];
-$GLOBALS['TL_LANG']['CTE']['closingTags'] = ['Domykanie znaczników', 'Pozwala na domknięcie wielu znaczników html-a.'];
+$GLOBALS['TL_LANG']['CTE']['openingTags'] = array('Otwieranie znaczników', 'Pozwala na otwarcie wielu znaczników html-a.');
+$GLOBALS['TL_LANG']['CTE']['closingTags'] = array('Domykanie znaczników', 'Pozwala na domknięcie wielu znaczników html-a.');
 $GLOBALS['TL_LANG']['CTE']['wrapperTags'] = 'HTML-owe znaczniki';

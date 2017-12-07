@@ -9,6 +9,6 @@
  */
 
 
-$GLOBALS['TL_LANG']['CTE']['openingTags'] = ['Opening tags', 'Allows to open multiple html tags.'];
-$GLOBALS['TL_LANG']['CTE']['closingTags'] = ['Closing tags', 'Allows to close multiple html tags.'];
+$GLOBALS['TL_LANG']['CTE']['openingTags'] = array('Opening tags', 'Allows to open multiple html tags.');
+$GLOBALS['TL_LANG']['CTE']['closingTags'] = array('Closing tags', 'Allows to close multiple html tags.');
 $GLOBALS['TL_LANG']['CTE']['wrapperTags'] = 'Wrapper tags';
