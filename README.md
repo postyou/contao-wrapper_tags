@@ -14,7 +14,7 @@ Provides wrapper content elements that allow **advance** wrapping functionalitie
 
 - open many divs (or other html tags) in one wrapper element, all by just clicking
 - close those divs using one or many wrapper elements
-- resulting structure with colors
+- resulting structure in colors
 - get precise validation info of resulting structure 
 
 ## Example screenshots
