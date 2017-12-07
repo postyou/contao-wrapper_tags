@@ -2,7 +2,7 @@ wrapper_tags
 ===============================
 An extension for Contao Open Source CMS
  
-Provides wrapper content elements that allow **advance** wrapping functionalities, **colorizing** and **validation** of the resulting html structure. 
+Provides wrapper content elements that allow **advance** wrapping functionalities, **colored** and **validation** of the resulting html structure. 
 
 * Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10010009.en.html "Contao extension catalog")
 
@@ -14,12 +14,12 @@ Provides wrapper content elements that allow **advance** wrapping functionalitie
 
 - open many divs (or other html tags) in one wrapper element, all by just clicking
 - close those divs using one or many wrapper elements
-- colorize resulting structure
+- resulting structure with colors
 - get precise validation info of resulting structure 
 
 ## Example screenshots
 
-### Colorizing
+### Colors
 ![Showcase](docs/showcase.jpg?raw=true "Show case")
 
 ### 3 elements with the same indent
