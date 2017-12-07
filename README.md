@@ -2,7 +2,7 @@ wrapper_tags
 ===============================
 An extension for Contao Open Source CMS
  
-Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other content elements with ease. It **validates** the resulting html structure. 
+Provides wrapper content elements that allow advance wrapping functionalities, colorizing and **validation** of the resulting html structure. 
 
 * Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10010009.en.html "Contao extension catalog")
 
@@ -11,6 +11,24 @@ Provides 2 content elements "Opening tags" and "Closing tags" used to wrap other
 - PHP 5.6.x - 7.x
 
 ## Usage
+
+- open many divs (or other html tags) in one wrapper element, all just by clicking
+- close those divs using one or many wrapper elements
+- colorize resulting structure
+- get precise validation info of resulting structure 
+
+## Example screenshots
+
+### Colorizing
+![Showcase](docs/showcase.jpg?raw=true "Show case")
+
+### 3 elements with the same indent
+
+![Same indent](docs/same-indent.jpg?raw=true "Same indent")
+
+### Settings
+
+![Settings](docs/tl_settings.jpg?raw=true "Settings")
 
 ### Use content element "Opening tags" to open any number of html tags you need.
  
