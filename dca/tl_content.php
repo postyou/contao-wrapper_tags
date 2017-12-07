@@ -282,7 +282,7 @@ class tl_content_wrapper_tags extends tl_content
                 }
             }
         }
- 
+
         /*
          * When we set child_record_class in child_record_callback, it will be set for the next element then element
          * for which that function is called. So indent values must be offset. Every element id must point to the indent
