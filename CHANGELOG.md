@@ -1,5 +1,12 @@
 # wrapper_tags change log
 
+### 1.2.0 (2017-12-7)
+
+* setting: colorized structure
+* setting: custom html tags
+* better validation
+* multi elements with the same indent
+
 ### 1.1.2 (2017-11-21)
 
 * Statuses are translated
