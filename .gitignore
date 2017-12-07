@@ -48,3 +48,6 @@ Temporary Items
 
 # Design files
 *.psd
+
+# css-es
+*.css.map

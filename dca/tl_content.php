@@ -40,9 +40,9 @@ $tl_content['fields']['closingTags'] = array(
  */
 if (TL_MODE === 'BE') {
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible.css';
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible.min.css';
     } else {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default.css';
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default.min.css';
     }
 }
 
