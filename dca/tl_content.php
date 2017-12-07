@@ -34,6 +34,19 @@ $tl_content['fields']['closingTags'] = array(
     'sql' => 'blob NULL'
 );
 
+
+/**
+ * stylesheets
+ */
+if (TL_MODE === 'BE') {
+    if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible.css';
+    } else {
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default.css';
+    }
+}
+
+
 class tl_content_wrapper_tags extends tl_content
 {
 

@@ -26,14 +26,6 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
 
 
 /**
- * stylesheets
- */
-if (TL_MODE === 'BE') {
-    $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags.css';
-}
-
-
-/**
  * TL_CONFIG
  */
 $GLOBALS['TL_CONFIG']['wrapperTagsAllowedTags']
