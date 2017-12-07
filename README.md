@@ -2,7 +2,7 @@ wrapper_tags
 ===============================
 An extension for Contao Open Source CMS
  
-Provides wrapper content elements that allow advance wrapping functionalities, colorizing and **validation** of the resulting html structure. 
+Provides wrapper content elements that allow **advance** wrapping functionalities, **colorizing** and **validation** of the resulting html structure. 
 
 * Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10010009.en.html "Contao extension catalog")
 
@@ -12,7 +12,7 @@ Provides wrapper content elements that allow advance wrapping functionalities, c
 
 ## Usage
 
-- open many divs (or other html tags) in one wrapper element, all just by clicking
+- open many divs (or other html tags) in one wrapper element, all by just clicking
 - close those divs using one or many wrapper elements
 - colorize resulting structure
 - get precise validation info of resulting structure 
@@ -30,38 +30,15 @@ Provides wrapper content elements that allow advance wrapping functionalities, c
 
 ![Settings](docs/tl_settings.jpg?raw=true "Settings")
 
-### Use content element "Opening tags" to open any number of html tags you need.
+### Open html tags just by clicking
  
 ![Opening tags](docs/backend-opening-tags.png?raw=true "Opening tags")
 
-### Then close all of these opened html tags using "Closing tags" content element.
+### Close them also by clicking
 
 ![Closing tags](docs/backend-closing-tags.png?raw=true "Closing tags")
-
-### This is an example of a built, correct structure.
-
-![Structure ok](docs/backend-ok.png?raw=true "Structure ok")
-
-Html structure result looks like:
-
-```html
-<article id="id-1" class="class-1">
-  <div class="class-2">
-    <span id="id-3">
-      <h1 class="ce_headline" style="margin-bottom:100px;">
-        Hello, this is first element wrapped by html tags
-      </h1>
-      <div class="red">
-        <h1 class="ce_headline" style="margin-bottom:100px;">
-          This is second element wrapped by html tags
-        </h1>
-      </div>
-    </span>
-  </div>
-</article>
-```
  
-### This is an example of a structure with error.
+### Structure with error
 
 ![Structure with error](docs/backend-error.png?raw=true "Structure with error")
 
