@@ -82,7 +82,7 @@ class tl_content_wrapper_tags extends tl_content
     protected function setChildRecordClass($indent)
     {
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass : 'clear-indent' . $middleClass;
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent' . $middleClass;
     }
 
     /**
@@ -281,6 +281,8 @@ class tl_content_wrapper_tags extends tl_content
             }
         }
 
+        $useColors = \Config::get('wrapperTagsUseColors');
+
         /*
          * When we set child_record_class in child_record_callback, it will be set for the next element then element
          * for which that function is called. So indent values must be offset. Every element id must point to the indent
@@ -295,7 +297,7 @@ class tl_content_wrapper_tags extends tl_content
 
         foreach ($reversed as $id => &$indent) {
             $nowIndent = $indent;
-            $indent = $lastIndent;
+            $indent = $lastIndent + array('colorize-class' => ($useColors ? 'indent-colorize' : ''));
             $lastIndent = $nowIndent;
         }
 
