@@ -4,7 +4,7 @@ An extension for Contao Open Source CMS
  
 Provides wrapper content elements that allow **advance** wrapping functionalities, **colored** and **validation** of the resulting html structure. 
 
-* Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10010009.en.html "Contao extension catalog")
+* Find in [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.10020019.en.html "Contao extension catalog")
 
 ## System requirements
 - Contao 3.2.x - 3.5.x
