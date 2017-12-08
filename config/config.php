@@ -28,9 +28,8 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
 /**
  * TL_CONFIG
  */
-
 $GLOBALS['TL_CONFIG']['wrapperTagsUseColors'] = true;
-
+$GLOBALS['TL_CONFIG']['wrapperTagsHideValidationStatus'] = false;
 $GLOBALS['TL_CONFIG']['wrapperTagsAllowedTags']
     = '<div><span><article><aside>'
     . '<ul><ol><li>';

@@ -208,8 +208,15 @@ class tl_content_wrapper_tags extends tl_content
         $openStack = array();
         $status = array();
 
+
         // helps to show only the first error
         $hasError = false;
+
+        $hideStatus = \Config::get('wrapperTagsHideValidationStatus');
+        if ($hideStatus) {
+            // it turns off validation checking because algorithm will think it already has first error
+            $hasError = true;
+        }
 
         foreach ($result->fetchAllAssoc() as $cte) {
 
@@ -252,6 +259,11 @@ class tl_content_wrapper_tags extends tl_content
 
         if (!$hasError) {
             $status[$statusTitle] = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'];
+        }
+
+        // hide validation status
+        if ($hideStatus) {
+            $status = array();
         }
 
         $useColors = \Config::get('wrapperTagsUseColors');
