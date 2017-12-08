@@ -5,6 +5,7 @@
 
 * fix: copy and move mode do not show validation, colors and indents
 * fix: responsiveness of opening wrapper-tags element edit panel
+* fix: colors are preserve when dragging content elements
 * style attribute can be set on every html tag
 * new setting: hide validation status
 

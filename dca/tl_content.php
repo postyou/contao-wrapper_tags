@@ -82,7 +82,7 @@ class tl_content_wrapper_tags extends tl_content
     protected function setChildRecordClass($indent)
     {
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent-tags indent-tags-' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent' . $middleClass;
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent' . $middleClass;
     }
 
     /**
@@ -293,7 +293,7 @@ class tl_content_wrapper_tags extends tl_content
                     $firstElementOnPage = $offset + 1;
                     foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
                         if ($index === $firstElementOnPage) {
-                            $this->setChildRecordClass($indent + array('colorize-class' => ($useColors ? 'indent-colorize' : '')));
+                            $this->setChildRecordClass($indent + array('colorize-class' => ($useColors ? 'colorize-wrapper-tags' : '')));
                             break;
                         }
                         ++$index;
@@ -316,7 +316,7 @@ class tl_content_wrapper_tags extends tl_content
 
         foreach ($reversed as $id => &$indent) {
             $nowIndent = $indent;
-            $indent = $lastIndent + array('colorize-class' => ($useColors ? 'indent-colorize' : ''));
+            $indent = $lastIndent + array('colorize-class' => ($useColors ? 'colorize-wrapper-tags' : ''));
             $lastIndent = $nowIndent;
         }
 
