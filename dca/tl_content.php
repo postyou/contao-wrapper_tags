@@ -160,14 +160,18 @@ class tl_content_wrapper_tags extends tl_content
      */
     public function validateAndFixIndents($add, DataContainer $dc)
     {
-        // check whether there is any published wrapper-tags cte
+        /*
+         * Check whether there is any published wrapper-tags cte.
+         * Do not use $dc->id to get pid id because in copy mode it is id of element being copied.
+         * Instead use CURRENT_ID.
+         */
         $result = $this->Database
             ->prepare("
                 SELECT id
                 FROM `tl_content`
                 WHERE pid = ? AND invisible != ? AND type IN ('openingTags','closingTags')
                 ")
-            ->execute($dc->id, '1');
+            ->execute(CURRENT_ID, '1');
 
         if ($result->numRows === 0) {
 
@@ -187,7 +191,7 @@ class tl_content_wrapper_tags extends tl_content
 
         // ! do not set limit - validation needs all elements
 
-        $result = $stmt->execute($dc->id);
+        $result = $stmt->execute(CURRENT_ID);
 
         $statusTitle = $GLOBALS['TL_LANG']['CTE']['wrapperTags'];
         $status = array();
