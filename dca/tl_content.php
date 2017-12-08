@@ -142,6 +142,12 @@ class tl_content_wrapper_tags extends tl_content
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'],
                 'exclude' => true,
                 'inputType' => 'text',
+            ),
+            'style' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'],
+                'exclude' => false,
+                'inputType' => 'text',
             )
         );
     }

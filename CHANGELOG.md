@@ -5,6 +5,7 @@
 
 * fix: copy and move mode do not show validation, colors and indents
 * fix: responsiveness of opening wrapper-tags element edit panel
+* style attribute can be set on every html tag
 
 ### 1.2.0 (2017-12-7)
 

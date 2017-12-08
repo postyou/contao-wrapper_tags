@@ -28,7 +28,10 @@ class ContentOpeningTags extends ContentElement
             if (is_array($tags = unserialize($this->openingTags))) {
 
                 foreach ($tags as $tag) {
-                    $title .= '&lt;' . $tag['tag'] . '&gt;' . (($tag['id']) ? ' id: ' . $tag['id'] : '') . (($tag['class']) ? (($tag['id']) ? ' |' : '') . ' class: ' . $tag['class'] : '') . '<br>';
+                    $title .= '&lt;' . $tag['tag'] . '&gt;'
+                        . (($tag['id']) ? ' id: ' . $tag['id'] : '')
+                        . (($tag['class']) ? (($tag['id']) ? ' |' : '') . ' class: ' . $tag['class'] : '')
+                        . (($tag['style']) ? (($tag['id']) || ($tag['class']) ? ' |' : '') . ' style: *' : '') . '<br>';
                 }
 
             } else {

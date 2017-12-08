@@ -171,11 +171,6 @@
   width: 270px;
   margin-right: 5px; }
 
-/*
- *
- * Css for opening-wrapper edit panel
- *
- */
 /* Wide screen */
 @media (min-width: 1200px) {
   #ctrl_openingTags input[name$="][style]"] {
