@@ -8,6 +8,7 @@
 * fix: colors are preserve when dragging content elements
 * style attribute can be set on every html tag
 * new setting: hide validation status
+* full css-es in debug mode 
 
 ### 1.2.0 (2017-12-7)
 

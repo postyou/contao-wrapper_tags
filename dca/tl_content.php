@@ -39,10 +39,11 @@ $tl_content['fields']['closingTags'] = array(
  * stylesheets
  */
 if (TL_MODE === 'BE') {
+    $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : 'min.';
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible.min.css';
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible.' . $min . 'css';
     } else {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default.min.css';
+        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default.' . $min . 'css';
     }
 }
 
