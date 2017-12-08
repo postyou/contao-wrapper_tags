@@ -121,3 +121,31 @@
           box-shadow: -10px 0 #fff4b6, 10px 0 #fff4b6, -20px 0 #fffde2, 20px 0 #fffde2, -30px 0 #eaeaea, 30px 0 #eaeaea, -40px 0 #f3f3f3, 40px 0 #f3f3f3;
   border-left-color: #e5ffe2;
   border-right-color: #e5ffe2; }
+
+/*
+ *
+ * Css for opening-wrapper edit panel
+ *
+ */
+#ctrl_openingTags td.operations {
+  min-width: 66px; }
+
+#ctrl_openingTags td.hidelabel.mcwUpdateFields > .tl_select {
+  width: 100px; }
+
+#ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+#ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
+  width: 100px;
+  margin-right: 5px; }
+
+#ctrl_openingTags input[name$="][class]"] {
+  width: 100px;
+  margin-right: 5px; }
+
+#ctrl_openingTags input[name$="][id]"] {
+  width: 100px;
+  margin-right: 5px; }
+
+#ctrl_openingTags input[name$="][style]"] {
+  width: 270px;
+  margin-right: 5px; }

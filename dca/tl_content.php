@@ -130,21 +130,18 @@ class tl_content_wrapper_tags extends tl_content
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
                 'inputType' => 'select',
                 'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
-                'eval' => array('style' => 'width:100px;margin-right:5px;'),
             ),
             'class' => array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
                 'exclude' => true,
                 'inputType' => 'text',
-                'eval' => array('style' => 'width:100px;margin-right:5px;'),
             ),
             'id' => array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'],
                 'exclude' => true,
                 'inputType' => 'text',
-                'eval' => array('style' => 'width:100px;margin-right:5px;'),
             )
         );
     }

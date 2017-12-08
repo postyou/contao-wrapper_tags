@@ -4,6 +4,7 @@
 ### 1.2.2 (2017-12-?)
 
 * fix: copy and move mode do not show validation, colors and indents
+* fix: responsiveness of opening wrapper-tags element edit panel
 
 ### 1.2.0 (2017-12-7)
 
