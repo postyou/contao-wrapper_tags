@@ -9,7 +9,12 @@
 * style attribute can be set on every html tag
 * new setting: hide validation status
 * full css-es in debug mode 
-* composer.json
+* installation with composer
+* better readme
+
+### 1.2.1 (2017-12-7)
+
+* minor fixes
 
 ### 1.2.0 (2017-12-7)
 

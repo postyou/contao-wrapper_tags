@@ -9,7 +9,7 @@
  */
 
 
-$GLOBALS['TL_LANG']['tl_content']['openingTags'] = array('Opening tags', 'Choose html tags to open. In corresponding content element named [Closing Tags] you will have to match this structure. So every opened &lt;div&gt; should have closing &lt;/div&gt;');
+$GLOBALS['TL_LANG']['tl_content']['openingTags'] = array('Opening tags', 'Choose html tags to open. In corresponding content element [Closing Tags] you will have to match this structure. So every opened &lt;div&gt; should have closing &lt;/div&gt;');
 $GLOBALS['TL_LANG']['tl_content']['closingTags'] = array('Closing tags', 'Choose html tags to close that match structure in corresponding [Opening Tags] content element.');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = array('Tag', 'Select html tag');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = array('Class', 'Type in html classes');
