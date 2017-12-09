@@ -13,7 +13,7 @@
  * Extension version
  */
 @define('WRAPPER_TAGS_VERSION', '1.2');
-@define('WRAPPER_TAGS_BUILD', '0');
+@define('WRAPPER_TAGS_BUILD', '2');
 
 
 /**
