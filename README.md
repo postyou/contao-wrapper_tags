@@ -8,7 +8,7 @@ Provides content elements that help build html structure with ease (e.g. for Boo
 - Contao 3.2.x - 3.5.x
 - PHP 5.6.2 - 7.x
 
-Not tested on PHP &lt; 5.6.2 but maybe it works on few earlier versions.
+Not tested on PHP &lt; 5.6.2 but maybe works on few earlier versions.
 
 
 ## Installation
@@ -47,7 +47,7 @@ Indents are preserved even in the paging view.
 ### Show case structure
 ![Show case with Bootstrap](docs/showcase-with-bootstrap.png "Show case with Bootstrap")
 
-### Show case structure with ERROR
+### ... with ERROR validation status
 ![Show case with error](docs/error.png "Show case with error")
 
 ### `Opening tags` content element
