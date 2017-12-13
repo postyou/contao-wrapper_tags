@@ -21,7 +21,8 @@ $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Ustawienia HTML-owych
 /**
  * Wrapper-tags status messages
  */
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'Struktura znaczników jest poprawna';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'] = 'Struktura';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'poprawna';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Dane są uszkodzone';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] = 'Błąd walidacji';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'] = 'Błąd: Domknięcie znacznika "&lt;/%s&gt;" (id:%d) nie ma znacznika otwierającego.';

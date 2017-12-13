@@ -197,7 +197,7 @@ class tl_content_wrapper_tags extends tl_content
 
         $result = $stmt->execute(CURRENT_ID);
 
-        $statusTitle = $GLOBALS['TL_LANG']['CTE']['wrapperTags'];
+        $statusTitle = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'];
         $status = array();
 
         if ($result->numRows === 0) {

@@ -21,7 +21,8 @@ $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings
 /**
  * Wrapper-tags status messages
  */
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'Opening tags match closing tags.';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'] = 'Validation';
+$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'ok';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Corrupted data';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] = 'Validation error';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'] = 'Error: Closing tag "&lt;/%s&gt;" (id:%d) is without opening tag.';

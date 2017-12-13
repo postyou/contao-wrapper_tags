@@ -3,6 +3,7 @@
 ### 1.2.3 (2017-12-?)
 
 * fix: translation of error: Corrupted data
+* Validation status title is now "Validation"
 
 ### 1.2.2 (2017-12-9)
 
