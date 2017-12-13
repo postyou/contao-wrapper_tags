@@ -35,7 +35,7 @@ class ContentOpeningTags extends ContentElement
                 }
 
             } else {
-                $title = '<span class="tl_red">Data corrupted</span>';
+                $title = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
             }
 
             $objTemplate->title = $title;
