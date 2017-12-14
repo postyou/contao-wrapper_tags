@@ -2,11 +2,7 @@
   "name": "zmyslny/contao-wrapper_tags",
   "type": "contao-module",
   "description": "wrapper_tags extension for Contao Open Source CMS",
-  "keywords": [
-    "contao",
-    "wrapper",
-    "tags"
-  ],
+  "keywords": ["contao", "wrapper", "tags"],
   "license": "LGPL-3.0+",
   "authors": [
     {
@@ -16,7 +12,7 @@
     }
   ],
   "require": {
-    "php": ">=5.6.2",
+    "php": "~5.6 || ~7.0",
     "contao/core-bundle": "~3.5 || ~4.4",
     "menatwork/contao-multicolumnwizard": "~3.3.6",
     "contao-community-alliance/composer-plugin": "~2.4 || ~3.0"
