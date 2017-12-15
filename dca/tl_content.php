@@ -84,7 +84,7 @@ class tl_content_wrapper_tags extends tl_content
     protected function setChildRecordClass($indent)
     {
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent' . $middleClass;
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent indent_0 ' . $middleClass;
     }
 
     /**
