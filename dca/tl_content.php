@@ -36,15 +36,22 @@ $tl_content['fields']['closingTags'] = array(
 
 
 /**
- * stylesheets
+ * stylesheets & javascripts
  */
 if (TL_MODE === 'BE') {
+
     $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min';
     $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
+
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
         $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
     } else {
         $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . $version . '.css';
+    }
+
+    // only for CTEs list view
+    if (\Input::get('do') === 'article' && \Input::get('table') === 'tl_content' && \Input::get('act') !== 'edit') {
+        $GLOBALS['TL_JAVASCRIPT']['wtgs'] = 'system/modules/wrapper_tags/assets/wrapper-tags' . $min . '.js';
     }
 }
 
