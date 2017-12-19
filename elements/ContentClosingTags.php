@@ -19,7 +19,7 @@ class ContentClosingTags extends ContentElement
     public function generate()
     {
         if (TL_MODE == 'BE') {
-            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate = new \BackendTemplate('be_wildcard_wrapper_tags');
 
             $objTemplate->wildcard = '### Closing tags (id:' . $this->id . ') ###';
 

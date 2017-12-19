@@ -20,7 +20,7 @@ class ContentOpeningTags extends ContentElement
     {
         if (TL_MODE == 'BE') {
 
-            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate = new \BackendTemplate('be_wildcard_wrapper_tags');
             $objTemplate->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
             $title = '';
@@ -28,10 +28,11 @@ class ContentOpeningTags extends ContentElement
             if (is_array($tags = unserialize($this->openingTags))) {
 
                 foreach ($tags as $tag) {
-                    $title .= '&lt;' . $tag['tag'] . '&gt;'
-                        . (($tag['id']) ? ' id: ' . $tag['id'] : '')
-                        . (($tag['class']) ? (($tag['id']) ? ' |' : '') . ' class: ' . $tag['class'] : '')
-                        . (($tag['style']) ? (($tag['id']) || ($tag['class']) ? ' |' : '') . ' style: *' : '') . '<br>';
+                    $title .= '&lt;' . $tag['tag']
+                        . (($tag['id']) ? ' <span class="tl_gray">id:</span> ' . $tag['id'] : '')
+                        . (($tag['class']) ? '<span class="tl_gray">' . (($tag['id']) ? ',' : '') . ' class:</span> ' . $tag['class'] : '')
+                        . (($tag['style']) ? '<span class="tl_gray">' . (($tag['id']) || ($tag['class']) ? ',' : '') . ' style:</span> *' : '')
+                        . '&gt;' . '<br>';
                 }
 
             } else {
