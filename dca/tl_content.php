@@ -22,7 +22,7 @@ $tl_content['fields']['openingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'eval' => array('mandatory' => true, 'columnsCallback' => array('tl_content_wrapper_tags', 'openingTagsCallback')),
+    'eval' => array('mandatory' => true, 'columnsCallback' => array('tl_content_wrapper_tags', 'openingTagsCallback'), 'buttons' => array('new' => false), 'dragAndDrop' => true),
     'sql' => 'blob NULL'
 );
 
@@ -30,7 +30,7 @@ $tl_content['fields']['closingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['closingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'eval' => array('mandatory' => true, 'columnsCallback' => array('tl_content_wrapper_tags', 'closingTagsCallback')),
+    'eval' => array('mandatory' => true, 'columnsCallback' => array('tl_content_wrapper_tags', 'closingTagsCallback'), 'buttons' => array('new' => false), 'dragAndDrop' => true),
     'sql' => 'blob NULL'
 );
 
