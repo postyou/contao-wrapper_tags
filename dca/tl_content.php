@@ -180,9 +180,9 @@ class tl_content_wrapper_tags extends tl_content
             ->prepare("
                 SELECT id
                 FROM `tl_content`
-                WHERE pid = ? AND invisible != ? AND type IN ('openingTags','closingTags')
+                WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('openingTags','closingTags')
                 ")
-            ->execute(CURRENT_ID, '1');
+            ->execute(CURRENT_ID, $dc->parentTable, '1');
 
         if ($result->numRows === 0) {
 
@@ -194,7 +194,7 @@ class tl_content_wrapper_tags extends tl_content
         $query = '
             SELECT id, type, openingTags, closingTags, invisible
             FROM `tl_content`
-            WHERE pid = ? 
+            WHERE pid = ? AND ptable = ?
             ORDER BY sorting ASC
         ';
 
@@ -202,7 +202,7 @@ class tl_content_wrapper_tags extends tl_content
 
         // ! do not set limit - validation needs all elements
 
-        $result = $stmt->execute(CURRENT_ID);
+        $result = $stmt->execute(CURRENT_ID, $dc->parentTable);
 
         $statusTitle = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'];
         $status = array();
