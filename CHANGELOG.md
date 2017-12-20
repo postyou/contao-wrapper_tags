@@ -1,9 +1,11 @@
 # wrapper_tags change log
 
-### 1.2.3 (2017-12-?)
+### 1.3.0 (2017-12-20)
 
-* fix: translation of error: Corrupted data
+* Contao 4.4+ 
+* invisible wrappers do not change indent
 * Validation status title is now "Validation"
+* fix: translation of error: Corrupted data
 
 ### 1.2.2 (2017-12-9)
 

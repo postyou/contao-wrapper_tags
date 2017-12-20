@@ -5,7 +5,7 @@ An extension for [Contao Open Source CMS](https://contao.org/en/)
 Provides content elements that help build html structure with ease (e.g. for Bootstrap). Shows instant **validation** of the resulting html structure. Uses **colors** to visualize the structure.
 
 ## System requirements
-- Contao 3.2.x - 3.5.x
+- Contao 3.2.x - 3.5.x | 4.4+
 - PHP 5.6.2 - 7.x
 
 Not tested on PHP &lt; 5.6.2 but maybe works on few earlier versions.
