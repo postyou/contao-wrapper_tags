@@ -44,9 +44,9 @@ if (TL_MODE === 'BE') {
     $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
 
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
+        $GLOBALS['TL_CSS']['wtgs'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
     } else {
-        $GLOBALS['TL_CSS'][] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . $version . '.css';
+        $GLOBALS['TL_CSS']['wtgs'] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . '.css';
     }
 
     // only for CTEs list view
