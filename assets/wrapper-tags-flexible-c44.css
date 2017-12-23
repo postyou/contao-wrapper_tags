@@ -205,12 +205,19 @@
   #ctrl_openingTags input[name$="][class]"] {
     width: 100%;
     padding-right: 10px; }
-  #ctrl_openingTags input[name$="][id]"] {
-    width: 100%;
-    padding-right: 10px; }
   #ctrl_openingTags input[name$="][style]"] {
     width: 100%;
     padding-right: 10px; }
+  #ctrl_openingTags td.attributes table {
+    margin-top: 0; }
+    #ctrl_openingTags td.attributes table .tl_text {
+      width: 100%; }
+    #ctrl_openingTags td.attributes table td:first-child {
+      width: auto; }
+    #ctrl_openingTags td.attributes table thead {
+      display: none; }
+    #ctrl_openingTags td.attributes table td.operations {
+      min-width: 70px; }
 
 /*
  *

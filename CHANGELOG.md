@@ -1,5 +1,10 @@
 # wrapper_tags change log
 
+
+### 1.3.1 (2017-12-?)
+
+* possibility of adding any html attribute to html tag
+
 ### 1.3.0 (2017-12-20)
 
 * Contao 4.4+ 

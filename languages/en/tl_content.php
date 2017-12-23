@@ -15,6 +15,9 @@ $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = array('Tag', 'Select html 
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = array('Class', 'Type in html classes');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = array('Id', 'Type in html id value');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'] = array('Style', 'Type in css styles');
+$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'] = array('Attributes [Name - Value]', 'HTML Attributes: Name + Value');
+$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesName'] = 'Name';
+$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'] = 'Value';
 $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings';
 
 

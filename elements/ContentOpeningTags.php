@@ -11,6 +11,7 @@
 namespace Zmyslny\WrapperTags;
 
 use Contao\ContentElement;
+use Contao\StringUtil;
 
 class ContentOpeningTags extends ContentElement
 {
@@ -23,17 +24,39 @@ class ContentOpeningTags extends ContentElement
             $objTemplate = new \BackendTemplate('be_wildcard_wrapper_tags');
             $objTemplate->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
-            $title = '';
+            $title = '<table><tbody>';
 
             if (is_array($tags = unserialize($this->openingTags))) {
 
                 foreach ($tags as $tag) {
-                    $title .= '&lt;' . $tag['tag']
-                        . (($tag['id']) ? ' <span class="tl_gray">id:</span> ' . $tag['id'] : '')
-                        . (($tag['class']) ? '<span class="tl_gray">' . (($tag['id']) ? ',' : '') . ' class:</span> ' . $tag['class'] : '')
-                        . (($tag['style']) ? '<span class="tl_gray">' . (($tag['id']) || ($tag['class']) ? ',' : '') . ' style:</span> *' : '')
-                        . '&gt;' . '<br>';
+
+                    $attributes = '';
+
+                    if (isset($tag['attributes'])) {
+                        $oneAdded = false;
+                        foreach ($tag['attributes'] as $attribute) {
+                            if (!empty($attribute['name']) && !empty($attribute['value'])) {
+                                $attributes .= ($oneAdded ? ',' : '') . ' <span class="tl_gray" style="margin-right: 2px;">' . StringUtil::generateAlias(($attribute['name'])) . ':</span>' . $attribute['value'];
+                                $oneAdded = true;
+                            }
+                        }
+                    }
+
+                    $fullAttributes = ''
+                        . (($tag['class']) ? ' <span class="tl_gray" style="margin-right: 2px;">class:</span>' . $tag['class'] : '')
+                        . (($attributes) ? (($tag['class']) ? ',' : '') . $attributes : '')
+                        . (($tag['style']) ? '<span class="tl_gray" style="margin-right: 2px;">' . (($tag['class']) || ($attributes) ? ',' : '') . ' style:</span>*' : '');
+
+                    $fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' :  '.75' );
+
+                    if ($fullAttributes) {
+                        $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;padding-right:5px;vertical-align: top;">&lt;' . $tag['tag'] . ' </td><td style="font-size:' . $fontSize . 'rem;padding-bottom:5px;">' . $fullAttributes . '&gt;</td></tr>';
+                    } else {
+                        $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;vertical-align: top;">&lt;' . $tag['tag'] . '&gt;</td><td></td></tr>';
+                    }
                 }
+
+                $title .= '</tbody></table>';
 
             } else {
                 $title = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';

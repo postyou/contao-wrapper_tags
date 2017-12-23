@@ -176,24 +176,33 @@
  * Css for opening-wrapper edit panel
  *
  */
+#ctrl_openingTags > tbody > tr > td {
+  vertical-align: top;
+  padding-bottom: 15px; }
+
 #ctrl_openingTags td.operations {
   min-width: 70px; }
 
 #ctrl_openingTags td.hidelabel.mcwUpdateFields > .tl_select {
-  width: 100px; }
+  width: 70px; }
 
 #ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
 #ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
-  width: 100px; }
+  width: 70px; }
 
 #ctrl_openingTags input[name$="][class]"] {
-  width: 170px; }
-
-#ctrl_openingTags input[name$="][id]"] {
   width: 100px; }
 
 #ctrl_openingTags input[name$="][style]"] {
-  width: 200px; }
+  width: 120px; }
+
+#ctrl_openingTags td.attributes table {
+  margin-top: 0; }
+  #ctrl_openingTags td.attributes table .tl_text {
+    width: 100px; }
+
+#ctrl_openingTags td.attributes thead {
+  display: none; }
 
 /*
  *

@@ -22,7 +22,65 @@ $tl_content['fields']['openingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'eval' => array('mandatory' => true, 'columnsCallback' => array('tl_content_wrapper_tags', 'openingTagsCallback'), 'buttons' => array('new' => false), 'dragAndDrop' => true),
+    'eval' => array
+    (
+        'mandatory' => true,
+        'dragAndDrop' => true,
+        'buttons' => array('new' => false),
+        'columnFields' => array
+        (
+            'tag' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
+                'inputType' => 'select',
+                'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
+            ),
+            'class' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
+                'exclude' => true,
+                'inputType' => 'text',
+                'eval' => array('allowHtml' => false)
+            ),
+            'attributes' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'],
+                'exclude' => true,
+                'inputType' => 'multiColumnWizard',
+                'eval' => array
+                (
+                    'tl_class' => 'attributes',
+                    'buttons' => array('new' => false),
+                    'dragAndDrop' => true,
+                    'allowHtml' => false,
+                    'columnFields' => array
+                    (
+                        'name' => array
+                        (
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesName'],
+                            'inputType' => 'text',
+                            'exclude' => true,
+                            'eval' => array('allowHtml' => false)
+                        ),
+                        'value' => array
+                        (
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'],
+                            'inputType' => 'text',
+                            'exclude' => true,
+                            'eval' => array('allowHtml' => false)
+                        ),
+                    ),
+                ),
+            ),
+            'style' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'],
+                'exclude' => false,
+                'inputType' => 'text',
+                'eval' => array('allowHtml' => false)
+            )
+        )
+    ),
     'sql' => 'blob NULL'
 );
 
@@ -121,41 +179,6 @@ class tl_content_wrapper_tags extends tl_content
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
                 'inputType' => 'select',
                 'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
-            )
-        );
-    }
-
-    /**
-     * Provides columnsCallback for multiColumnWizard field 'openingTags'
-     *
-     * @return array
-     */
-    public function openingTagsCallback()
-    {
-        return array(
-            'tag' => array
-            (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
-                'inputType' => 'select',
-                'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
-            ),
-            'class' => array
-            (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
-                'exclude' => true,
-                'inputType' => 'text',
-            ),
-            'id' => array
-            (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'],
-                'exclude' => true,
-                'inputType' => 'text',
-            ),
-            'style' => array
-            (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'],
-                'exclude' => false,
-                'inputType' => 'text',
             )
         );
     }
