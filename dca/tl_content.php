@@ -148,8 +148,9 @@ class tl_content_wrapper_tags extends tl_content
      */
     protected function setChildRecordClass($indent)
     {
+        $wrapperTagClass = $indent['type'] === 'openingTags' || $indent['type'] === 'closingTags' ? 'wrapper-tag' : '';
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent indent_0 ' . $middleClass;
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent ' . $wrapperTagClass . ' indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent ' . $wrapperTagClass . ' indent_0 ' . $middleClass;
     }
 
     /**
@@ -330,6 +331,9 @@ class tl_content_wrapper_tags extends tl_content
                         ++$index;
                     }
                 }
+
+            } else {
+                $this->setChildRecordClass($GLOBALS['WrapperTags']['indents'][key($GLOBALS['WrapperTags']['indents'])]);
             }
         }
 

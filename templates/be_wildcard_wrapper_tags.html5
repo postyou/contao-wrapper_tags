@@ -1,6 +1,6 @@
 
 <?php if ($this->title): ?>
-  <h1 style="font-weight: normal;margin-bottom:10px;"><?= $this->title ?></h1>
+  <h1><?= $this->title ?></h1>
 <?php endif; ?>
 
 <?php if ($this->wildcard): ?>
