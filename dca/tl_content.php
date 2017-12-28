@@ -35,13 +35,6 @@ $tl_content['fields']['openingTags'] = array(
                 'inputType' => 'select',
                 'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
             ),
-            'class' => array
-            (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
-                'exclude' => true,
-                'inputType' => 'text',
-                'eval' => array('allowHtml' => false)
-            ),
             'attributes' => array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'],
@@ -72,10 +65,10 @@ $tl_content['fields']['openingTags'] = array(
                     ),
                 ),
             ),
-            'style' => array
+            'class' => array
             (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'],
-                'exclude' => false,
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
+                'exclude' => true,
                 'inputType' => 'text',
                 'eval' => array('allowHtml' => false)
             )
