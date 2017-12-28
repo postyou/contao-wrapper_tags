@@ -35,7 +35,7 @@ class ContentOpeningTags extends ContentElement
                     if (isset($tag['attributes'])) {
                         $oneAdded = false;
                         foreach ($tag['attributes'] as $attribute) {
-                            if (!empty($attribute['name']) && !empty($attribute['value'])) {
+                            if (!empty($attribute['name']) && strlen($attribute['value'])) {
                                 $attributes .= ($oneAdded ? ',' : '') . ' <span class="tl_gray" style="margin-right: 2px;">' . StringUtil::generateAlias(($attribute['name'])) . ':</span>' . $attribute['value'];
                                 $oneAdded = true;
                             }

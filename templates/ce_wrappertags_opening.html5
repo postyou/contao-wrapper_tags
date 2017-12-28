@@ -4,7 +4,7 @@
 
     <?php if (isset($tag['attributes'])): ?>
         <?php foreach ($tag['attributes'] as $attribute): ?>
-            <?php if (!empty($attribute['name']) && !empty($attribute['value'])): ?>
+            <?php if (!empty($attribute['name']) && strlen($attribute['value'])): ?>
                 <?= \StringUtil::generateAlias($attribute['name']) ?>="<?= $attribute['value'] ?>"
             <?php endif; ?>
         <?php endforeach; ?>
