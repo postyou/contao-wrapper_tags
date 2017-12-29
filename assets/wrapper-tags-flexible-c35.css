@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Colors */
 /* reset indent to zero level */
 .tl_content.clear-indent {
@@ -6,8 +7,8 @@
   border-right: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  margin-left: 0px;
-  margin-right: 0px; }
+  margin-left: 0;
+  margin-right: 0; }
 
 .tl_content.indent {
   border-left: 10px solid #f3f3f3;
@@ -86,8 +87,8 @@
 
 .tl_content.indent_1 {
   width: 673px;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
   border-left-color: #f3f3f3;
@@ -171,6 +172,43 @@
   border-left: none;
   border-right: none; }
 
+/*                      Making it smaller
+ *  ----------------------------------------------------------------
+ */
+x.tl_content.wrapper-tag .cte_type,
+x.tl_content.wrapper-tag .h64,
+x.tl_content.wrapper-tag .tl_content_right {
+  -webkit-transition: height 1s ease-out, opacity  1s ease-out;
+  transition: height 1s ease-out, opacity  1s ease-out;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-bottom: 0; }
+
+x.tl_content.wrapper-tag .cte_type {
+  width: 520px; }
+
+x.tl_content.wrapper-tag .h64 h1 {
+  font-weight: 400;
+  margin: 3px 0; }
+
+x.tl_content.wrapper-tag:hover .h64 {
+  -webkit-transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
+  transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
+  height: auto;
+  /* auto powoduje odwołanie "transition" */
+  opacity: 1; }
+
+x.tl_content.wrapper-tag:hover .cte_type,
+x.tl_content.wrapper-tag:hover .tl_content_right {
+  -webkit-transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
+  transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
+  height: 16px;
+  opacity: 1; }
+
+x.tl_content.wrapper-tag:hover .tl_content_right {
+  float: right; }
+
 /* Wide screen */
 @media (min-width: 1200px) {
   .tl_content.clear-indent {
@@ -196,10 +234,8 @@
   .tl_content.clear-indent {
     width: auto; } }
 
-/*
- *
- * Css for opening-wrapper edit panel
- *
+/*                      opening-wrapper edit panel
+ *  ----------------------------------------------------------------
  */
 #ctrl_openingTags > tbody > tr > td {
   vertical-align: top;
@@ -216,7 +252,7 @@
   width: 70px; }
 
 #ctrl_openingTags input[name$="][class]"] {
-  width: 100px; }
+  width: 150px; }
 
 #ctrl_openingTags input[name$="][style]"] {
   width: 120px; }
@@ -249,13 +285,15 @@
 /* Wide screen */
 @media (min-width: 1200px) {
   #ctrl_openingTags input[name$="][class]"] {
-    width: 170px; }
+    width: 250px; }
   #ctrl_openingTags input[name$="][style]"] {
     width: 170px; }
   #ctrl_openingTags td.attributes table {
     margin-top: 0; }
     #ctrl_openingTags td.attributes table .tl_text {
-      width: 120px; } }
+      width: 140px; }
+    #ctrl_openingTags td.attributes table .tl_text[name$="][value]"] {
+      width: 220px; } }
 
 /* Handheld */
 @media (max-width: 767px) {

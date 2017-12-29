@@ -26,7 +26,7 @@ $tl_content['fields']['openingTags'] = array(
     (
         'mandatory' => true,
         'dragAndDrop' => true,
-        'buttons' => array('new' => false),
+        // 'buttons' => array('copy' => true, 'new' => true),
         'columnFields' => array
         (
             'tag' => array
@@ -43,7 +43,7 @@ $tl_content['fields']['openingTags'] = array(
                 'eval' => array
                 (
                     'tl_class' => 'attributes',
-                    'buttons' => array('new' => false),
+                    // 'buttons' => array('copy' => true, 'new' => true),
                     'dragAndDrop' => true,
                     'allowHtml' => false,
                     'columnFields' => array
