@@ -1,16 +1,20 @@
-<?php foreach ($this->openingTags as $tag): ?>
-    <<?php echo $tag['tag'] ?>
-    <?php if ($tag['class']): ?>class="<?php echo $tag['class']; ?>"<?php endif; ?>
 
-    <?php if (isset($tag['attributes'])): ?>
-        <?php foreach ($tag['attributes'] as $attribute): ?>
-            <?php if (!empty($attribute['name']) && strlen($attribute['value'])): ?>
-                <?php echo \StringUtil::generateAlias($attribute['name']) ?>="<?php echo specialchars($attribute['value']) ?>"
-            <?php endif; ?>
-        <?php endforeach; ?>
-    <?php endif; ?>
-
-    <?php if ($tag['style']): ?>style="<?php echo specialchars($tag['style']); ?>"
-    <?php endif; ?>>
-<?php endforeach; ?>
+<?php
+$tags = '';
+foreach ($this->tags as $index => $tag) {
+    $tags .= '<' . $tag['tag'];
+    if (isset($tag['attributes'])) {
+        foreach ($tag['attributes'] as $attribute) {
+            if (!empty($attribute['name']) && strlen($attribute['value'])) {
+                $tags .= ' ' . $attribute['name'] . '="' . specialchars($attribute['value']) . '"';
+            }
+        }
+    }
+    if ($tag['class']) {
+        $tags .= ' class="' . specialchars($tag['class']). '"';
+    }
+    $tags .= '>';
+}
+?>
+<?php echo $tags ?>
 
