@@ -5,12 +5,12 @@
     <?php if (isset($tag['attributes'])): ?>
         <?php foreach ($tag['attributes'] as $attribute): ?>
             <?php if (!empty($attribute['name']) && strlen($attribute['value'])): ?>
-                <?= \StringUtil::generateAlias($attribute['name']) ?>="<?= $attribute['value'] ?>"
+                <?php echo \StringUtil::generateAlias($attribute['name']) ?>="<?php echo specialchars($attribute['value']) ?>"
             <?php endif; ?>
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <?php if ($tag['style']): ?>style="<?php echo $tag['style']; ?>"
+    <?php if ($tag['style']): ?>style="<?php echo specialchars($tag['style']); ?>"
     <?php endif; ?>>
 <?php endforeach; ?>
 
