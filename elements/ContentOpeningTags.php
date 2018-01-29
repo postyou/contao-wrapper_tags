@@ -10,6 +10,7 @@
 
 namespace Zmyslny\WrapperTags;
 
+use Contao\BackendTemplate;
 use Contao\ContentElement;
 use Contao\StringUtil;
 
@@ -17,54 +18,80 @@ class ContentOpeningTags extends ContentElement
 {
     protected $strTemplate = 'ce_wrappertags_opening';
 
+    /**
+     * Tags stored.
+     *
+     * @var array
+     */
+    protected $tags;
+
     public function generate()
     {
+        $this->tags = unserialize($this->openingTags);
+
+        // tags field is incorrect
+        if (!is_array($this->tags)) {
+            $this->tags = null;
+            return;
+        }
+
         if (TL_MODE === 'BE') {
 
-            $objTemplate = new \BackendTemplate('be_wildcard_wrapper_tags');
-            $objTemplate->wildcard = '### Opening tags (id:' . $this->id . ') ###';
+            $template = new BackendTemplate('be_wildcard_wrapper_tags');
+            $template->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
-            $title = '<table><tbody>';
+            $tags = [];
 
-            if (is_array($tags = unserialize($this->openingTags))) {
+            foreach ($this->tags as $tag) {
 
-                foreach ($tags as $tag) {
+                // compile attributes
+                if ($tag['attributes']) {
 
-                    $attributes = '';
+                    $attributes = [];
 
-                    if (isset($tag['attributes'])) {
-                        $oneAdded = false;
-                        foreach ($tag['attributes'] as $attribute) {
-                            if (!empty($attribute['name']) && strlen($attribute['value'])) {
-                                $attributes .= ($oneAdded ? ',' : '') . ' <span class="tl_gray" style="margin-right: 2px;">' . StringUtil::generateAlias(($attribute['name'])) . ':</span>' . $attribute['value'];
-                                $oneAdded = true;
-                            }
+                    foreach ($tag['attributes'] as $attribute) {
+                        $attribute['name'] = StringUtil::generateAlias($attribute['name']);
+
+                        if (!empty($attribute['name']) && strlen($attribute['value'])) {
+                            $attributes[] = $attribute;
                         }
                     }
 
-                    $fullAttributes = ''
-                        . (($tag['class']) ? ' <span class="tl_gray" style="margin-right: 2px;">class:</span>' . $tag['class'] : '')
-                        . (($attributes) ? (($tag['class']) ? ',' : '') . $attributes : '')
-                        . (($tag['style']) ? '<span class="tl_gray" style="margin-right: 2px;">' . (($tag['class']) || ($attributes) ? ',' : '') . ' style:</span>*' : '');
+                    $tag['attributes'] = $attributes;
+                }
 
-                    $fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' : '.75');
+                $tags[] = $tag;
 
-                    if ($fullAttributes) {
-                        $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;padding-right:5px;vertical-align: top;">&lt;' . $tag['tag'] . ' </td><td style="font-size:' . $fontSize . 'rem;padding-bottom:5px;">' . $fullAttributes . '&gt;</td></tr>';
-                    } else {
-                        $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;vertical-align: top;">&lt;' . $tag['tag'] . '&gt;</td><td></td></tr>';
+
+                if (isset($tag['attributes'])) {
+                    $oneAdded = false;
+                    foreach ($tag['attributes'] as $attribute) {
+                        if (!empty($attribute['name']) && strlen($attribute['value'])) {
+                            $attributes .= ($oneAdded ? ',' : '') . ' <span class="tl_gray" style="margin-right: 2px;">' . StringUtil::generateAlias(($attribute['name'])) . ':</span>' . $attribute['value'];
+                            $oneAdded = true;
+                        }
                     }
                 }
 
-                $title .= '</tbody></table>';
+                $fullAttributes = ''
+                    . (($tag['class']) ? ' <span class="tl_gray" style="margin-right: 2px;">class:</span>' . $tag['class'] : '')
+                    . (($attributes) ? (($tag['class']) ? ',' : '') . $attributes : '')
+                    . (($tag['style']) ? '<span class="tl_gray" style="margin-right: 2px;">' . (($tag['class']) || ($attributes) ? ',' : '') . ' style:</span>*' : '');
 
-            } else {
-                $title = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
+                $fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' : '.75');
+
+                if ($fullAttributes) {
+                    $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;padding-right:5px;vertical-align: top;">&lt;' . $tag['tag'] . ' </td><td style="font-size:' . $fontSize . 'rem;padding-bottom:5px;">' . $fullAttributes . '&gt;</td></tr>';
+                } else {
+                    $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;vertical-align: top;">&lt;' . $tag['tag'] . '&gt;</td><td></td></tr>';
+                }
+
             }
 
-            $objTemplate->title = $title;
+            $template->tags = $tags;
+            $template->fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' : '.75');
 
-            return $objTemplate->parse();
+            return $template->parse();
         }
 
         return parent::generate();
@@ -72,10 +99,8 @@ class ContentOpeningTags extends ContentElement
 
     protected function compile()
     {
-        $tags = unserialize($this->openingTags);
-
         // compile insert tags in attr name & value
-        foreach ($tags as &$tag) {
+        foreach ($this->tags as &$tag) {
             if ($tag['attributes']) {
                 foreach ($tag['attributes'] as $index => &$attribute) {
                     $attribute['name'] = StringUtil::generateAlias(static::replaceInsertTags($attribute['name']));
@@ -86,6 +111,6 @@ class ContentOpeningTags extends ContentElement
         }
         unset($tag);
 
-        $this->Template->tags = $tags;
+        $this->Template->tags = $this->tags;
     }
 }
