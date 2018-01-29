@@ -11,14 +11,12 @@
 
         init: function () {
             $$('.tl_content.clear-indent').each(function (el) {
-                var on2, on4;
+                var splitOn2 = el.get('class').split('clear-indent'),
+                    // 'indent index_x' precede 'clear-indent' class
+                    splitOn4 = splitOn2[0].split('indent');
 
-                on2 = el.get('class').split('clear-indent');
-
-                // 'indent index_x' precede 'clear-indent' class
-                on4 = on2[0].split('indent');
-
-                el.set('class', on4[0] + ' clear-indent ' + on2[1]);
+                // concatenate 1, 2 and 4th part, remove 3rd
+                el.set('class', splitOn4[0] + ' clear-indent ' + splitOn2[1]);
             });
         },
     }
