@@ -14,7 +14,7 @@ use Contao\ContentElement;
 
 class ContentClosingTags extends ContentElement
 {
-    protected $strTemplate = 'ce_wrappertags_closing';
+    protected $strTemplate = 'ce_wrapper_tags_opening';
 
     public function generate()
     {

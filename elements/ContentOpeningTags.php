@@ -16,7 +16,7 @@ use Contao\StringUtil;
 
 class ContentOpeningTags extends ContentElement
 {
-    protected $strTemplate = 'ce_wrappertags_opening';
+    protected $strTemplate = 'ce_wrapper_tags_opening';
 
     /**
      * Tags stored.
