@@ -16,23 +16,25 @@ use Contao\StringUtil;
 
 class ContentOpeningTags extends ContentElement
 {
+    /**
+     * Template.
+     *
+     * @var string
+     */
     protected $strTemplate = 'ce_wrapper_tags_opening';
 
     /**
-     * Tags stored.
+     * Display a wildcard in the back end.
      *
-     * @var array
+     * @return string
      */
-    protected $tags;
-
     public function generate()
     {
-        $this->tags = unserialize($this->openingTags);
+        $this->openingTags = deserialize($this->openingTags);
 
-        // tags field is incorrect
-        if (!is_array($this->tags)) {
-            $this->tags = null;
-            return;
+        // Tags data is incorrect
+        if (!is_array($this->openingTags)) {
+            $this->openingTags = array();
         }
 
         if (TL_MODE === 'BE') {
@@ -40,56 +42,8 @@ class ContentOpeningTags extends ContentElement
             $template = new BackendTemplate('be_wildcard_wrapper_tags');
             $template->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
-            $tags = [];
-
-            foreach ($this->tags as $tag) {
-
-                // compile attributes
-                if ($tag['attributes']) {
-
-                    $attributes = [];
-
-                    foreach ($tag['attributes'] as $attribute) {
-                        $attribute['name'] = StringUtil::generateAlias($attribute['name']);
-
-                        if (!empty($attribute['name']) && strlen($attribute['value'])) {
-                            $attributes[] = $attribute;
-                        }
-                    }
-
-                    $tag['attributes'] = $attributes;
-                }
-
-                $tags[] = $tag;
-
-
-                if (isset($tag['attributes'])) {
-                    $oneAdded = false;
-                    foreach ($tag['attributes'] as $attribute) {
-                        if (!empty($attribute['name']) && strlen($attribute['value'])) {
-                            $attributes .= ($oneAdded ? ',' : '') . ' <span class="tl_gray" style="margin-right: 2px;">' . StringUtil::generateAlias(($attribute['name'])) . ':</span>' . $attribute['value'];
-                            $oneAdded = true;
-                        }
-                    }
-                }
-
-                $fullAttributes = ''
-                    . (($tag['class']) ? ' <span class="tl_gray" style="margin-right: 2px;">class:</span>' . $tag['class'] : '')
-                    . (($attributes) ? (($tag['class']) ? ',' : '') . $attributes : '')
-                    . (($tag['style']) ? '<span class="tl_gray" style="margin-right: 2px;">' . (($tag['class']) || ($attributes) ? ',' : '') . ' style:</span>*' : '');
-
-                $fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' : '.75');
-
-                if ($fullAttributes) {
-                    $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;padding-right:5px;vertical-align: top;">&lt;' . $tag['tag'] . ' </td><td style="font-size:' . $fontSize . 'rem;padding-bottom:5px;">' . $fullAttributes . '&gt;</td></tr>';
-                } else {
-                    $title .= '<tr><td style="padding-bottom:5px;font-size:' . $fontSize . 'rem;text-align:right;vertical-align: top;">&lt;' . $tag['tag'] . '&gt;</td><td></td></tr>';
-                }
-
-            }
-
-            $template->tags = $tags;
-            $template->fontSize = (version_compare(VERSION, '3.5', '>') ? '.875' : '.75');
+            $template->tags = $this->openingTags;
+            $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
 
             return $template->parse();
         }
@@ -97,20 +51,24 @@ class ContentOpeningTags extends ContentElement
         return parent::generate();
     }
 
+    /**
+     * Compile element data.
+     */
     protected function compile()
     {
-        // compile insert tags in attr name & value
-        foreach ($this->tags as &$tag) {
+        $tags = $this->openingTags;
+
+        // Compile insert tags in attr name and sanitize it
+        foreach ($tags as $i => $tag) {
             if ($tag['attributes']) {
-                foreach ($tag['attributes'] as $index => &$attribute) {
+                foreach ($tag['attributes'] as $t => $attribute) {
                     $attribute['name'] = StringUtil::generateAlias(static::replaceInsertTags($attribute['name']));
-                    $attribute['value'] = static::replaceInsertTags($attribute['value']);
+
+                    $tags[$i]['attributes'][$t] = $attribute;
                 }
-                unset($attribute);
             }
         }
-        unset($tag);
 
-        $this->Template->tags = $this->tags;
+        $this->Template->tags = $tags;
     }
 }

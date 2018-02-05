@@ -1,19 +1,18 @@
-
 <?php
-$tags = '';
-foreach ($this->tags as $index => $tag) {
-    $tags .= '<' . $tag['tag'];
-    if (isset($tag['attributes'])) {
-        foreach ($tag['attributes'] as $attribute) {
-            if (!empty($attribute['name']) && strlen($attribute['value'])) {
+if ($this->tags) {
+    $tags = '';
+    foreach ($this->tags as $tag) {
+        $tags .= '<' . $tag['tag'];
+        if (isset($tag['attributes'])) {
+            foreach ($tag['attributes'] as $attribute) {
                 $tags .= ' ' . $attribute['name'] . '="' . specialchars($attribute['value']) . '"';
             }
         }
+        if ($tag['class']) {
+            $tags .= ' class="' . specialchars($tag['class']) . '"';
+        }
+        $tags .= '>';
     }
-    if ($tag['class']) {
-        $tags .= ' class="' . specialchars($tag['class']). '"';
-    }
-    $tags .= '>';
 }
 ?>
 <?php echo $tags ?>
