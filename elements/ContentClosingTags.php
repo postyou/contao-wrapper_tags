@@ -10,41 +10,50 @@
 
 namespace Zmyslny\WrapperTags;
 
+use Contao\BackendTemplate;
 use Contao\ContentElement;
 
 class ContentClosingTags extends ContentElement
 {
+    /**
+     * Template.
+     *
+     * @var string
+     */
     protected $strTemplate = 'ce_wrapper_tags_opening';
 
+    /**
+     * Display a wildcard in the back end.
+     *
+     * @return string
+     */
     public function generate()
     {
-        if (TL_MODE == 'BE') {
-            $objTemplate = new \BackendTemplate('be_wildcard_wrapper_tags');
+        $this->closingTags = deserialize($this->closingTags);
 
-            $objTemplate->wildcard = '### Closing tags (id:' . $this->id . ') ###';
+        // Tags data is incorrect
+        if (!is_array($this->closingTags)) {
+            $this->closingTags = array();
+        }
 
-            $title = '';
+        if (TL_MODE === 'BE') {
 
-            if (is_array($tags = unserialize($this->closingTags))) {
+            $template = new BackendTemplate('be_wildcard_tags_closing');
+            $template->wildcard = '### Closing tags (id:' . $this->id . ') ###';
 
-                foreach ($tags as $tag) {
-                    $title .= '&lt;&#47;' . $tag['tag'] . '&gt;' . '<br>';
-                }
+            $template->tags = $this->closingTags;
+            $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
 
-            } else {
-                $title = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
-            }
-
-            $objTemplate->title = $title;
-
-            return $objTemplate->parse();
+            return $template->parse();
         }
 
         return parent::generate();
     }
 
+    /**
+     * Compile element data.
+     */
     protected function compile()
     {
-        $this->Template->closingTags = unserialize($this->closingTags);
     }
 }

@@ -39,7 +39,7 @@ class ContentOpeningTags extends ContentElement
 
         if (TL_MODE === 'BE') {
 
-            $template = new BackendTemplate('be_wildcard_wrapper_tags');
+            $template = new BackendTemplate('be_wildcard_tags_opening');
             $template->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
             $template->tags = $this->openingTags;

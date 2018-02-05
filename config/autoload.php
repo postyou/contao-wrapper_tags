@@ -31,8 +31,9 @@ ClassLoader::addClasses(array
  * Register the templates
  */
 TemplateLoader::addFiles(array(
-    'ce_wrappertags_opening' => 'system/modules/wrapper_tags/templates/',
-    'ce_wrappertags_closing' => 'system/modules/wrapper_tags/templates/',
-    'be_wildcard_wrapper_tags' => 'system/modules/wrapper_tags/templates/'
+    'ce_wrapper_tags_opening' => 'system/modules/wrapper_tags/templates/',
+    'ce_wrapper_tags_closing' => 'system/modules/wrapper_tags/templates/',
+    'be_wildcard_tags_opening' => 'system/modules/wrapper_tags/templates/',
+    'be_wildcard_tags_closing' => 'system/modules/wrapper_tags/templates/'
 ));
 

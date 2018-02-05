@@ -1,0 +1,30 @@
+<?php if ($this->tags): ?>
+    <table class="<?= $this->version ?>">
+        <tbody>
+        <?php foreach ($this->tags as $tag): ?>
+            <tr>
+                <td>
+                    &lt;<?php echo $tag['tag'] ?>
+                </td>
+                <td>
+                    <?php if (isset($tag['class'])): ?>
+                        <span class="tl_gray">class:</span><?= $tag['class'] ?>
+                    <?php endif ?>
+                    <?php foreach ($tag['attributes'] as $attribute): ?>
+                        <span class="tl_gray"><?= $attribute['name'] ?>:</span><?= $attribute['value'] ?>
+                    <?php endforeach ?>
+                    &gt;
+                </td>
+            </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <span class="tl_red"><?php echo $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] ?></span>
+<?php endif ?>
+
+<?php if ($this->wildcard): ?>
+    <div class="tl_gray">
+        <?php echo $this->wildcard ?>
+    </div>
+<?php endif ?>
