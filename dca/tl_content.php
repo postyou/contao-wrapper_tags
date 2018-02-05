@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2017 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
@@ -8,17 +8,22 @@
  * @license LGPL-3.0+
  */
 
-
-$tl_content = &$GLOBALS['TL_DCA']['tl_content'];
-
+/*
+ * List
+ */
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_callback'] = array('tl_content_wrapper_tags', 'childRecordCallback');
+$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('tl_content_wrapper_tags', 'validateAndFixIndents');
 
-$tl_content['list']['sorting']['header_callback'] = array('tl_content_wrapper_tags', 'validateAndFixIndents');
+/*
+ * Palettes
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['openingTags'] = '{type_legend},type;{wrappertags_legend},openingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['closingTags'] = '{type_legend},type;{wrappertags_legend},closingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
-$tl_content['palettes']['openingTags'] = '{type_legend},type;{wrappertags_legend},openingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$tl_content['palettes']['closingTags'] = '{type_legend},type;{wrappertags_legend},closingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-
-$tl_content['fields']['openingTags'] = array(
+/*
+ * Fields
+ */
+$GLOBALS['TL_DCA']['tl_content']['fields']['openingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
@@ -75,8 +80,7 @@ $tl_content['fields']['openingTags'] = array(
     ),
     'sql' => 'blob NULL'
 );
-
-$tl_content['fields']['closingTags'] = array(
+$GLOBALS['TL_DCA']['tl_content']['fields']['closingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['closingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',

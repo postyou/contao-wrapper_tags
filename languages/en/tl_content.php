@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2017 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
@@ -8,7 +8,9 @@
  * @license LGPL-3.0+
  */
 
-
+/*
+ * Fields
+ */
 $GLOBALS['TL_LANG']['tl_content']['openingTags'] = array('Opening tags', 'Choose html tags to open and add any attribute to it.');
 $GLOBALS['TL_LANG']['tl_content']['closingTags'] = array('Closing tags', 'Choose html tags to close that match structure in corresponding [Opening Tags] content element.');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = array('Tag', 'Select html tag');
@@ -18,19 +20,8 @@ $GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'] = array('Style', 'Type in 
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'] = array('Other attributes [Name - Value]', 'HTML Attributes: Name + Value');
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesName'] = 'Name';
 $GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'] = 'Value';
-$GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings';
 
-
-/**
- * Wrapper-tags status messages
+/*
+ * Legends
  */
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'] = 'Validation';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'ok';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Corrupted data';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] = 'Validation error';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'] = 'Error: Closing tag "&lt;/%s&gt;" (id:%d) is without opening tag.';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningNoClosing'] = 'Error: Opening tag "&lt;%s&gt;" (id:%d) is without closing tag.';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'] = 'Error: Opening tag "&lt;%s&gt;" (id:%d) is paired with closing tag "&lt;/%s&gt;" (id:%d).';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairingWithOther'] = 'Error: Opening tag "&lt;%s&gt;" (id:%d) is paired with wrong closing element "%s" (id:%d).';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingWithOther'] = 'Error: Closing tag "&lt;%s&gt;" (id:%d) is paired with wrong opening element "%s" (id:%d).';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingNeedSplit'] = 'Error: Closing tags (id:%d) is paired with many smaller opening tags. First one is to big (id:%d).';
+$GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings';

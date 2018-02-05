@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (c) 2017 Zmyslni
  *
  * @author Ostrowski Maciej <contao-developer.pl>
@@ -8,8 +8,14 @@
  * @license LGPL-3.0+
  */
 
-$GLOBALS['TL_LANG']['tl_settings']['wrapper-tags_legend'] = 'Wrapper tags settings';
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsAllowedTags'] = array('HTML tags for selection', 'Here you can enter a list of HTML tags used in Wrapper tags elements.');
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsUseColors'] = array('Colorize wrapper tags', 'Check whether wrapper elements indented by more then 2 levels should be colorized.');
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsHideValidationStatus'] = array('Hide validation status', 'Check to hide validation result status.');
+/*
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsAllowedTags'] = array('HTML tags for selection', 'Please enter the list of HTML tags used.');
+$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsUseColors'] = array('Colorize', 'Colorize opening & closing content elements at the beck end.');
+$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsHideValidationStatus'] = array('Hide validation status', 'Hide validation status at the beck end.');
 
+/*
+ * Legends
+ */
+$GLOBALS['TL_LANG']['tl_settings']['wrapperTags_legend'] = 'Wrapper tags settings';
