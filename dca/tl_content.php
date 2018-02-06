@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['openingTags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'save_callback' => array(array('tl_content_wrapper_tags', 'onSaveOpeningTags')),
+    'save_callback' => array(array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onSaveCallback')),
     'eval' => array
     (
         'mandatory' => true,
@@ -112,57 +112,6 @@ if (TL_MODE === 'BE') {
 
 class tl_content_wrapper_tags extends tl_content
 {
-
-    /**
-     * Sanitize field value.
-     *
-     * @param $data
-     * @param DataContainer $dc
-     * @return string
-     * @throws Exception
-     */
-    public function onSaveOpeningTags($data, DataContainer $dc)
-    {
-        $tags = deserialize($data);
-
-        foreach ($tags as &$tag) {
-
-            // Sanitize attributes
-            if ($tag['attributes']) {
-
-                $attributes = [];
-
-                foreach ($tag['attributes'] as $attribute) {
-
-                    // The attribute name must not contain any whitespace
-                    $attribute['name'] = preg_replace('/\s+/', '', $attribute['name']);
-                    $attribute['value'] = trim($attribute['value']);
-
-                    if ('' !== $attribute['name'] && '' === $attribute['value']) {
-                        throw new \Exception('The attribute name "' . $attribute['name'] . '" is without a value');
-                    }
-
-                    if ('' === $attribute['name'] && '' !== $attribute['value']) {
-                        throw new \Exception('The attribute value "' . $attribute['value'] . '" is without a name');
-                    }
-
-                    if (is_numeric($attribute['name'])) {
-                        throw new \Exception('The attribute name must not be a number');
-                    }
-
-                    // Allow attributes with non-empty name & value
-                    if ('' !== $attribute['name'] && '' !== $attribute['value']) {
-                        $attributes[] = $attribute;
-                    }
-                }
-
-                $tag['attributes'] = $attributes;
-            }
-        }
-
-        return serialize($tags);
-    }
-
     /**
      * Set html class on each CTE from list view.
      *

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2018 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
@@ -22,7 +22,8 @@ ClassLoader::addClasses(array
 (
     // Content elements
     'Zmyslny\WrapperTags\ContentOpeningTags' => 'system/modules/wrapper_tags/elements/ContentOpeningTags.php',
-    'Zmyslny\WrapperTags\ContentClosingTags' => 'system/modules/wrapper_tags/elements/ContentClosingTags.php'
+    'Zmyslny\WrapperTags\ContentClosingTags' => 'system/modules/wrapper_tags/elements/ContentClosingTags.php',
+    'Zmyslny\WrapperTags\EventListener\ContentListener' => 'system/modules/wrapper_tags/src/WrapperTags/EventListener/ContentListener.php'
 
 ));
 
