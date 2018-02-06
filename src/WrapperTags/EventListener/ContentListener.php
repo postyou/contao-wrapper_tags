@@ -16,7 +16,7 @@ use Contao\DataContainer;
  * Class ContentListener
  * @package Zmyslny\WrapperTags\EventListener
  */
-class ContentListener
+class ContentListener extends \tl_content
 {
     /**
      * On record save callback.
@@ -66,5 +66,43 @@ class ContentListener
         }
 
         return serialize($tags);
+    }
+
+    /**
+     * Set html class on each CTE from list view.
+     *
+     * Class being set in this function will be set to the next CTE then CTE of $row element. That is why
+     * $GLOBALS['WrapperTags']['indents'] array was offset so every cteId point to class of the next element.
+     *
+     * @param $row
+     * @return string
+     */
+    public function onChildRecordCallback($row)
+    {
+        if (isset($GLOBALS['WrapperTags']['indents']) && is_array($GLOBALS['WrapperTags']['indents'])) {
+
+            $indent = $GLOBALS['WrapperTags']['indents'][$row['id']];
+
+            if (null !== $indent) {
+                $this->setChildRecordClass($indent);
+            }
+        }
+
+        // standard Contao child-record-callback
+        return parent::addCteType($row);
+    }
+
+
+    /**
+     * Sets css class into "child_record_class" setting.
+     *
+     * @param array $indent
+     */
+    protected function setChildRecordClass($indent)
+    {
+        $wrapperTagClass = $indent['type'] === 'openingTags' || $indent['type'] === 'closingTags' ? 'wrapper-tag' : '';
+        $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
+        
+        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent ' . $wrapperTagClass . ' indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent ' . $wrapperTagClass . ' indent_0 ' . $middleClass;
     }
 }
