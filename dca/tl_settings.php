@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017 Zmyslni
+ * Copyright (C) 2018 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
  * @author  Ostrowski Maciej <maciek@zmyslni.pl>
