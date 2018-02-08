@@ -19,7 +19,7 @@ $GLOBALS['TL_LANG']['CTE']['wrapper_tags'] = 'Wrapper tags';
  * Validation labels
  */
 $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] = 'Corrupted data';
-$GLOBALS['TL_LANG']['MSC']['wt.statusTitle'] = 'Validation';
+$GLOBALS['TL_LANG']['MSC']['wt.statusTitle'] = 'Wrapper tags';
 $GLOBALS['TL_LANG']['MSC']['wt.statusOk'] = 'ok';
 $GLOBALS['TL_LANG']['MSC']['wt.validationError'] = 'Validation error';
 $GLOBALS['TL_LANG']['MSC']['wt.statusClosingNoOpening'] = 'Error: Closing tag "&lt;/%s&gt;" (id:%d) is without opening tag.';
