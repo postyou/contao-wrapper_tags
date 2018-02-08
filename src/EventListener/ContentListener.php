@@ -37,12 +37,19 @@ class ContentListener extends \tl_content
             if ($tag['attributes']) {
 
                 $attributes = [];
+                $names = [];
 
                 foreach ($tag['attributes'] as $attribute) {
 
                     // The attribute name must not contain any whitespace
                     $attribute['name'] = preg_replace('/\s+/', '', $attribute['name']);
                     $attribute['value'] = trim($attribute['value']);
+
+                    if (isset($names[$attribute['name']])) {
+                        throw new \Exception('The attribute name "' . $attribute['name'] . '" used more then once');
+                    }
+
+                    $names[$attribute['name']] = true;
 
                     if ('' !== $attribute['name'] && '' === $attribute['value']) {
                         throw new \Exception('The attribute name "' . $attribute['name'] . '" is without a value');
