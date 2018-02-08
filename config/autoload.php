@@ -9,13 +9,13 @@
  */
 
 
-/**
+/*
  * Register the namespaces
  */
 ClassLoader::addNamespaces(array('Zmyslny\WrapperTags'));
 
 
-/**
+/*
  * Register the classes
  */
 ClassLoader::addClasses(array
@@ -28,7 +28,7 @@ ClassLoader::addClasses(array
 ));
 
 
-/**
+/*
  * Register the templates
  */
 TemplateLoader::addFiles(array(

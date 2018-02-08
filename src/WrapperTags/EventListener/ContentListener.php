@@ -138,9 +138,8 @@ class ContentListener extends \tl_content
     }
 
     /**
-     * Checks whether every start wrapper has its corresponding stop wrapper.
-     *
-     * It also build new indent information witch will be then applied to content list view.
+     * On header callback. Checks whether every start wrapper has its corresponding stop wrapper, recalculates indents,
+     * sets css color classes.
      *
      * @param $add
      * @param DataContainer $dc
@@ -181,7 +180,7 @@ class ContentListener extends \tl_content
 
         $result = $stmt->execute(CURRENT_ID, $dc->parentTable);
 
-        $statusTitle = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'];
+        $statusTitle = $GLOBALS['TL_LANG']['MSC']['wt.statusTitle'];
         $status = array();
 
         if ($result->numRows === 0) {
@@ -613,5 +612,4 @@ class ContentListener extends \tl_content
             }
         }
     }
-
 }

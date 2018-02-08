@@ -9,25 +9,25 @@
  */
 
 /*
- * Extension version.
+ * Extension version
  */
 @define('WRAPPER_TAGS_VERSION', '2.0');
 @define('WRAPPER_TAGS_BUILD', '0');
 
 /*
- * Content elements.
+ * Content elements
  */
 $GLOBALS['TL_CTE']['wrapperTags']['openingTags'] = 'ContentOpeningTags';
 $GLOBALS['TL_CTE']['wrapperTags']['closingTags'] = 'ContentClosingTags';
 
 /*
- * Wrappers.
+ * Wrappers
  */
 $GLOBALS['TL_WRAPPERS']['start'][] = 'openingTags';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
 
 /*
- * Config.
+ * Config
  */
 $GLOBALS['TL_CONFIG']['wrapperTagsUseColors'] = true;
 $GLOBALS['TL_CONFIG']['wrapperTagsHideValidationStatus'] = false;

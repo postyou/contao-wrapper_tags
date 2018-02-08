@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2018 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
@@ -21,7 +21,7 @@ $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Ustawienia HTML-owych
 /**
  * Wrapper-tags status messages
  */
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'] = 'Struktura';
+$GLOBALS['TL_LANG']['MSC']['wt.statusTitle'] = 'Struktura';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'poprawna';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Dane są uszkodzone';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] = 'Błąd walidacji';

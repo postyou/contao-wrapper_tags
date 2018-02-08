@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2018 Zmyslni
  *
  * @author  Ostrowski Maciej <http://contao-developer.pl>
@@ -9,17 +9,17 @@
  */
 
 /*
- * CTE name labels.
+ * CTE names
  */
 $GLOBALS['TL_LANG']['CTE']['openingTags'] = array('Opening tags', 'Adds multiple html opening tags to the page.');
 $GLOBALS['TL_LANG']['CTE']['closingTags'] = array('Closing tags', 'Adds multiple html closing tags to the page.');
 $GLOBALS['TL_LANG']['CTE']['wrapperTags'] = 'Wrapper tags';
 
 /*
- * CTE labels.
+ * Labels
  */
 $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] = 'Corrupted data';
-$GLOBALS['TL_LANG']['MSC']['wrapperTagsStatus'] = 'Validation';
+$GLOBALS['TL_LANG']['MSC']['wt.statusTitle'] = 'Validation';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'] = 'ok';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] = 'Corrupted data';
 $GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] = 'Validation error';

@@ -9,12 +9,12 @@
  */
 
 /*
- * Palettes.
+ * Palettes
  */
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{wrapperTags_legend:hide},wrapperTagsAllowedTags,wrapperTagsUseColors,wrapperTagsHideValidationStatus';
 
 /*
- * Fields.
+ * Fields
  */
 $GLOBALS['TL_DCA']['tl_settings']['fields']['wrapperTagsAllowedTags'] =
     array(
