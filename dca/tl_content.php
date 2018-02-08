@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['openingTags'] = array(
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
                 'inputType' => 'select',
-                'options_callback' => array('tl_content_wrapper_tags', 'getTags'),
+                'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
             ),
             'attributes' => array
             (
