@@ -184,7 +184,7 @@ class ContentListener extends \tl_content
         $status = array();
 
         if ($result->numRows === 0) {
-            $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsValidationError'] . '</span>';
+            $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wt.validationError'] . '</span>';
             return $add + $status;
         }
 
@@ -233,7 +233,7 @@ class ContentListener extends \tl_content
 
                     if ($openStack[$i]['type'] === 'openingTags') {
 
-                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningNoClosing'], $openStack[$i]['tags'][count($openStack[$i]['tags']) - 1]['tag'], $openStack[$i]['id']) . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningNoClosing'], $openStack[$i]['tags'][count($openStack[$i]['tags']) - 1]['tag'], $openStack[$i]['id']) . '</span>';
                         $hasError = true;
                         break;
                     }
@@ -242,7 +242,7 @@ class ContentListener extends \tl_content
         }
 
         if (!$hasError) {
-            $status[$statusTitle] = $GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOk'];
+            $status[$statusTitle] = $GLOBALS['TL_LANG']['MSC']['wt.statusOk'];
         }
 
         // hide validation status
@@ -351,7 +351,7 @@ class ContentListener extends \tl_content
 
                 if (!$hasError) {
                     if (!is_array($startTags)) {
-                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] . '</span>';
                         $hasError = true;
                     }
                 }
@@ -396,7 +396,7 @@ class ContentListener extends \tl_content
                     // not of type 'closingTags' so the pairing is wrong.
                     if ($openingTags !== null && $openingTags['type'] === 'openingTags') {
 
-                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
                         $hasError = true;
                     }
                 }
@@ -421,7 +421,7 @@ class ContentListener extends \tl_content
 
                 if (!$hasError) {
                     if (!is_array($closingTags)) {
-                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wrapperTagsDataCorrupted'] . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] . '</span>';
                         $hasError = true;
                     }
                 }
@@ -433,7 +433,7 @@ class ContentListener extends \tl_content
                      */
 
                     if (!$hasError) {
-                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTags[count($closingTags) - 1]['tag'], $cte['id']) . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusClosingNoOpening'], $closingTags[count($closingTags) - 1]['tag'], $cte['id']) . '</span>';
                         $hasError = true;
                     }
 
@@ -446,7 +446,7 @@ class ContentListener extends \tl_content
                     $openingTags = array_pop($openStack);
 
                     if (!$hasError) {
-                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingWithOther'], $closingTags[0]['tag'], $cte['id'], $GLOBALS['TL_LANG']['CTE'][$openingTags['type']][0], $openingTags['id']) . '</span>';
+                        $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingWithOther'], $closingTags[0]['tag'], $cte['id'], $GLOBALS['TL_LANG']['CTE'][$openingTags['type']][0], $openingTags['id']) . '</span>';
                         $hasError = true;
                     }
 
@@ -497,7 +497,7 @@ class ContentListener extends \tl_content
             if (count($openStack) === 0) {
 
                 if (!$hasError) {
-                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
                     $hasError = true;
                 }
 
@@ -509,7 +509,7 @@ class ContentListener extends \tl_content
             if ($closingTag['tag'] !== $openingTag['tag']) {
 
                 if (!$hasError) {
-                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openStack[count($openStack) - 1]['id'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningWrongPairing'], $openingTag['tag'], $openStack[count($openStack) - 1]['id'], $closingTag['tag'], $cte['id']) . '</span>';
                     $hasError = true;
                 }
             }
@@ -550,7 +550,7 @@ class ContentListener extends \tl_content
             if (count($openStack) === 0) {
 
                 if (!$hasError) {
-                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusClosingNoOpening'], $closingTag['tag'], $cte['id']) . '</span>';
                     $hasError = true;
                 }
 
@@ -567,7 +567,7 @@ class ContentListener extends \tl_content
             if ($closingTag['tag'] !== $openingTag['tag']) {
 
                 if (!$hasError) {
-                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
+                    $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningWrongPairing'], $openingTag['tag'], $openingTags['id'], $closingTag['tag'], $cte['id']) . '</span>';
                     $hasError = true;
                 }
             }
@@ -586,7 +586,7 @@ class ContentListener extends \tl_content
         if (!$lastElementWasPaired) {
 
             if (!$hasError) {
-                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wrapperTagsStatusClosingWrongPairingNeedSplit'], $cte['id'], $openStack[count($openStack) - 1]['id']) . '</span>';
+                $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingNeedSplit'], $cte['id'], $openStack[count($openStack) - 1]['id']) . '</span>';
                 $hasError = true;
             }
 

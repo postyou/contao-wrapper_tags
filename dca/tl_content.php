@@ -17,8 +17,8 @@ $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['openingTags'] = '{type_legend},type;{wrappertags_legend},openingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['closingTags'] = '{type_legend},type;{wrappertags_legend},closingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['openingTags'] = '{type_legend},type;{wrapperTags_legend},openingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['closingTags'] = '{type_legend},type;{wrapperTags_legend},closingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
 /*
  * Fields

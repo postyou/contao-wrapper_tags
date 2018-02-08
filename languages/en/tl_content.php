@@ -24,4 +24,4 @@ $GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'] = 'Value';
 /*
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Wrapper tags settings';
+$GLOBALS['TL_LANG']['tl_content']['wrapperTags_legend'] = 'Wrapper tags settings';
