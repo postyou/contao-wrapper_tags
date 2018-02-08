@@ -1,5 +1,5 @@
 <?php if ($this->tags): ?>
-    <table class="<?= $this->version ?>">
+    <table class="wt <?= $this->version ?>">
         <tbody>
         <?php foreach ($this->tags as $tag): ?>
             <tr>
@@ -7,13 +7,13 @@
                     &lt;<?php echo $tag['tag'] ?>
                 </td>
                 <td>
+                    <?php $attributesCount = count($tag['attributes']) ?>
                     <?php if (isset($tag['class'])): ?>
-                        <span class="tl_gray">class:</span><?= $tag['class'] ?>
+                        <span class="tl_gray">class:</span><span class="value"><?= $tag['class'] ?></span><?php echo $attributesCount ? ',' : '' ?>
                     <?php endif ?>
-                    <?php foreach ($tag['attributes'] as $attribute): ?>
-                        <span class="tl_gray"><?= $attribute['name'] ?>:</span><?= $attribute['value'] ?>
+                    <?php foreach ($tag['attributes'] as $index => $attribute): ?>
+                        <span class="tl_gray"><?= $attribute['name'] ?>:</span><span class="value"><?= $attribute['value'] ?></span><?php echo $attributesCount - 1 > $index ? ',' : '&gt;' ?>
                     <?php endforeach ?>
-                    &gt;
                 </td>
             </tr>
         <?php endforeach ?>

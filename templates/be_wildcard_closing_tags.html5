@@ -1,5 +1,5 @@
 <?php if ($this->tags): ?>
-    <table class="<?= $this->version ?>">
+    <table class="wt <?= $this->version ?>">
         <tbody>
         <?php foreach ($this->tags as $tag): ?>
             <tr>
