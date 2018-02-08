@@ -11,11 +11,11 @@
 /*
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsAllowedTags'] = array('HTML tags for selection', 'Please enter the list of HTML tags used.');
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsUseColors'] = array('Colorize', 'Colorize opening & closing content elements at the beck end.');
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTagsHideValidationStatus'] = array('Hide validation status', 'Hide validation status at the beck end.');
+$GLOBALS['TL_LANG']['tl_settings']['wt_allowed_tags'] = array('HTML tags allowed', 'Please enter the list of HTML tags allowed for usage.');
+$GLOBALS['TL_LANG']['tl_settings']['wt_use_colors'] = array('Colorize', 'Colorize opening & closing content elements at the beck end.');
+$GLOBALS['TL_LANG']['tl_settings']['wt_hide_validation_status'] = array('Hide validation', 'Hide validation status at the beck end.');
 
 /*
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_settings']['wrapperTags_legend'] = 'Wrapper tags settings';
+$GLOBALS['TL_LANG']['tl_settings']['wt_legend'] = 'Wrapper tags settings';

@@ -20,7 +20,7 @@ class ContentClosingTags extends ContentElement
      *
      * @var string
      */
-    protected $strTemplate = 'ce_wrapper_tags_opening';
+    protected $strTemplate = 'ce_wt_closing_tags';
 
     /**
      * Display a wildcard in the back end.
@@ -29,19 +29,19 @@ class ContentClosingTags extends ContentElement
      */
     public function generate()
     {
-        $this->closingTags = deserialize($this->closingTags);
+        $this->wt_closing_tags = deserialize($this->wt_closing_tags);
 
         // Tags data is incorrect
-        if (!is_array($this->closingTags)) {
-            $this->closingTags = array();
+        if (!is_array($this->wt_closing_tags)) {
+            $this->wt_closing_tags = array();
         }
 
         if (TL_MODE === 'BE') {
 
-            $template = new BackendTemplate('be_wildcard_tags_closing');
+            $template = new BackendTemplate('be_wildcard_closing_tags');
             $template->wildcard = '### Closing tags (id:' . $this->id . ') ###';
 
-            $template->tags = $this->closingTags;
+            $template->tags = $this->wt_closing_tags;
             $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
 
             return $template->parse();

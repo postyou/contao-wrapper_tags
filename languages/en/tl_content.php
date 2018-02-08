@@ -11,17 +11,19 @@
 /*
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['openingTags'] = array('Opening tags', 'Choose html tags to open and add any attribute to it.');
-$GLOBALS['TL_LANG']['tl_content']['closingTags'] = array('Closing tags', 'Choose html tags to close that match structure in corresponding [Opening Tags] content element.');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = array('Tag', 'Select html tag');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = array('Class', 'Type in html classes');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = array('Id', 'Type in html id value');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'] = array('Style', 'Type in css styles');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'] = array('Other attributes [Name - Value]', 'HTML Attributes: Name + Value');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesName'] = 'Name';
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'] = 'Value';
+$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'] = array('Opening tags', 'Please choose html tags and set their attributes.');
+$GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'] = array('Closing tags', 'Please choose html tags.');
+
+/*
+ * MultiColumnWizard fields
+ */
+$GLOBALS['TL_LANG']['tl_content']['wt_tag'] = array('Tag', 'Please choose html tag.');
+$GLOBALS['TL_LANG']['tl_content']['wt_class'] = array('Class', 'Here you can enter css classes.');
+$GLOBALS['TL_LANG']['tl_content']['wt_attribute'] = array('Other attributes [Name - Value]', 'Here you can enter HTML attributes: Name + Value');
+$GLOBALS['TL_LANG']['tl_content']['wt_attribute_name'] = 'Name';
+$GLOBALS['TL_LANG']['tl_content']['wt_attribute_value'] = 'Value';
 
 /*
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['wrapperTags_legend'] = 'Wrapper tags settings';
+$GLOBALS['TL_LANG']['tl_content']['wt_legend'] = 'Wrapper tags settings';

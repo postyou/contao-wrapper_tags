@@ -11,9 +11,9 @@
 /*
  * CTE labels
  */
-$GLOBALS['TL_LANG']['CTE']['openingTags'] = array('Opening tags', 'Adds multiple html opening tags to the page.');
-$GLOBALS['TL_LANG']['CTE']['closingTags'] = array('Closing tags', 'Adds multiple html closing tags to the page.');
-$GLOBALS['TL_LANG']['CTE']['wrapperTags'] = 'Wrapper tags';
+$GLOBALS['TL_LANG']['CTE']['wt_opening_tags'] = array('Opening tags', 'Adds multiple html opening tags to the page.');
+$GLOBALS['TL_LANG']['CTE']['wt_closing_tags'] = array('Closing tags', 'Adds multiple html closing tags to the page.');
+$GLOBALS['TL_LANG']['CTE']['wrapper_tags'] = 'Wrapper tags';
 
 /*
  * Validation labels

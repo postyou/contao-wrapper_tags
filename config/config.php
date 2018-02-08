@@ -29,8 +29,8 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'wt_closing_tags';
 /*
  * Config
  */
-$GLOBALS['TL_CONFIG']['wrapperTagsUseColors'] = true;
-$GLOBALS['TL_CONFIG']['wrapperTagsHideValidationStatus'] = false;
-$GLOBALS['TL_CONFIG']['wrapperTagsAllowedTags']
+$GLOBALS['TL_CONFIG']['wt_use_colors'] = true;
+$GLOBALS['TL_CONFIG']['wt_hide_validation_status'] = false;
+$GLOBALS['TL_CONFIG']['wt_allowed_tags']
     = '<div><span><article><aside>'
     . '<ul><ol><li>';

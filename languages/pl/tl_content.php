@@ -9,12 +9,10 @@
  */
 
 
-$GLOBALS['TL_LANG']['tl_content']['openingTags'] = array('Otwieranie znaczników', 'Wybierz znaczniki do otwarcia. W odpowiadającym elemencie treści [Domykanie znaczników] ta struktura musi być odwzorowana. Każdy otwarty znacznik np. &lt;DIV&gt; musi mieć domknięty znacznik &lt;/DIV&gt;');
-$GLOBALS['TL_LANG']['tl_content']['closingTags'] = array('Domykanie znaczników', 'Wybierz te znaczniki, które znajdują się w odpowiadającym elemencie treści [Otwieranie znaczników].');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'] = array('Znacznik', 'Wybierz znacznik');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'] = array('Class', 'Wpisz klasy');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsId'] = array('Id', 'Wpisz wartość id');
-$GLOBALS['TL_LANG']['tl_content']['wrapperTagsStyle'] = array('Style', 'Wpisz css-owe style');
+$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'] = array('Otwieranie znaczników', 'Wybierz znaczniki do otwarcia. W odpowiadającym elemencie treści [Domykanie znaczników] ta struktura musi być odwzorowana. Każdy otwarty znacznik np. &lt;DIV&gt; musi mieć domknięty znacznik &lt;/DIV&gt;');
+$GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'] = array('Domykanie znaczników', 'Wybierz te znaczniki, które znajdują się w odpowiadającym elemencie treści [Otwieranie znaczników].');
+$GLOBALS['TL_LANG']['tl_content']['wt_tag'] = array('Znacznik', 'Wybierz znacznik');
+$GLOBALS['TL_LANG']['tl_content']['wt_class'] = array('Class', 'Wpisz klasy');
 $GLOBALS['TL_LANG']['tl_content']['wrappertags_legend'] = 'Ustawienia HTML-owych znaczników';
 
 

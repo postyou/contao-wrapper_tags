@@ -21,7 +21,7 @@ class ContentOpeningTags extends ContentElement
      *
      * @var string
      */
-    protected $strTemplate = 'ce_wrapper_tags_opening';
+    protected $strTemplate = 'ce_wt_opening_tags';
 
     /**
      * Display a wildcard in the back end.
@@ -30,19 +30,19 @@ class ContentOpeningTags extends ContentElement
      */
     public function generate()
     {
-        $this->openingTags = deserialize($this->openingTags);
+        $this->wt_opening_tags = deserialize($this->wt_opening_tags);
 
         // Tags data is incorrect
-        if (!is_array($this->openingTags)) {
-            $this->openingTags = array();
+        if (!is_array($this->wt_opening_tags)) {
+            $this->wt_opening_tags = array();
         }
 
         if (TL_MODE === 'BE') {
 
-            $template = new BackendTemplate('be_wildcard_tags_opening');
+            $template = new BackendTemplate('be_wildcard_opening_tags');
             $template->wildcard = '### Opening tags (id:' . $this->id . ') ###';
 
-            $template->tags = $this->openingTags;
+            $template->tags = $this->wt_opening_tags;
             $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
 
             return $template->parse();
@@ -56,7 +56,7 @@ class ContentOpeningTags extends ContentElement
      */
     protected function compile()
     {
-        $tags = $this->openingTags;
+        $tags = $this->wt_opening_tags;
 
         // Compile insert tags in attr name and sanitize it
         foreach ($tags as $i => $tag) {

@@ -17,14 +17,14 @@ $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_opening_tags'] = '{type_legend},type;{wrapperTags_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_closing_tags'] = '{type_legend},type;{wrapperTags_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_opening_tags'] = '{type_legend},type;{wt_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_closing_tags'] = '{type_legend},type;{wt_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
 /*
  * Fields
  */
 $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
-    'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
     'save_callback' => array(array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onSaveCallback')),
@@ -36,13 +36,13 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
         (
             'tag' => array
             (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
                 'inputType' => 'select',
                 'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
             ),
             'attributes' => array
             (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributes'],
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute'],
                 'exclude' => true,
                 'inputType' => 'multiColumnWizard',
                 'eval' => array
@@ -54,14 +54,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
                     (
                         'name' => array
                         (
-                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesName'],
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute_name'],
                             'inputType' => 'text',
                             'exclude' => true,
                             'eval' => array('allowHtml' => false)
                         ),
                         'value' => array
                         (
-                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsAttributesValue'],
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute_value'],
                             'inputType' => 'text',
                             'exclude' => true,
                             'eval' => array('allowHtml' => false)
@@ -71,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
             ),
             'class' => array
             (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsClass'],
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_class'],
                 'exclude' => true,
                 'inputType' => 'text',
                 'eval' => array('allowHtml' => false)
@@ -81,7 +81,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
     'sql' => 'blob NULL'
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
-    'label' => &$GLOBALS['TL_LANG']['tl_content']['closingTags'],
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
     'eval' => array

@@ -100,14 +100,14 @@ class ContentListener extends \tl_content
      */
     protected function setChildRecordClass($indent)
     {
-        $wrapperTagClass = $indent['type'] === 'openingTags' || $indent['type'] === 'closingTags' ? 'wrapper-tag' : '';
+        $wrapperTagClass = $indent['type'] === 'wt_opening_tags' || $indent['type'] === 'wt_closing_tags' ? 'wrapper-tag' : '';
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
 
         $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent ' . $wrapperTagClass . ' indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent ' . $wrapperTagClass . ' indent_0 ' . $middleClass;
     }
 
     /**
-     * On columns callback of multiColumnWizard field 'closingTags'.
+     * On columns callback of multiColumnWizard field 'wt_closing_tags'.
      *
      * @return array
      */
@@ -116,7 +116,7 @@ class ContentListener extends \tl_content
         return array(
             'tag' => array
             (
-                'label' => &$GLOBALS['TL_LANG']['tl_content']['wrapperTagsTag'],
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
                 'inputType' => 'select',
                 'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
             )
@@ -130,7 +130,7 @@ class ContentListener extends \tl_content
      */
     public function getTags()
     {
-        $tags = trimsplit('><', \Config::get('wrapperTagsAllowedTags'));
+        $tags = trimsplit('><', \Config::get('wt_allowed_tags'));
         $tags[0] = str_replace('<', '', $tags[0]);
         $tags[count($tags) - 1] = str_replace('>', '', $tags[count($tags) - 1]);
 
@@ -156,7 +156,7 @@ class ContentListener extends \tl_content
             ->prepare("
                 SELECT id
                 FROM `tl_content`
-                WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('openingTags','closingTags')
+                WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('wt_opening_tags','wt_closing_tags')
                 ")
             ->execute(CURRENT_ID, $dc->parentTable, '1');
 
@@ -168,7 +168,7 @@ class ContentListener extends \tl_content
 
         // get all content elements from this article
         $query = '
-            SELECT id, type, openingTags, closingTags, invisible
+            SELECT id, type, wt_opening_tags, wt_closing_tags, invisible
             FROM `tl_content`
             WHERE pid = ? AND ptable = ?
             ORDER BY sorting ASC
@@ -196,7 +196,7 @@ class ContentListener extends \tl_content
         // helps to show only the first error
         $hasError = false;
 
-        $hideStatus = \Config::get('wrapperTagsHideValidationStatus');
+        $hideStatus = \Config::get('wt_hide_validation_status');
         if ($hideStatus) {
             // it turns off validation checking because algorithm will think it already has first error
             $hasError = true;
@@ -231,7 +231,7 @@ class ContentListener extends \tl_content
                 // check whether there is openingTags element on stack
                 for ($i = count($openStack) - 1; $i >= 0; --$i) {
 
-                    if ($openStack[$i]['type'] === 'openingTags') {
+                    if ($openStack[$i]['type'] === 'wt_opening_tags') {
 
                         $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningNoClosing'], $openStack[$i]['tags'][count($openStack[$i]['tags']) - 1]['tag'], $openStack[$i]['id']) . '</span>';
                         $hasError = true;
@@ -250,7 +250,7 @@ class ContentListener extends \tl_content
             $status = array();
         }
 
-        $useColors = \Config::get('wrapperTagsUseColors');
+        $useColors = \Config::get('wt_use_colors');
 
         /*
          * Indents will be used in childRecordCallback.
@@ -323,7 +323,7 @@ class ContentListener extends \tl_content
      */
     protected function wrapperStart($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
     {
-        if ('openingTags' !== $cte['type']) {
+        if ('wt_opening_tags' !== $cte['type']) {
 
             if ($isVisible) {
 
@@ -347,7 +347,7 @@ class ContentListener extends \tl_content
 
                 // every opened tag from openingTags put on stack
 
-                $startTags = unserialize($cte['openingTags']);
+                $startTags = unserialize($cte['wt_opening_tags']);
 
                 if (!$hasError) {
                     if (!is_array($startTags)) {
@@ -358,7 +358,7 @@ class ContentListener extends \tl_content
 
                 $openStack[] = array(
                     'id' => $cte['id'],
-                    'type' => 'openingTags',
+                    'type' => 'wt_opening_tags',
                     'tags' => $startTags,
                     'count' => count($startTags)
                 );
@@ -384,7 +384,7 @@ class ContentListener extends \tl_content
      */
     protected function wrapperStop($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
     {
-        if ('closingTags' !== $cte['type']) {
+        if ('wt_closing_tags' !== $cte['type']) {
 
             if ($isVisible) {
 
@@ -392,9 +392,9 @@ class ContentListener extends \tl_content
 
                 if (!$hasError) {
 
-                    // Last opened wrapper is of type 'openingTags'. Because now we are stepping on closing element
-                    // not of type 'closingTags' so the pairing is wrong.
-                    if ($openingTags !== null && $openingTags['type'] === 'openingTags') {
+                    // Last opened wrapper is of type 'wt_opening_tags'. Because now we are stepping on closing element
+                    // not of type 'wt_closing_tags' so the pairing is wrong.
+                    if ($openingTags !== null && $openingTags['type'] === 'wt_opening_tags') {
 
                         $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
                         $hasError = true;
@@ -417,7 +417,7 @@ class ContentListener extends \tl_content
 
             } else {
 
-                $closingTags = unserialize($cte['closingTags']);
+                $closingTags = unserialize($cte['wt_closing_tags']);
 
                 if (!$hasError) {
                     if (!is_array($closingTags)) {
@@ -437,10 +437,10 @@ class ContentListener extends \tl_content
                         $hasError = true;
                     }
 
-                } elseif ('openingTags' !== $openStack[count($openStack) - 1]['type']) {
+                } elseif ('wt_opening_tags' !== $openStack[count($openStack) - 1]['type']) {
 
                     /*
-                     * case 2: closing element is paired with wrong opening element - it is not of type 'openingTags'
+                     * case 2: closing element is paired with wrong opening element - it is not of type 'wt_opening_tags'
                      */
 
                     $openingTags = array_pop($openStack);
@@ -455,7 +455,7 @@ class ContentListener extends \tl_content
                 } else {
 
                     /*
-                     * case 3: proper pairing with type 'openingTags'
+                     * case 3: proper pairing with type 'wt_opening_tags'
                      */
 
                     if ($openStack[count($openStack) - 1]['count'] >= count($closingTags)) {
