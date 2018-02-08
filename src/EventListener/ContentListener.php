@@ -46,21 +46,21 @@ class ContentListener extends \tl_content
                     $attribute['value'] = trim($attribute['value']);
 
                     if (isset($names[$attribute['name']])) {
-                        throw new \Exception('The attribute name "' . $attribute['name'] . '" used more then once');
+                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorMultipleAttributeName'], $attribute['name']));
                     }
 
                     $names[$attribute['name']] = true;
 
                     if ('' !== $attribute['name'] && '' === $attribute['value']) {
-                        throw new \Exception('The attribute name "' . $attribute['name'] . '" is without a value');
+                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'], $attribute['name']));
                     }
 
                     if ('' === $attribute['name'] && '' !== $attribute['value']) {
-                        throw new \Exception('The attribute value "' . $attribute['value'] . '" is without a name');
+                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'], $attribute['value']));
                     }
 
                     if (is_numeric($attribute['name'])) {
-                        throw new \Exception('The attribute name must not be a number');
+                        throw new \Exception($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameNumber']);
                     }
 
                     // Allow attributes with non-empty name & value
