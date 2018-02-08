@@ -17,14 +17,14 @@
 /*
  * Content elements
  */
-$GLOBALS['TL_CTE']['wrapperTags']['openingTags'] = 'ContentOpeningTags';
-$GLOBALS['TL_CTE']['wrapperTags']['closingTags'] = 'ContentClosingTags';
+$GLOBALS['TL_CTE']['wrapper_tags']['wt_opening_tags'] = 'ContentOpeningTags';
+$GLOBALS['TL_CTE']['wrapper_tags']['wt_closing_tags'] = 'ContentClosingTags';
 
 /*
  * Wrappers
  */
-$GLOBALS['TL_WRAPPERS']['start'][] = 'openingTags';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'closingTags';
+$GLOBALS['TL_WRAPPERS']['start'][] = 'wt_opening_tags';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'wt_closing_tags';
 
 /*
  * Config

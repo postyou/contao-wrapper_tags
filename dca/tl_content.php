@@ -17,13 +17,13 @@ $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['openingTags'] = '{type_legend},type;{wrapperTags_legend},openingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['closingTags'] = '{type_legend},type;{wrapperTags_legend},closingTags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_opening_tags'] = '{type_legend},type;{wrapperTags_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_closing_tags'] = '{type_legend},type;{wrapperTags_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
 /*
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['openingTags'] = array(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['openingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
@@ -80,7 +80,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['openingTags'] = array(
     ),
     'sql' => 'blob NULL'
 );
-$GLOBALS['TL_DCA']['tl_content']['fields']['closingTags'] = array(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['closingTags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
