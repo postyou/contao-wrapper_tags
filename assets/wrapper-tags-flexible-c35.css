@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* Colors */
 /* reset indent to zero level */
 .tl_content.clear-indent {
@@ -172,43 +171,6 @@
   border-left: none;
   border-right: none; }
 
-/*                      Making it smaller
- *  ----------------------------------------------------------------
- */
-x.tl_content.wrapper-tag .cte_type,
-x.tl_content.wrapper-tag .h64,
-x.tl_content.wrapper-tag .tl_content_right {
-  -webkit-transition: height 1s ease-out, opacity  1s ease-out;
-  transition: height 1s ease-out, opacity  1s ease-out;
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin-bottom: 0; }
-
-x.tl_content.wrapper-tag .cte_type {
-  width: 520px; }
-
-x.tl_content.wrapper-tag .h64 h1 {
-  font-weight: 400;
-  margin: 3px 0; }
-
-x.tl_content.wrapper-tag:hover .h64 {
-  -webkit-transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
-  transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
-  height: auto;
-  /* auto powoduje odwołanie "transition" */
-  opacity: 1; }
-
-x.tl_content.wrapper-tag:hover .cte_type,
-x.tl_content.wrapper-tag:hover .tl_content_right {
-  -webkit-transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
-  transition: height .5s ease-out 2s, opacity .5s ease-out 2s;
-  height: 16px;
-  opacity: 1; }
-
-x.tl_content.wrapper-tag:hover .tl_content_right {
-  float: right; }
-
 /* Wide screen */
 @media (min-width: 1200px) {
   .tl_content.clear-indent {
@@ -237,32 +199,32 @@ x.tl_content.wrapper-tag:hover .tl_content_right {
 /*                      opening-wrapper edit panel
  *  ----------------------------------------------------------------
  */
-#ctrl_openingTags > tbody > tr > td {
+#ctrl_wt_opening_tags > tbody > tr > td {
   vertical-align: top;
   padding-bottom: 15px; }
 
-#ctrl_openingTags td.operations {
+#ctrl_wt_opening_tags td.operations {
   min-width: 70px; }
 
-#ctrl_openingTags td.hidelabel.mcwUpdateFields > .tl_select {
+#ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
   width: 70px; }
 
-#ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
-#ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
+#ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+#ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
   width: 70px; }
 
-#ctrl_openingTags input[name$="][class]"] {
+#ctrl_wt_opening_tags input[name$="][class]"] {
   width: 150px; }
 
-#ctrl_openingTags input[name$="][style]"] {
+#ctrl_wt_opening_tags input[name$="][style]"] {
   width: 120px; }
 
-#ctrl_openingTags td.attributes table {
+#ctrl_wt_opening_tags td.attributes table {
   margin-top: 0; }
-  #ctrl_openingTags td.attributes table .tl_text {
+  #ctrl_wt_opening_tags td.attributes table .tl_text {
     width: 100px; }
 
-#ctrl_openingTags td.attributes thead {
+#ctrl_wt_opening_tags td.attributes thead {
   display: none; }
 
 /*
@@ -270,41 +232,41 @@ x.tl_content.wrapper-tag:hover .tl_content_right {
  * Css for opening-wrapper edit panel
  *
  */
-#ctrl_closingTags td.operations {
+#ctrl_wt_closing_tags td.operations {
   width: 100%; }
 
-#ctrl_closingTags td.hidelabel.mcwUpdateFields {
+#ctrl_wt_closing_tags td.hidelabel.mcwUpdateFields {
   width: unset; }
-  #ctrl_closingTags td.hidelabel.mcwUpdateFields > .tl_select {
+  #ctrl_wt_closing_tags td.hidelabel.mcwUpdateFields > .tl_select {
     width: 100px; }
-  #ctrl_closingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
-  #ctrl_closingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
+  #ctrl_wt_closing_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+  #ctrl_wt_closing_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
     width: 100px;
     margin-right: 5px; }
 
 /* Wide screen */
 @media (min-width: 1200px) {
-  #ctrl_openingTags input[name$="][class]"] {
+  #ctrl_wt_opening_tags input[name$="][class]"] {
     width: 250px; }
-  #ctrl_openingTags input[name$="][style]"] {
+  #ctrl_wt_opening_tags input[name$="][style]"] {
     width: 170px; }
-  #ctrl_openingTags td.attributes table {
+  #ctrl_wt_opening_tags td.attributes table {
     margin-top: 0; }
-    #ctrl_openingTags td.attributes table .tl_text {
+    #ctrl_wt_opening_tags td.attributes table .tl_text {
       width: 140px; }
-    #ctrl_openingTags td.attributes table .tl_text[name$="][value]"] {
+    #ctrl_wt_opening_tags td.attributes table .tl_text[name$="][value]"] {
       width: 220px; } }
 
 /* Handheld */
 @media (max-width: 767px) {
-  #ctrl_openingTags {
+  #ctrl_wt_opening_tags {
     width: 100%; }
-    #ctrl_openingTags td.hidelabel.mcwUpdateFields > .tl_select {
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
       width: 80px; }
-    #ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
-    #ctrl_openingTags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
       width: 80px; }
-    #ctrl_openingTags input[name$="][class]"] {
+    #ctrl_wt_opening_tags input[name$="][class]"] {
       width: 100%; }
-    #ctrl_openingTags input[name$="][style]"] {
+    #ctrl_wt_opening_tags input[name$="][style]"] {
       width: 100%; } }
