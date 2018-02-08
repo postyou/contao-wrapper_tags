@@ -17,8 +17,8 @@
 /*
  * Content elements
  */
-$GLOBALS['TL_CTE']['wrapper_tags']['wt_opening_tags'] = 'ContentOpeningTags';
-$GLOBALS['TL_CTE']['wrapper_tags']['wt_closing_tags'] = 'ContentClosingTags';
+$GLOBALS['TL_CTE']['wrapper_tags']['wt_opening_tags'] = 'Zmyslny\WrapperTags\ContentElement\OpeningTagsElement';
+$GLOBALS['TL_CTE']['wrapper_tags']['wt_closing_tags'] = 'Zmyslny\WrapperTags\ContentElement\ClosingTagsElement';
 
 /*
  * Wrappers

@@ -19,8 +19,8 @@ ClassLoader::addNamespaces(array('Zmyslny\WrapperTags'));
 ClassLoader::addClasses(array
 (
     // Content elements
-    'Zmyslny\WrapperTags\ContentOpeningTags' => 'system/modules/wrapper_tags/elements/ContentOpeningTags.php',
-    'Zmyslny\WrapperTags\ContentClosingTags' => 'system/modules/wrapper_tags/elements/ContentClosingTags.php',
+    'Zmyslny\WrapperTags\ContentElement\OpeningTagsElement' => 'system/modules/wrapper_tags/src/ContentElement/OpeningTagsElement.php',
+    'Zmyslny\WrapperTags\ContentElement\ClosingTagsElement' => 'system/modules/wrapper_tags/src/ContentElement/ClosingTagsElement.php',
 
     // Event listeners
     'Zmyslny\WrapperTags\EventListener\ContentListener' => 'system/modules/wrapper_tags/src/EventListener/ContentListener.php'

@@ -8,13 +8,13 @@
  * @license LGPL-3.0+
  */
 
-namespace Zmyslny\WrapperTags;
+namespace Zmyslny\WrapperTags\ContentElement;
 
 use Contao\BackendTemplate;
 use Contao\ContentElement;
 use Contao\StringUtil;
 
-class ContentOpeningTags extends ContentElement
+class OpeningTagsElement extends ContentElement
 {
     /**
      * Template.

@@ -8,12 +8,12 @@
  * @license LGPL-3.0+
  */
 
-namespace Zmyslny\WrapperTags;
+namespace Zmyslny\WrapperTags\ContentElement;
 
 use Contao\BackendTemplate;
 use Contao\ContentElement;
 
-class ContentClosingTags extends ContentElement
+class ClosingTagsElement extends ContentElement
 {
     /**
      * Template.
@@ -55,5 +55,6 @@ class ContentClosingTags extends ContentElement
      */
     protected function compile()
     {
+        $this->Template->tags = deserialize($this->wt_closing_tags);
     }
 }
