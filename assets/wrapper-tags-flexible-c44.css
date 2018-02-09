@@ -248,6 +248,8 @@ table.wt {
     margin-right: 2px; }
   table.wt td .value {
     font-weight: 600; }
+  table.wt td .closing {
+    font-weight: 600; }
   table.wt td:first-child {
     font-weight: 600;
     text-align: left;

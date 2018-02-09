@@ -197,7 +197,7 @@
 #ctrl_wt_opening_tags td.attributes table {
   margin-top: 0; }
   #ctrl_wt_opening_tags td.attributes table .tl_text {
-    width: 100px; }
+    width: 130px; }
 
 #ctrl_wt_opening_tags td.attributes thead {
   display: none; }
@@ -233,6 +233,8 @@ table.wt {
   table.wt td .tl_gray {
     margin-right: 2px; }
   table.wt td .value {
+    font-weight: 600; }
+  table.wt td .closing {
     font-weight: 600; }
   table.wt td:first-child {
     font-weight: 600;
