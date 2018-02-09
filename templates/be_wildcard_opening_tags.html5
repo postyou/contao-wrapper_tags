@@ -4,12 +4,12 @@
         <?php foreach ($this->tags as $tag): ?>
             <tr>
                 <td>
-                    &lt;<?php echo $tag['tag'] ?>
+                    &lt;<?php echo $tag['tag'] ?><?php if ('' === $tag['class'] && 0 === count($tag['attributes'])): ?>&gt;<?php endif ?>
                 </td>
                 <td>
                     <?php $attributesCount = count($tag['attributes']) ?>
                     <?php if ('' !== $tag['class']): ?>
-                        <span class="tl_gray">class:</span><span class="value"><?= $tag['class'] ?></span><?php echo $attributesCount ? ',' : '' ?>
+                        <span class="tl_gray">class:</span><span class="value"><?= $tag['class'] ?></span><?php echo $attributesCount ? ',' : '&gt;' ?>
                     <?php endif ?>
                     <?php foreach ($tag['attributes'] as $index => $attribute): ?>
                         <span class="tl_gray"><?= $attribute['name'] ?>:</span><span class="value"><?= $attribute['value'] ?></span><?php echo $attributesCount - 1 > $index ? ',' : '&gt;' ?>
