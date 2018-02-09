@@ -270,3 +270,27 @@
       width: 100%; }
     #ctrl_wt_opening_tags input[name$="][style]"] {
       width: 100%; } }
+
+/*                      wrapper tags wildcard
+ *  ----------------------------------------------------------------
+ */
+table.wt {
+  margin: 0 0 9px 6px; }
+  table.wt td .tl_gray {
+    margin-right: 2px; }
+  table.wt td .value {
+    font-weight: 600; }
+  table.wt td:first-child {
+    font-weight: 600;
+    text-align: right;
+    padding-right: 5px;
+    vertical-align: top; }
+
+.wrapper_stop table.wt td {
+  text-align: left; }
+
+/*                      wrapper tags wildcard for Contao 3.5.x
+ *  ----------------------------------------------------------------
+ */
+table.wt * {
+  font-size: .75rem; }
