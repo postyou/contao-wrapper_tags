@@ -12,7 +12,6 @@ namespace Zmyslny\WrapperTags\ContentElement;
 
 use Contao\BackendTemplate;
 use Contao\ContentElement;
-use Contao\StringUtil;
 
 class OpeningTagsElement extends ContentElement
 {
@@ -62,7 +61,7 @@ class OpeningTagsElement extends ContentElement
         foreach ($tags as $i => $tag) {
             if ($tag['attributes']) {
                 foreach ($tag['attributes'] as $t => $attribute) {
-                    $attribute['name'] = StringUtil::generateAlias(static::replaceInsertTags($attribute['name']));
+                    $attribute['name'] = static::replaceInsertTags($attribute['name']);
 
                     $tags[$i]['attributes'][$t] = $attribute;
                 }

@@ -46,10 +46,16 @@ class ContentListener extends \tl_content
                     $attribute['value'] = trim($attribute['value']);
 
                     if (isset($names[$attribute['name']])) {
-                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorMultipleAttributeName'], $attribute['name']));
+                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'], $attribute['name']));
                     }
 
                     $names[$attribute['name']] = true;
+
+                    // Html attribute name semantic with insert tags allowed.
+                    // See https://www.w3.org/TR/REC-html40/types.html#type-cdata
+                    if (!preg_match('/^[A-Za-z]+[\w\-\:\.]*(\{{2}[\w\:]+\}{2}[\w\-\:\.]*)*$/', $attribute['name'])) {
+                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'], $attribute['name']));
+                    }
 
                     if ('' !== $attribute['name'] && '' === $attribute['value']) {
                         throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'], $attribute['name']));
@@ -57,10 +63,6 @@ class ContentListener extends \tl_content
 
                     if ('' === $attribute['name'] && '' !== $attribute['value']) {
                         throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'], $attribute['value']));
-                    }
-
-                    if (is_numeric($attribute['name'])) {
-                        throw new \Exception($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameNumber']);
                     }
 
                     // Allow attributes with non-empty name & value

@@ -32,7 +32,7 @@ $GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingNeedSplit'] = 'Error: Cl
 /*
  * Opening tags validation labels
  */
-$GLOBALS['TL_LANG']['MSC']['wt.errorMultipleAttributeName'] = 'The attribute name "%s" used more then once';
+$GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'] = 'The attribute name "%s" used more then once';
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'] = 'The attribute name "%s" is without a value';
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'] = 'The attribute value "%s" is without a name';
-$GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameNumber'] = 'The attribute name must not be a number';
+$GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'] = 'The attribute name "%s" has the wrong semantic. It must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). It can also contain Contao insert tags.';
