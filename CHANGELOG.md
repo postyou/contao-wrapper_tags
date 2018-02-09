@@ -1,5 +1,9 @@
 # wrapper_tags change log
 
+### 2.0.1 (2018-02-?)
+
+* minor fixex
+
 ### 2.0.0 (2018-02-09)
 
 * possibility of adding any html attribute to html tag

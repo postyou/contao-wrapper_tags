@@ -55,6 +55,6 @@ class ClosingTagsElement extends ContentElement
      */
     protected function compile()
     {
-        $this->Template->tags = deserialize($this->wt_closing_tags);
+        $this->Template->tags = $this->wt_closing_tags;
     }
 }
