@@ -358,7 +358,7 @@ class ContentListener extends \tl_content
 
                 // every opened tag from openingTags put on stack
 
-                $startTags = unserialize($cte['wt_opening_tags']);
+                $startTags = deserialize($cte['wt_opening_tags']);
 
                 if (!$hasError) {
                     if (!is_array($startTags)) {
@@ -430,7 +430,7 @@ class ContentListener extends \tl_content
 
             } else {
 
-                $closingTags = unserialize($cte['wt_closing_tags']);
+                $closingTags = deserialize($cte['wt_closing_tags']);
 
                 if (!$hasError) {
                     if (!is_array($closingTags)) {
