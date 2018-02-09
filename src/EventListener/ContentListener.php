@@ -50,28 +50,32 @@ class ContentListener extends \tl_content
                     $attribute['name'] = preg_replace('/\s+/', '', $attribute['name']);
                     $attribute['value'] = trim($attribute['value']);
 
-                    if (isset($names[$attribute['name']])) {
-                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'], $attribute['name']));
-                    }
+                    if ('' !== $attribute['name']) {
 
-                    $names[$attribute['name']] = true;
+                        if (isset($names[$attribute['name']])) {
+                            throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'], $attribute['name']));
+                        }
 
-                    if ('' !== $attribute['name'] && '' === $attribute['value']) {
-                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'], $attribute['name']));
-                    }
+                        $names[$attribute['name']] = true;
 
-                    if ('' === $attribute['name'] && '' !== $attribute['value']) {
-                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'], $attribute['value']));
-                    }
+                        // Html attribute name semantic with insert tags allowed. See https://www.w3.org/TR/REC-html40/types.html#type-cdata
+                        if (!preg_match('/^[A-Za-z]+[\w\-\:\.]*(\{{2}[\w\:]+\}{2}[\w\-\:\.]*)*$/', $attribute['name'])) {
+                            throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'], $attribute['name']));
+                        }
 
-                    // Html attribute name semantic with insert tags allowed.
-                    // See https://www.w3.org/TR/REC-html40/types.html#type-cdata
-                    if ('' !== $attribute['name'] && !preg_match('/^[A-Za-z]+[\w\-\:\.]*(\{{2}[\w\:]+\}{2}[\w\-\:\.]*)*$/', $attribute['name'])) {
-                        throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'], $attribute['name']));
+                        if ('' === $attribute['value']) {
+                            throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'], $attribute['name']));
+                        }
+
+                    } else {
+
+                        if ('' !== $attribute['value']) {
+                            throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'], $attribute['value']));
+                        }
                     }
 
                     // Allow attributes with non-empty name & value
-                    if ('' !== $attribute['name'] && '' !== $attribute['value']) {
+                    if ('' !== $attribute['value'] && '' !== $attribute['name']) {
                         $attributes[] = $attribute;
                     }
                 }
