@@ -191,17 +191,20 @@
   max-width: 100%; }
   #ctrl_wt_opening_tags td.operations {
     min-width: 90px;
-    padding-left: 5px; }
+    padding-left: 5px;
+    vertical-align: top; }
     #ctrl_wt_opening_tags td.operations > .widgetImage {
       margin-right: 2px; }
     #ctrl_wt_opening_tags td.operations > .widgetImage:last-child {
       margin-right: 0; }
-  #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
-    width: 80px; }
-  #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
-  #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
-    min-width: 80px;
-    width: 100%; }
+  #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields {
+    vertical-align: top; }
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
+      width: 80px; }
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+    #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
+      min-width: 80px;
+      width: 100%; }
   #ctrl_wt_opening_tags input[name$="][class]"] {
     width: 100%;
     padding-right: 10px; }
@@ -247,12 +250,16 @@ table.wt {
     font-weight: 600; }
   table.wt td:first-child {
     font-weight: 600;
-    text-align: right;
+    text-align: left;
     padding-right: 5px;
     vertical-align: top; }
 
 .wrapper_stop table.wt td {
   text-align: left; }
+
+.wrapper_start .corrupted,
+.wrapper_stop .corrupted {
+  margin-bottom: 10px; }
 
 /*                      wrapper tags wildcard for Contao 4.x
  *  ----------------------------------------------------------------

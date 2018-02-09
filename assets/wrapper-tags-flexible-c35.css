@@ -282,12 +282,16 @@ table.wt {
     font-weight: 600; }
   table.wt td:first-child {
     font-weight: 600;
-    text-align: right;
+    text-align: left;
     padding-right: 5px;
     vertical-align: top; }
 
 .wrapper_stop table.wt td {
   text-align: left; }
+
+.wrapper_start .corrupted,
+.wrapper_stop .corrupted {
+  margin-bottom: 10px; }
 
 /*                      wrapper tags wildcard for Contao 3.5.x
  *  ----------------------------------------------------------------
