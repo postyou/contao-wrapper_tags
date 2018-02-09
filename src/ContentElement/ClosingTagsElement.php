@@ -39,7 +39,7 @@ class ClosingTagsElement extends ContentElement
         if (TL_MODE === 'BE') {
 
             $template = new BackendTemplate('be_wildcard_closing_tags');
-            $template->wildcard = '### Closing tags (id:' . $this->id . ') ###';
+            $template->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['wt_closing_tags'][0] . ' (id:' . $this->id . ') ###';
 
             $template->tags = $this->wt_closing_tags;
             $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
