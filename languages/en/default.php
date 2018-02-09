@@ -16,7 +16,7 @@ $GLOBALS['TL_LANG']['CTE']['wt_closing_tags'] = array('Closing tags', 'Adds mult
 $GLOBALS['TL_LANG']['CTE']['wrapper_tags'] = 'Wrapper tags';
 
 /*
- * Wrapper tags validation labels
+ * Wrapper tags structure validation statuses
  */
 $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] = 'Corrupted data';
 $GLOBALS['TL_LANG']['MSC']['wt.statusTitle'] = 'Wrapper tags';
@@ -30,7 +30,7 @@ $GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingWithOther'] = 'Error: Cl
 $GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingNeedSplit'] = 'Error: Closing tags (id:%d) is paired with many smaller opening tags. First one is to big (id:%d).';
 
 /*
- * Opening tags validation labels
+ * Opening tags widget validation errors
  */
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'] = 'The attribute name "%s" used more then once';
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'] = 'The attribute name "%s" is without a value';

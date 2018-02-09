@@ -11,6 +11,9 @@
 /*
  * List
  */
+
+use Contao\Input;
+
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onChildRecordCallback');
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onHeaderCallback');
 
@@ -94,9 +97,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
     'sql' => 'blob NULL'
 );
 
-
-/**
- * stylesheets & javascripts
+/*
+ * Add stylesheet & javascript to back end.
  */
 if (TL_MODE === 'BE') {
 
@@ -104,14 +106,14 @@ if (TL_MODE === 'BE') {
     $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
 
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
-        $GLOBALS['TL_CSS']['wtgs'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
+        $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
     } else {
-        $GLOBALS['TL_CSS']['wtgs'] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . '.css';
+        $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . '.css';
     }
 
-    // only for CTEs list view
-    if (\Input::get('do') === 'article' && \Input::get('table') === 'tl_content' && \Input::get('act') !== 'edit') {
-        $GLOBALS['TL_JAVASCRIPT']['wtgs'] = 'system/modules/wrapper_tags/assets/wrapper-tags' . $min . '.js';
+    // Only for CTEs list view
+    if (Input::get('do') === 'article' && Input::get('table') === 'tl_content' && Input::get('act') !== 'edit') {
+        $GLOBALS['TL_JAVASCRIPT']['wt_js'] = 'system/modules/wrapper_tags/assets/wrapper-tags' . $min . '.js';
     }
 }
 
