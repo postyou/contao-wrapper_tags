@@ -2,7 +2,7 @@ wrapper_tags
 ===============================
 An extension for [Contao Open Source CMS](https://contao.org/en/)
  
-Provides content elements for building any html structure without looking into templates.
+Provides content elements for building any html structure without a need for using the templates.
 
 ## System requirements
 - Contao 3.2.x - 3.5.x, 4.4+
@@ -31,7 +31,7 @@ All just by clicking.
 
 ![Opening tags](docs/wrapper_tags-opening_multi.png "Opening tags")
 
-### Use `Closing tags` content element to close HTML tag.
+### Use `Closing tags` content element to close HTML tags.
 
 ![Closing tags](docs/wrapper_tags-closing.png "Closing tags")
 
@@ -39,11 +39,11 @@ All just by clicking.
 
 ![Show case with error](docs/error.png "Show case with error")
 
-### Indents are recalculated with a smart way.
+### The elements behave as the smart wrapping Contao elements.
 
 ![Show case with Bootstrap](docs/show-case.png "Show case with Bootstrap")
 
-### Indents and colors are preserved in paging
+### The indents and colors are preserved even in paging.
 ![Paging](docs/paging.png "Paging")
 
 ### Settings
