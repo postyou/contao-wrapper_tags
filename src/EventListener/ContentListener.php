@@ -33,6 +33,11 @@ class ContentListener extends \tl_content
 
         foreach ($tags as &$tag) {
 
+            // Validate class
+            if ('' !== $tag['class']) {
+                $tag['class'] = trim($tag['class']);
+            }
+
             // Validate attributes
             if ($tag['attributes']) {
 
@@ -61,7 +66,7 @@ class ContentListener extends \tl_content
 
                     // Html attribute name semantic with insert tags allowed.
                     // See https://www.w3.org/TR/REC-html40/types.html#type-cdata
-                    if (!preg_match('/^[A-Za-z]+[\w\-\:\.]*(\{{2}[\w\:]+\}{2}[\w\-\:\.]*)*$/', $attribute['name'])) {
+                    if ('' !== $attribute['name'] && !preg_match('/^[A-Za-z]+[\w\-\:\.]*(\{{2}[\w\:]+\}{2}[\w\-\:\.]*)*$/', $attribute['name'])) {
                         throw new \Exception(sprintf($GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'], $attribute['name']));
                     }
 

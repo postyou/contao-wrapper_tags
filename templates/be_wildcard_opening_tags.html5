@@ -8,7 +8,7 @@
                 </td>
                 <td>
                     <?php $attributesCount = count($tag['attributes']) ?>
-                    <?php if (isset($tag['class'])): ?>
+                    <?php if ('' !== $tag['class']): ?>
                         <span class="tl_gray">class:</span><span class="value"><?= $tag['class'] ?></span><?php echo $attributesCount ? ',' : '' ?>
                     <?php endif ?>
                     <?php foreach ($tag['attributes'] as $index => $attribute): ?>
