@@ -11,8 +11,8 @@
 /*
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'] = array('Otwarcia znaczników', 'Wybierz znaczniki i ustaw ich atrybuty.');
-$GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'] = array('Domknięcia znaczników', 'Wybierz znaczniki.');
+$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'] = array('Otwarcia znaczników', 'Wprowadź znaczniki i ustaw ich atrybuty.');
+$GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'] = array('Domknięcia znaczników', 'Wprowadź znaczniki.');
 
 /*
  * MultiColumnWizard fields

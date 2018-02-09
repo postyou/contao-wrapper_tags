@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (c) 2018 Zmyslni
  *
  * @author Ostrowski Maciej <contao-developer.pl>
@@ -8,9 +8,17 @@
  * @license LGPL-3.0+
  */
 
+/*
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_settings']['wt_allowed_tags'] = array('Dostępne znaczniki', 'Wpisz HTML-owe znaczniki dostępne do użycia.');
+$GLOBALS['TL_LANG']['tl_settings']['wt_use_colors'] = array('Kolorowanie', 'Koloruj elementy treści na zapleczu.');
+$GLOBALS['TL_LANG']['tl_settings']['wt_hide_validation_status'] = array('Ukrywanie walidacji', 'Ukryj wynik walidacji na zapleczu.');
 
-$GLOBALS['TL_LANG']['tl_settings']['wrapper-tags_legend'] = 'Ustawienia HTML-owych znaczników';
-$GLOBALS['TL_LANG']['tl_settings']['wt_allowed_tags'] = array('Dostępne znaczniki', 'Wpisz znaczniki, które będą dostępne do wyboru w rozwijanej liście.');
-$GLOBALS['TL_LANG']['tl_settings']['wt_use_colors'] = array('Pokoloruj elementy', 'Zaznacz jeśli elementy znaczników na liście elementów i wcięte więcej niż o 1 poziom mają być pokolorowane.');
-$GLOBALS['TL_LANG']['tl_settings']['wt_hide_validation_status'] = array('Ukryj status walidacji', 'Zaznacz aby ukryć status wyniku walidacji struktury html-a.');
+/*
+ * Legends
+ */
+$GLOBALS['TL_LANG']['tl_settings']['wt_legend'] = 'Ustawienia HTML-owych znaczników';
+
+
 
