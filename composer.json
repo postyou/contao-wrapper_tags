@@ -17,9 +17,6 @@
     "menatwork/contao-multicolumnwizard": "~3.3.6",
     "contao-community-alliance/composer-plugin": "~2.4 || ~3.0"
   },
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.10"
-  },
   "extra": {
     "contao": {
       "sources": {
