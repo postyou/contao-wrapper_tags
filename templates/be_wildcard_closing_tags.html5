@@ -11,7 +11,7 @@
         </tbody>
     </table>
 <?php else: ?>
-    <span class="tl_red"><?php echo $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] ?></span>
+    <div class="tl_red corrupted"><?php echo $GLOBALS['TL_LANG']['MSC']['wt.dataCorrupted'] ?></div>
 <?php endif ?>
 
 <?php if ($this->wildcard): ?>
