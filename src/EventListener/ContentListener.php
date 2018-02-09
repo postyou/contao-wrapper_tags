@@ -322,6 +322,8 @@ class ContentListener extends \tl_content
     }
 
     /**
+     * onHeaderCallback helper.
+     *
      * @param $cte
      * @param $isVisible
      * @param $statusTitle
@@ -383,6 +385,8 @@ class ContentListener extends \tl_content
     }
 
     /**
+     * onHeaderCallback helper.
+     *
      * @param $cte
      * @param $isVisible
      * @param $statusTitle
@@ -489,6 +493,8 @@ class ContentListener extends \tl_content
     }
 
     /**
+     * onHeaderCallback helper.
+     *
      * @param $cte
      * @param $closingTags
      * @param $statusTitle
@@ -539,6 +545,8 @@ class ContentListener extends \tl_content
     }
 
     /**
+     * onHeaderCallback helper.
+     *
      * @param $cte
      * @param $closingTags
      * @param $statusTitle
