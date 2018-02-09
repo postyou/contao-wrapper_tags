@@ -55,9 +55,10 @@ class OpeningTagsElement extends ContentElement
      */
     protected function compile()
     {
+        /** @var array $tags */
         $tags = $this->wt_opening_tags;
 
-        // Compile insert tags in attr name and sanitize it
+        // Compile insert tags in the attribute name
         foreach ($tags as $i => $tag) {
             if ($tag['attributes']) {
                 foreach ($tag['attributes'] as $t => $attribute) {
