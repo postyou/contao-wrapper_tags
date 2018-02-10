@@ -8,7 +8,7 @@ Provides content elements for building any html structure without a need for usi
 - Contao 3.2.x - 3.5.x, 4.4+
 - PHP 5.6 - 7.x 
 
-Not tested with PHP &lt; 5.6.2 but probably works with few earlier versions.
+Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
 
 ## Installation
