@@ -41,8 +41,8 @@ class ContentListener extends \tl_content
             // Validate attributes
             if ($tag['attributes']) {
 
-                $attributes = [];
-                $names = [];
+                $attributes = array();
+                $names = array();
 
                 foreach ($tag['attributes'] as $attribute) {
 
