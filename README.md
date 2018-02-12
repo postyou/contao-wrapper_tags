@@ -2,7 +2,7 @@ wrapper_tags
 ===============================
 An extension for [Contao Open Source CMS](https://contao.org/en/)
  
-Provides content elements for building any html structure without a need for using the templates.
+Provides content elements for building any html structure in an article without a need for using templates.
 
 ## System requirements
 - Contao 3.2.x - 3.5.x, 4.4+
@@ -50,4 +50,4 @@ All just by clicking.
 ![Settings](docs/tl_settings.png "Settings")
 
 ## Copyright
-Created and maintained by [Maciej](http://contao-developer.pl).
+Created and maintained by [Mike](http://contao-developer.pl).
