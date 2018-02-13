@@ -13,7 +13,7 @@
  */
 $GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'] = array('Opening tags', 'Please choose html tags and set their attributes.');
 $GLOBALS['TL_LANG']['tl_content']['wt_closing_tags'] = array('Closing tags', 'Please choose html tags.');
-$GLOBALS['TL_LANG']['tl_content']['wt_complete_tags'] = array('Complete tags', 'Please choose html tags and set their attributes. Remark: void tag example is &lt;img&gt; - it does not need to be closed.');
+$GLOBALS['TL_LANG']['tl_content']['wt_complete_tags'] = array('Complete tags', 'Please choose html tags and set their attributes. Remark: a void tag example is &lt;img&gt; - it does not need to be closed.');
 
 /*
  * MultiColumnWizard fields
