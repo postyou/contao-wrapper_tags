@@ -19,12 +19,14 @@
  */
 $GLOBALS['TL_CTE']['wrapper_tags']['wt_opening_tags'] = 'Zmyslny\WrapperTags\ContentElement\OpeningTagsElement';
 $GLOBALS['TL_CTE']['wrapper_tags']['wt_closing_tags'] = 'Zmyslny\WrapperTags\ContentElement\ClosingTagsElement';
+$GLOBALS['TL_CTE']['wrapper_tags']['wt_complete_tags'] = 'Zmyslny\WrapperTags\ContentElement\CompleteTagsElement';
 
 /*
  * Wrappers
  */
 $GLOBALS['TL_WRAPPERS']['start'][] = 'wt_opening_tags';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'wt_closing_tags';
+$GLOBALS['TL_WRAPPERS']['single'][] = 'wt_complete_tags';
 
 /*
  * Config

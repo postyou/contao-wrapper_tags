@@ -22,6 +22,7 @@ $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wt_opening_tags'] = '{type_legend},type;{wt_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wt_closing_tags'] = '{type_legend},type;{wt_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_complete_tags'] = '{type_legend},type;{wt_legend},wt_complete_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
 /*
  * Fields
@@ -93,6 +94,69 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
         'columnsCallback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onClosingTagsColumnsCallback'),
         'buttons' => array('new' => false),
         'dragAndDrop' => true
+    ),
+    'sql' => 'blob NULL'
+);
+$GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_complete_tags'],
+    'exclude' => true,
+    'inputType' => 'multiColumnWizard',
+    'save_callback' => array(array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onSaveCallback')),
+    'eval' => array
+    (
+        'mandatory' => true,
+        'dragAndDrop' => true,
+        'columnFields' => array
+        (
+            'tag' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
+                'inputType' => 'select',
+                'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
+            ),
+            'void' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_void'],
+                'exclude' => true,
+                'inputType' => 'checkbox'
+            ),
+            'attributes' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute'],
+                'exclude' => true,
+                'inputType' => 'multiColumnWizard',
+                'eval' => array
+                (
+                    'tl_class' => 'attributes',
+                    'dragAndDrop' => true,
+                    'allowHtml' => false,
+                    'columnFields' => array
+                    (
+                        'name' => array
+                        (
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute_name'],
+                            'inputType' => 'text',
+                            'exclude' => true,
+                            'eval' => array('allowHtml' => false)
+                        ),
+                        'value' => array
+                        (
+                            'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_attribute_value'],
+                            'inputType' => 'text',
+                            'exclude' => true,
+                            'eval' => array('allowHtml' => false)
+                        ),
+                    ),
+                ),
+            ),
+            'class' => array
+            (
+                'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_class'],
+                'exclude' => true,
+                'inputType' => 'text',
+                'eval' => array('allowHtml' => false)
+            )
+        )
     ),
     'sql' => 'blob NULL'
 );

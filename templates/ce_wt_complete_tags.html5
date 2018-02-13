@@ -1,0 +1,20 @@
+<?php
+if ($this->tags) {
+    $tags = '';
+    foreach ($this->tags as $tag) {
+        $tags .= '<' . $tag['tag'];
+        if (isset($tag['attributes'])) {
+            foreach ($tag['attributes'] as $attribute) {
+                $tags .= ' ' . $attribute['name'] . '="' . specialchars($attribute['value']) . '"';
+            }
+        }
+        if ($tag['class']) {
+            $tags .= ' class="' . specialchars($tag['class']) . '"';
+        }
+        $tags .= '>';
+        $tags .= empty($tag['void']) ? '</' . $tag['tag'] . '>' : '';
+    }
+}
+?>
+<?php echo $tags ?>
+
