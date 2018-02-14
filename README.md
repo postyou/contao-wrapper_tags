@@ -25,7 +25,7 @@ All just by clicking.
 
 ### Use `Opening tags` content element to open any HTML tag with any desire attribute.
 
-![Opening tags](docs/wrapper_tags-opening.png "Opening tags")
+![Opening tags](docs/wrapper_tags-opening.jpg "Opening tags")
 
 It results as the following code:
 
@@ -35,7 +35,7 @@ It results as the following code:
 
 ### The `Opening tags` element allows to add multiple tags at once.
 
-![Opening tags](docs/wrapper_tags-opening_multi.png "Opening tags")
+![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
 As a code:
 
@@ -46,7 +46,7 @@ As a code:
 
 ### Use `Closing tags` content element to close HTML tags.
 
-![Closing tags](docs/wrapper_tags-closing.png "Closing tags")
+![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
 As a code:
 
@@ -57,11 +57,11 @@ As a code:
 
 ### You will be notified of any possible error in the structure you have built.
 
-![Show case with error](docs/error.png "Show case with error")
+![Show case with error](docs/error.jpg "Show case with error")
 
 ### The elements behave as the smart wrapping Contao elements.
 
-![Show case with Bootstrap](docs/show-case.png "Show case with Bootstrap")
+![Show case with Bootstrap](docs/show-case.jpg "Show case with Bootstrap")
 
 As a code:
 
@@ -69,6 +69,8 @@ As a code:
 <div id="container-1" data-person="chef-12" page-5="profile" class="big-font">
     <div class="red">
         <h1 class="ce_headline">Hello</h1>
+        <div id="ajax-data"></div>
+        <img src="files/website/1.jpg">
         <article>
             <div>
                 <span data-date="13/02/2018">
@@ -81,10 +83,10 @@ As a code:
 ```
 
 ### The indents and colors are preserved even in paging.
-![Paging](docs/paging.png "Paging")
+![Paging](docs/paging.jpg "Paging")
 
 ### Settings
-![Settings](docs/tl_settings.png "Settings")
+![Settings](docs/tl_settings.jpg "Settings")
 
 ## Copyright
 Created and maintained by [Mike](http://contao-developer.pl).
