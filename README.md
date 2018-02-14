@@ -30,7 +30,7 @@ Every tag can have any desire attribute. Insert tags are allowed to form attribu
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
-The code result in front end:
+The code result in the front end:
 
 ```html
 <div class="big-font" id="container-1" data-person="chef-12" page-5="profile">
@@ -41,7 +41,7 @@ The code result in front end:
 
 ![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
-The code result in front end:
+The code result in the front end:
 
 ```html
 </div>
@@ -52,7 +52,7 @@ The code result in front end:
 
 ![Closing tags](docs/wrapper_tags-complete.jpg "Closing tags")
 
-The code result in front end:
+The code result in the front end:
 
 ```html
 <div id="ajax-data"></div>
@@ -65,11 +65,11 @@ The code result in front end:
 
 ### The elements behave as wrapper elements.
 
-They are indented and colored.
+They are indented and specially colored at deeper levels.
 
 ![Show case](docs/show-case.jpg "Show case")
 
-The code result in front end:
+The code result in the front end:
 
 ```html
 <div id="container-1" data-person="chef-12" page-5="profile" class="big-font">
@@ -88,7 +88,7 @@ The code result in front end:
 </div>
 ```
 
-### The indents and colors are preserved even in paging.
+### The indents and colors are preserved even in the paging mode.
 ![Paging](docs/paging.jpg "Paging")
 
 ### Settings
