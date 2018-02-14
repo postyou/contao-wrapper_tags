@@ -11,7 +11,7 @@
 /*
  * Extension version
  */
-@define('WRAPPER_TAGS_VERSION', '2.0');
+@define('WRAPPER_TAGS_VERSION', '2.1');
 @define('WRAPPER_TAGS_BUILD', '0');
 
 /*
