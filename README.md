@@ -30,7 +30,7 @@ Every tag can have any desire attribute. Insert tags are allowed to form attribu
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
-The article list view:
+In the article list view:
 
 ![Opening tags list view](docs/wrapper_tags-opening-list.jpg "Opening tags list view")
 
@@ -45,7 +45,7 @@ The code result in the front end:
 
 ![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
-The article list view:
+In the article list view:
 
 ![Closing tags list view](docs/wrapper_tags-closing-list.jpg "Closing tags list view")
 
@@ -60,7 +60,7 @@ The code result in the front end:
 
 ![Complete tags](docs/wrapper_tags-complete.jpg "Complete tags")
 
-The article list view:
+In the article list view:
 
 ![Complete tags list view](docs/wrapper_tags-complete-list.jpg "Complete tags list view")
 
