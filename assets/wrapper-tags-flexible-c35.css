@@ -199,33 +199,42 @@
 /*                      opening-wrapper edit panel
  *  ----------------------------------------------------------------
  */
+#ctrl_wt_complete_tags > tbody > tr > td,
 #ctrl_wt_opening_tags > tbody > tr > td {
   vertical-align: top;
   padding-bottom: 15px; }
 
+#ctrl_wt_complete_tags td.operations,
 #ctrl_wt_opening_tags td.operations {
   min-width: 70px; }
 
+#ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields > .tl_select,
 #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
   width: 70px; }
 
+#ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+#ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option,
 #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
 #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
   width: 70px; }
 
+#ctrl_wt_complete_tags input[name$="][class]"],
 #ctrl_wt_opening_tags input[name$="][class]"] {
-  width: 150px; }
+  width: 130px; }
 
-#ctrl_wt_opening_tags input[name$="][style]"] {
-  width: 120px; }
-
+#ctrl_wt_complete_tags td.attributes table,
 #ctrl_wt_opening_tags td.attributes table {
   margin-top: 0; }
+  #ctrl_wt_complete_tags td.attributes table .tl_text,
   #ctrl_wt_opening_tags td.attributes table .tl_text {
     width: 130px; }
 
+#ctrl_wt_complete_tags td.attributes thead,
 #ctrl_wt_opening_tags td.attributes thead {
   display: none; }
+
+#ctrl_wt_complete_tags input[name$="][class]"] {
+  width: 140px; }
 
 /*
  *
@@ -246,29 +255,39 @@
 
 /* Wide screen */
 @media (min-width: 1200px) {
+  #ctrl_wt_complete_tags input[name$="][class]"],
   #ctrl_wt_opening_tags input[name$="][class]"] {
     width: 250px; }
-  #ctrl_wt_opening_tags input[name$="][style]"] {
-    width: 170px; }
+  #ctrl_wt_complete_tags td.attributes table,
   #ctrl_wt_opening_tags td.attributes table {
     margin-top: 0; }
+    #ctrl_wt_complete_tags td.attributes table .tl_text,
     #ctrl_wt_opening_tags td.attributes table .tl_text {
       width: 140px; }
+    #ctrl_wt_complete_tags td.attributes table .tl_text[name$="][value]"],
     #ctrl_wt_opening_tags td.attributes table .tl_text[name$="][value]"] {
-      width: 220px; } }
+      width: 220px; }
+  #ctrl_wt_complete_tags input[name$="][class]"] {
+    width: 220px; } }
 
 /* Handheld */
 @media (max-width: 767px) {
+  #ctrl_wt_complete_tags,
   #ctrl_wt_opening_tags {
     width: 100%; }
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields > .tl_select,
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
-      width: 80px; }
+      width: 50px; }
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option,
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
-      width: 80px; }
+      width: 100%; }
+    #ctrl_wt_complete_tags input[name$="][class]"],
     #ctrl_wt_opening_tags input[name$="][class]"] {
       width: 100%; }
-    #ctrl_wt_opening_tags input[name$="][style]"] {
+    #ctrl_wt_complete_tags td.attributes table .tl_text,
+    #ctrl_wt_opening_tags td.attributes table .tl_text {
       width: 100%; } }
 
 /*                      wrapper tags wildcard

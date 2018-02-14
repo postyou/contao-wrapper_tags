@@ -12,13 +12,13 @@
                 </td>
                 <td>
                     <?php if ($onlyTag): ?>
-                        <span class="closing">&gt;</span>
+                        <span class="closing"><?php if (empty($tag['void'])): ?>&gt;&lt;/<?php echo $tag['tag'] ?><?php endif ?>&gt;</span>
                     <?php else: ?>
                         <?php if ('' !== $tag['class']): ?>
-                            <span class="tl_gray">class:</span><span class="value"><?php echo $tag['class'] ?></span><?php if ($attributesCount): ?>,<?php else: ?><span class="closing">&gt;</span><?php endif ?>
+                            <span class="tl_gray">class:</span><span class="value"><?php echo $tag['class'] ?></span><?php if ($attributesCount): ?>,<?php else: ?><span class="closing">&gt;<?php if (empty($tag['void'])): ?>&lt;/<?php echo $tag['tag'] ?>&gt;<?php endif ?></span><?php endif ?>
                         <?php endif ?>
                         <?php foreach ($tag['attributes'] as $index => $attribute): ?>
-                            <span class="tl_gray"><?php echo $attribute['name'] ?>:</span><span class="value"><?php echo $attribute['value'] ?></span><?php if ($attributesCount - 1 > $index): ?>,<?php else: ?><span class="closing">&gt;</span><?php endif ?>
+                            <span class="tl_gray"><?php echo $attribute['name'] ?>:</span><span class="value"><?php echo $attribute['value'] ?></span><?php if ($attributesCount - 1 > $index): ?>,<?php else: ?><span class="closing">&gt;<?php if (empty($tag['void'])): ?>&lt;/<?php echo $tag['tag'] ?>&gt;<?php endif ?></span><?php endif ?>
                         <?php endforeach ?>
                     <?php endif ?>
                 </td>

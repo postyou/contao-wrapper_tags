@@ -186,39 +186,50 @@
  * Css for opening-wrapper edit panel
  *
  */
+#ctrl_wt_complete_tags,
 #ctrl_wt_opening_tags {
   width: 100%;
   max-width: 100%; }
+  #ctrl_wt_complete_tags td.operations,
   #ctrl_wt_opening_tags td.operations {
     min-width: 90px;
     padding-left: 5px;
     vertical-align: top; }
+    #ctrl_wt_complete_tags td.operations > .widgetImage,
     #ctrl_wt_opening_tags td.operations > .widgetImage {
       margin-right: 2px; }
+    #ctrl_wt_complete_tags td.operations > .widgetImage:last-child,
     #ctrl_wt_opening_tags td.operations > .widgetImage:last-child {
       margin-right: 0; }
+  #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields,
   #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields {
     vertical-align: top; }
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields > .tl_select,
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields > .tl_select {
       width: 80px; }
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
+    #ctrl_wt_complete_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option,
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"],
     #ctrl_wt_opening_tags td.hidelabel.mcwUpdateFields select[name$="][tag]"] option {
       min-width: 80px;
       width: 100%; }
+  #ctrl_wt_complete_tags input[name$="][class]"],
   #ctrl_wt_opening_tags input[name$="][class]"] {
     width: 100%;
     padding-right: 10px; }
-  #ctrl_wt_opening_tags input[name$="][style]"] {
-    width: 100%;
-    padding-right: 10px; }
+  #ctrl_wt_complete_tags td.attributes table,
   #ctrl_wt_opening_tags td.attributes table {
     margin-top: 0; }
+    #ctrl_wt_complete_tags td.attributes table .tl_text,
     #ctrl_wt_opening_tags td.attributes table .tl_text {
       width: 100%; }
+    #ctrl_wt_complete_tags td.attributes table td:first-child,
     #ctrl_wt_opening_tags td.attributes table td:first-child {
       width: auto; }
+    #ctrl_wt_complete_tags td.attributes table thead,
     #ctrl_wt_opening_tags td.attributes table thead {
       display: none; }
+    #ctrl_wt_complete_tags td.attributes table td.operations,
     #ctrl_wt_opening_tags td.attributes table td.operations {
       min-width: 70px; }
 

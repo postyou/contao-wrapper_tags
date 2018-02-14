@@ -8,6 +8,7 @@ Provides content elements for building any html structure in an article without 
 - Contao 3.2.x - 3.5.x, 4.4+
 - PHP 5.6 - 7.x 
 
+Not tested with Contao 4.0 - 4.3 but probably works with them.
 Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
 
@@ -23,21 +24,13 @@ Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapp
 
 All just by clicking.
 
-### Use `Opening tags` content element to open any HTML tag with any desire attribute.
+### The `Opening tags` element allows to add multiple tags at once. 
 
-![Opening tags](docs/wrapper_tags-opening.png "Opening tags")
+Every tag can have any desire attribute. Insert tags are allowed to form attributes names & values.
 
-It results as the following code:
+![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
-```html
-<div class="big-font" id="container-1" data-person="chef-12" page-5="profile">
-```
-
-### The `Opening tags` element allows to add multiple tags at once.
-
-![Opening tags](docs/wrapper_tags-opening_multi.png "Opening tags")
-
-As a code:
+The code result in the front end:
 
 ```html
 <div class="big-font" id="container-1" data-person="chef-12" page-5="profile">
@@ -46,29 +39,44 @@ As a code:
 
 ### Use `Closing tags` content element to close HTML tags.
 
-![Closing tags](docs/wrapper_tags-closing.png "Closing tags")
+![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
-As a code:
+The code result in the front end:
 
 ```html
 </div>
 </span>
 ```
 
+### Use `Complete tags` content element to add complete HTML tags.
+
+![Closing tags](docs/wrapper_tags-complete.jpg "Closing tags")
+
+The code result in the front end:
+
+```html
+<div id="ajax-data"></div>
+<img src="files/website/1.jpg">
+```
+
 ### You will be notified of any possible error in the structure you have built.
 
-![Show case with error](docs/error.png "Show case with error")
+![Show case with error](docs/error.jpg "Show case with error")
 
-### The elements behave as the smart wrapping Contao elements.
+### The elements behave as wrapper elements.
 
-![Show case with Bootstrap](docs/show-case.png "Show case with Bootstrap")
+They are indented and specially colored at deeper levels.
 
-As a code:
+![Show case](docs/show-case.jpg "Show case")
+
+The code result in the front end:
 
 ```html
 <div id="container-1" data-person="chef-12" page-5="profile" class="big-font">
     <div class="red">
         <h1 class="ce_headline">Hello</h1>
+        <div id="ajax-data"></div>
+        <img src="files/website/1.jpg">
         <article>
             <div>
                 <span data-date="13/02/2018">
@@ -80,11 +88,11 @@ As a code:
 </div>
 ```
 
-### The indents and colors are preserved even in paging.
-![Paging](docs/paging.png "Paging")
+### The indents and colors are preserved even in the paging mode.
+![Paging](docs/paging.jpg "Paging")
 
 ### Settings
-![Settings](docs/tl_settings.png "Settings")
+![Settings](docs/tl_settings.jpg "Settings")
 
 ## Copyright
 Created and maintained by [Mike](http://contao-developer.pl).
