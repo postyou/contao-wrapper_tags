@@ -24,7 +24,7 @@ Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapp
 
 All just by clicking.
 
-### Use `Opening tags` element allows to add multiple tags at once. 
+### Use `Opening tags` element to add multiple tags at once. 
 
 Every tag can have any desire attribute. Insert tags are allowed to form attributes names & values.
 
