@@ -17,7 +17,7 @@ Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 ```bash
   $ composer require zmyslny/contao-wrapper_tags
 ```
-Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.20000009.en.html "Contao extension catalog")
+Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
 
 
 ## Building HTML structure
@@ -30,6 +30,10 @@ Every tag can have any desire attribute. Insert tags are allowed to form attribu
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
+The article list view:
+
+![Opening tags list view](docs/wrapper_tags-opening-list.jpg "Opening tags list view")
+
 The code result in the front end:
 
 ```html
@@ -41,6 +45,10 @@ The code result in the front end:
 
 ![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
+The article list view:
+
+![Closing tags list view](docs/wrapper_tags-closing-list.jpg "Closing tags list view")
+
 The code result in the front end:
 
 ```html
@@ -50,7 +58,11 @@ The code result in the front end:
 
 ### Use `Complete tags` content element to add complete HTML tags.
 
-![Closing tags](docs/wrapper_tags-complete.jpg "Closing tags")
+![Complete tags](docs/wrapper_tags-complete.jpg "Complete tags")
+
+The article list view:
+
+![Complete tags list view](docs/wrapper_tags-complete-list.jpg "Complete tags list view")
 
 The code result in the front end:
 
