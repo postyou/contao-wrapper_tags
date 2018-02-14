@@ -1,8 +1,9 @@
 # wrapper_tags change log
 
-### 2.0.1 (2018-02-?)
+### 2.1.0 (2018-02-14)
 
-* minor fixex
+* Complete Tags content element
+* minor fixes
 
 ### 2.0.0 (2018-02-09)
 
