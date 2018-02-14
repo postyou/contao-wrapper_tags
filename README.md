@@ -24,7 +24,7 @@ Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapp
 
 All just by clicking.
 
-### The `Opening tags` element allows to add multiple tags at once. 
+### Use `Opening tags` element allows to add multiple tags at once. 
 
 Every tag can have any desire attribute. Insert tags are allowed to form attributes names & values.
 
@@ -63,7 +63,7 @@ The code result in the front end:
 
 ![Show case with error](docs/error.jpg "Show case with error")
 
-### The elements behave as wrapper elements.
+### The elements behave as the wrapper elements.
 
 They are indented and specially colored at deeper levels.
 
