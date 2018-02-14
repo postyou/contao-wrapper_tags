@@ -24,11 +24,13 @@ Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapp
 
 All just by clicking.
 
-### The `Opening tags` element allows to add multiple tags at once. Everyone with any desire attribute.
+### The `Opening tags` element allows to add multiple tags at once. 
+
+Every tag can have any desire attribute. Insert tags are allowed to form attributes names & values.
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
-As a code:
+The code result in front end:
 
 ```html
 <div class="big-font" id="container-1" data-person="chef-12" page-5="profile">
@@ -39,7 +41,7 @@ As a code:
 
 ![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
-As a code:
+The code result in front end:
 
 ```html
 </div>
@@ -50,7 +52,7 @@ As a code:
 
 ![Closing tags](docs/wrapper_tags-complete.jpg "Closing tags")
 
-As a code:
+The code result in front end:
 
 ```html
 <div id="ajax-data"></div>
@@ -61,11 +63,13 @@ As a code:
 
 ![Show case with error](docs/error.jpg "Show case with error")
 
-### These elements behave, at the back end, as the smart wrapper Contao elements.
+### The elements behave as wrapper elements.
 
-![Show case with Bootstrap](docs/show-case.jpg "Show case with Bootstrap")
+They are indented and colored.
 
-As a code:
+![Show case](docs/show-case.jpg "Show case")
+
+The code result in front end:
 
 ```html
 <div id="container-1" data-person="chef-12" page-5="profile" class="big-font">
