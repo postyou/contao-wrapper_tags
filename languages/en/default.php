@@ -36,4 +36,4 @@ $GLOBALS['TL_LANG']['MSC']['wt.statusClosingWrongPairingNeedSplit'] = 'Error: Cl
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameAlreadyUsed'] = 'The attribute with a name "%s" is used more then once';
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeNameWithoutValue'] = 'The attribute with a name "%s" has no value entered';
 $GLOBALS['TL_LANG']['MSC']['wt.errorAttributeValueWithoutName'] = 'The attribute with a value "%s" has no name entered';
-$GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'] = 'The attribute name "%s" has the wrong semantic. It must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). It can also contain Contao insert tags.';
+$GLOBALS['TL_LANG']['MSC']['wt.errorAttributeName'] = 'The attribute name "%s" has the wrong syntax. It must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). It can also contain Contao insert tags.';
