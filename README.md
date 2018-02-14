@@ -8,6 +8,7 @@ Provides content elements for building any html structure in an article without 
 - Contao 3.2.x - 3.5.x, 4.4+
 - PHP 5.6 - 7.x 
 
+Not tested with Contao 4.0 - 4.3 but probably works with them.
 Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
 
@@ -23,17 +24,7 @@ Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapp
 
 All just by clicking.
 
-### Use `Opening tags` content element to open any HTML tag with any desire attribute.
-
-![Opening tags](docs/wrapper_tags-opening.jpg "Opening tags")
-
-It results as the following code:
-
-```html
-<div class="big-font" id="container-1" data-person="chef-12" page-5="profile">
-```
-
-### The `Opening tags` element allows to add multiple tags at once.
+### The `Opening tags` element allows to add multiple tags at once. Everyone with any desire attribute.
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
@@ -55,11 +46,22 @@ As a code:
 </span>
 ```
 
+### Use `Complete tags` content element to add complete HTML tags.
+
+![Closing tags](docs/wrapper_tags-complete.jpg "Closing tags")
+
+As a code:
+
+```html
+<div id="ajax-data"></div>
+<img src="files/website/1.jpg">
+```
+
 ### You will be notified of any possible error in the structure you have built.
 
 ![Show case with error](docs/error.jpg "Show case with error")
 
-### The elements behave as the smart wrapping Contao elements.
+### These elements behave, at the back end, as the smart wrapper Contao elements.
 
 ![Show case with Bootstrap](docs/show-case.jpg "Show case with Bootstrap")
 
