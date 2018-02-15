@@ -27,7 +27,8 @@ For Contao 3.5.x using [Extension catalog](https://contao.org/en/extension-list/
 
 All just by clicking.
 
-### Use `Opening tags` element to add multiple tags at once. 
+### Use `Opening tags` element to add multiple tags at once.
+------------------------------------------------------------
 
 Every tag can have any desire attribute. The insert tags are allowed to form the attributes' names & values.
 
@@ -45,6 +46,7 @@ The code result in the front end:
 ```
 
 ### Use `Closing tags` content element to close HTML tags.
+----------------------------------------------------------
 
 ![Closing tags](docs/wrapper_tags-closing.jpg "Closing tags")
 
@@ -60,6 +62,7 @@ The code result in the front end:
 ```
 
 ### Use `Complete tags` content element to add complete HTML tags.
+------------------------------------------------------------------
 
 ![Complete tags](docs/wrapper_tags-complete.jpg "Complete tags")
 
@@ -75,10 +78,12 @@ The code result in the front end:
 ```
 
 ### You will be notified of any possible error in the structure you have built.
+-------------------------------------------------------------------------------
 
 ![Show case with error](docs/error.jpg "Show case with error")
 
 ### The elements behave as the wrapper elements.
+------------------------------------------------
 
 They are indented and specially colored at deeper levels.
 
@@ -104,9 +109,11 @@ The code result in the front end:
 ```
 
 ### The indents and colors are preserved even in the paging mode.
+----------------------------------------------------------------
 ![Paging](docs/paging.jpg "Paging")
 
 ### Settings
+------------
 ![Settings](docs/tl_settings.jpg "Settings")
 
 ## Copyright
