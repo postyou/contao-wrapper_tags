@@ -14,14 +14,20 @@ Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
 ## Installation
 
-For Contao 3.5.x & 4.4+:
+Using composer (for 3.5 and 4.4+):
 
 ```bash
   $ composer require zmyslny/contao-wrapper_tags
 ```
 
-For Contao 3.5.x using [Extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
+Using [Contao Extension Catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
 
+Manually:
+
+Download zip file of [MultiColumnWizard](https://github.com/menatwork/MultiColumnWizard/archive/master.zip "MultiColumnWizard") and [Wrapper tags](https://github.com/Zmyslny/contao-wrapper_tags/archive/master.zip "Contao Wrapper tags").
+Extract downloaded `MultiColumnWizard-master.zip` file. Find `multicolumnwizard` catalog inside extraction catalog and move it to `/system/modules/`.
+Extract downloaded `contao-wrapper_tags-master.zip` file. Rename the extraction catalog to `wrapper_tags` and move it to `/system/modules/`. That's it. 
+ 
 
 ## Building HTML structure
 
