@@ -28,7 +28,7 @@ For Contao 3.5.x using [Extension catalog](https://contao.org/en/extension-list/
 All just by clicking.
 
 ### Use `Opening tags` element to add multiple tags at once.
-------------------------------------------------------------
+----------
 
 Every tag can have any desire attribute. The insert tags are allowed to form the attributes' names & values.
 
