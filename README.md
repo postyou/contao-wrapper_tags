@@ -29,7 +29,7 @@ Extract downloaded `MultiColumnWizard-master.zip` file. Find `multicolumnwizard`
 Extract downloaded `contao-wrapper_tags-master.zip` file. Rename the extracted catalog to `wrapper_tags` and move it to `/system/modules/`. Update database and that's it. 
  
 
-## Building HTML structure
+## Usage
 
 All just by clicking.
 
