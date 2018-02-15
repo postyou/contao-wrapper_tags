@@ -14,10 +14,13 @@ Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
 ## Installation
 
+For Contao 3.5.x & 4.4+:
+
 ```bash
   $ composer require zmyslny/contao-wrapper_tags
 ```
-Using [Contao extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
+
+For Contao 3.5.x using [Extension catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
 
 
 ## Building HTML structure
@@ -26,7 +29,7 @@ All just by clicking.
 
 ### Use `Opening tags` element to add multiple tags at once. 
 
-Every tag can have any desire attribute. Insert tags are allowed to form attributes names & values.
+Every tag can have any desire attribute. The insert tags are allowed to form the attributes' names & values.
 
 ![Opening tags](docs/wrapper_tags-opening_multi.jpg "Opening tags")
 
