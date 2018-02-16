@@ -11,6 +11,9 @@ Provides content elements for building any html structure in an article without 
 Not tested with Contao 4.0 - 4.3 but probably works with them.
 Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 
+## Dependencies
+
+- [MultiColumnWizard](https://github.com/menatwork/MultiColumnWizard "MultiColumnWizard")
 
 ## Installation
 
