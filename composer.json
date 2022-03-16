@@ -1,5 +1,5 @@
 {
-  "name": "zmyslny/contao-wrapper_tags",
+  "name": "postyou/contao-wrapper_tags",
   "type": "contao-module",
   "description": "wrapper_tags extension for Contao Open Source CMS",
   "keywords": ["contao", "wrapper", "tags"],
@@ -9,6 +9,10 @@
       "name": "Maciej Ostrowski",
       "homepage": "http://contao-developer.pl",
       "email": "maciek@zmyslni.pl"
+    },
+    {
+      "name": "Mario Gienapp",
+      "email":"mario.gienapp@postyou.de"
     }
   ],
   "require": {
