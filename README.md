@@ -20,7 +20,7 @@ Not tested with PHP &lt; 5.6 but probably works with few earlier versions.
 Using composer (for 3.5 and 4.4+):
 
 ```bash
-  $ composer require zmyslny/contao-wrapper_tags
+  $ composer require postyou/contao-wrapper_tags
 ```
 
 Using [Contao Extension Catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
