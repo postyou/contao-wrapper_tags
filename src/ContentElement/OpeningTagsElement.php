@@ -66,6 +66,13 @@ class OpeningTagsElement extends ContentElement
 
                     $tags[$i]['attributes'][$t] = $attribute;
                 }
+            } else if ($tag['class']) {
+                $styles = \unserialize($this->styleManager);
+                if ($styles) {
+                    foreach ($styles as $class) {
+                        $tags[$i]['class'] .= ' '.$class;
+                    }
+                }
             }
         }
 
