@@ -55,7 +55,7 @@ class OpeningTagsElement extends ContentElement
      */
     protected function compile()
     {
-        /** @var array $tags */
+                /** @var array $tags */
         $tags = $this->wt_opening_tags;
 
         // Compile insert tags in the attribute name
@@ -66,16 +66,19 @@ class OpeningTagsElement extends ContentElement
 
                     $tags[$i]['attributes'][$t] = $attribute;
                 }
-            } else if ($tag['class']) {
-                $styles = \unserialize($this->styleManager);
-                if ($styles) {
-                    foreach ($styles as $class) {
-                        $tags[$i]['class'] .= ' '.$class;
+            } 
+            $styles = \unserialize($this->styleManager);
+            if ($styles) {
+                foreach ($styles as $class) {
+                    if ($tag['class']) {
+                    $tags[$i]['class'] .= ' '.$class;
+
+                    } else {
+                        $tags[$i]['class'] = $class;
                     }
-                }
+                } 
             }
         }
-
         $this->Template->tags = $tags;
     }
 }
