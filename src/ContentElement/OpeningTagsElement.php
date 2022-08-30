@@ -55,7 +55,7 @@ class OpeningTagsElement extends ContentElement
      */
     protected function compile()
     {
-                /** @var array $tags */
+        /** @var array $tags */
         $tags = $this->wt_opening_tags;
 
         // Compile insert tags in the attribute name
@@ -70,12 +70,12 @@ class OpeningTagsElement extends ContentElement
             $styles = \unserialize($this->styleManager);
             if ($styles && $i == 0) {
                 foreach ($styles as $class) {
-                    if ($tag['class']) {
-                        $tags[$i]['class'] .= ' '.$class;
-                    } else {
-                        $tags[$i]['class'] = $class;
+                    if (!$tags[$i]['class']) {
+                        $tags[$i]['class'] = '';
                     }
+                    $tags[$i]['class'] .= ' '.$class;
                 } 
+               
             }
         }
         $this->Template->tags = $tags;
