@@ -92,7 +92,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
     (
         'mandatory' => true,
         'columnsCallback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onClosingTagsColumnsCallback'),
-        'buttons' => array('new' => false),
         'dragAndDrop' => true
     ),
     'sql' => 'blob NULL'
