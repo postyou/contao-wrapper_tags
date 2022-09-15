@@ -220,7 +220,12 @@ class ContentListener extends \tl_content
             $hasError = true;
         }
 
-        foreach ($result->fetchAllAssoc() as $cte) {
+        foreach ($result->fetchAllAssoc() as $index => $cte) {
+
+            //fix to add class to first open element
+            if ($index == 0 && $cte['type'] = 'wt_opening_tags') {
+                $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = 'indent_0';
+            }
 
             $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']);
             $isWrapperStop = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['stop']);
