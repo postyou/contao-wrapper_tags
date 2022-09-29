@@ -228,7 +228,7 @@ class ContentListener extends \tl_content
                 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = 'indent_0';
             }
 
-            $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']);
+            $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']) && !empty($cte['wt_opening_tags']);
             $isWrapperStop = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['stop']);
             $isVisible = $cte['invisible'] !== '1';
 
