@@ -23,15 +23,6 @@ Using composer (for 3.5 and 4.4+):
   $ composer require postyou/contao-wrapper_tags
 ```
 
-Using [Contao Extension Catalog](https://contao.org/en/extension-list/view/wrapper_tags.20010009.en.html "Contao extension catalog")
-
-Manually:
-
-Download zip file of [MultiColumnWizard](https://github.com/menatwork/MultiColumnWizard/archive/master.zip "MultiColumnWizard") and [Wrapper tags](https://github.com/Zmyslny/contao-wrapper_tags/archive/master.zip "Contao Wrapper tags").
-Extract downloaded `MultiColumnWizard-master.zip` file. Find `multicolumnwizard` catalog inside extracted catalog and move it to `/system/modules/`.
-Extract downloaded `contao-wrapper_tags-master.zip` file. Rename the extracted catalog to `wrapper_tags` and move it to `/system/modules/`. Update database and that's it. 
- 
-
 ## Usage
 
 All just by clicking.
