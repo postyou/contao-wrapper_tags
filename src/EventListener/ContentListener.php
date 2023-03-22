@@ -416,7 +416,7 @@ class ContentListener extends \tl_content
 
             if ($isVisible) {
 
-                $openingTags = $openStack[count($openStack) - 1];
+                $openingTags = array_pop($openStack);
 
                 if (!$hasError) {
 
@@ -429,7 +429,6 @@ class ContentListener extends \tl_content
                     }
                 }
 
-                array_pop($openStack);
                 --$indentLevel;
             }
 
