@@ -117,4 +117,4 @@ Settings
 ![Settings](docs/tl_settings.jpg "Settings")
 
 ## Copyright
-Created and maintained by [Mike](http://contao-developer.pl).
+Created by [Mike](http://contao-developer.pl). Maintained and further development by [Postyou](https://www.postyou.de)
