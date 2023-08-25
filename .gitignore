@@ -52,3 +52,4 @@ Temporary Items
 # css-es
 *.css.map
 /vendor/
+.vscode/settings.json

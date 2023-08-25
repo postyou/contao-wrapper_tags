@@ -165,6 +165,7 @@ class ContentListener extends \tl_content
      */
     public function onHeaderCallback($add, DataContainer $dc)
     {
+
         /*
          * Check whether there is any published wrapper-tags cte.
          * Do not use $dc->id to get pid id because in copy mode it is id of element being copied.
@@ -220,9 +221,14 @@ class ContentListener extends \tl_content
             $hasError = true;
         }
 
-        foreach ($result->fetchAllAssoc() as $cte) {
+        foreach ($result->fetchAllAssoc() as $index => $cte) {
 
-            $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']);
+            //fix to add class to first open element
+            if ($index == 0 && $cte['type'] == 'wt_opening_tags') {
+                $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = 'indent_0';
+            }
+
+            $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']) && !empty($cte['wt_opening_tags']);
             $isWrapperStop = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['stop']);
             $isVisible = $cte['invisible'] !== '1';
 
@@ -410,7 +416,7 @@ class ContentListener extends \tl_content
 
             if ($isVisible) {
 
-                $openingTags = $openStack[count($openStack) - 1];
+                $openingTags = array_pop($openStack);
 
                 if (!$hasError) {
 
@@ -423,7 +429,6 @@ class ContentListener extends \tl_content
                     }
                 }
 
-                array_pop($openStack);
                 --$indentLevel;
             }
 

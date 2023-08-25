@@ -66,9 +66,18 @@ class OpeningTagsElement extends ContentElement
 
                     $tags[$i]['attributes'][$t] = $attribute;
                 }
+            } 
+            $styles = \unserialize($this->styleManager);
+            if ($styles && $i == 0) {
+                foreach ($styles as $class) {
+                    if (!$tags[$i]['class']) {
+                        $tags[$i]['class'] = '';
+                    }
+                    $tags[$i]['class'] .= ' '.$class;
+                } 
+               
             }
         }
-
         $this->Template->tags = $tags;
     }
 }
