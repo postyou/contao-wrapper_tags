@@ -1,6 +1,6 @@
 {
   "name": "postyou/contao-wrapper_tags",
-  "type": "contao-module",
+  "type": "contao-bundle",
   "description": "wrapper_tags extension for Contao Open Source CMS",
   "keywords": ["contao", "wrapper", "tags"],
   "license": "LGPL-3.0+",
@@ -16,10 +16,8 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
-    "contao/core-bundle": "~3.5 || ~4.4",
-    "menatwork/contao-multicolumnwizard-bundle": "~3.5 || ^3.6",
-    "contao-community-alliance/composer-plugin": "~2.4 || ~3.0"
+    "contao/core-bundle": "^4.4 || ^5.2",
+    "menatwork/contao-multicolumnwizard-bundle": "^3.6"
   },
   "extra": {
     "contao": {
