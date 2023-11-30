@@ -8,18 +8,7 @@
  * @license LGPL-3.0+
  */
 
-/*
- * Extension version
- */
-@define('WRAPPER_TAGS_VERSION', '2.1');
-@define('WRAPPER_TAGS_BUILD', '0');
 
-/*
- * Content elements
- */
-$GLOBALS['TL_CTE']['wrapper_tags']['wt_opening_tags'] = 'Zmyslny\WrapperTags\ContentElement\OpeningTagsElement';
-$GLOBALS['TL_CTE']['wrapper_tags']['wt_closing_tags'] = 'Zmyslny\WrapperTags\ContentElement\ClosingTagsElement';
-$GLOBALS['TL_CTE']['wrapper_tags']['wt_complete_tags'] = 'Zmyslny\WrapperTags\ContentElement\CompleteTagsElement';
 
 /*
  * Wrappers

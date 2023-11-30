@@ -8,14 +8,16 @@
  * @license LGPL-3.0+
  */
 
-namespace Zmyslny\WrapperTags\EventListener;
+namespace Postyou\WrapperTags\EventListener;
 
-use Contao\DataContainer;
+use Contao\Config;
 use ReflectionClass;
+use Contao\StringUtil;
+use Contao\DataContainer;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 
 /**
  * Class ContentListener
- * @package Zmyslny\WrapperTags\EventListener
  */
 class ContentListener extends \tl_content
 {
@@ -27,9 +29,10 @@ class ContentListener extends \tl_content
      * @return string
      * @throws \Exception
      */
+    #[AsCallback(table: 'tl_content', target: 'field.wt_opening_tags.save', priority: 100)]
     public function onSaveCallback($data, DataContainer $dc)
     {
-        $tags = deserialize($data);
+        $tags = StringUtil::deserialize($data);
 
         foreach ($tags as &$tag) {
 
@@ -96,6 +99,7 @@ class ContentListener extends \tl_content
      * @param $row
      * @return string
      */
+    #[AsCallback(table: 'tl_content', target: 'list.sorting.child_record', priority: 100)]
     public function onChildRecordCallback($row)
     {
         if (isset($GLOBALS['WrapperTags']['indents']) && is_array($GLOBALS['WrapperTags']['indents'])) {
@@ -148,7 +152,7 @@ class ContentListener extends \tl_content
      */
     public function getTags()
     {
-        $tags = trimsplit('><', \Config::get('wt_allowed_tags'));
+        $tags = StringUtil::trimsplit('><', Config::get('wt_allowed_tags'));
         $tags[0] = str_replace('<', '', $tags[0]);
         $tags[count($tags) - 1] = str_replace('>', '', $tags[count($tags) - 1]);
 
@@ -162,7 +166,8 @@ class ContentListener extends \tl_content
      * @param $add
      * @param DataContainer $dc
      * @return array
-     */
+     */ 
+    #[AsCallback(table: 'tl_content', target: 'list.sorting.header', priority: 100)]
     public function onHeaderCallback($add, DataContainer $dc)
     {
 
@@ -215,7 +220,7 @@ class ContentListener extends \tl_content
         // helps to show only the first error
         $hasError = false;
 
-        $hideStatus = \Config::get('wt_hide_validation_status');
+        $hideStatus = Config::get('wt_hide_validation_status');
         if ($hideStatus) {
             // it turns off validation checking because algorithm will think it already has first error
             $hasError = true;
@@ -274,7 +279,7 @@ class ContentListener extends \tl_content
             $status = array();
         }
 
-        $useColors = \Config::get('wt_use_colors');
+        $useColors = Config::get('wt_use_colors');
 
         /*
          * Indents will be used in childRecordCallback.

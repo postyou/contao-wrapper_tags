@@ -14,9 +14,6 @@
 
 use Contao\Input;
 
-$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onChildRecordCallback');
-$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onHeaderCallback');
-
 /*
  * Palettes
  */
@@ -31,7 +28,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_opening_tags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'save_callback' => array(array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onSaveCallback')),
     'eval' => array
     (
         'mandatory' => true,
@@ -101,7 +97,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_complete_tags'],
     'exclude' => true,
     'inputType' => 'multiColumnWizard',
-    'save_callback' => array(array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onSaveCallback')),
     'eval' => array
     (
         'mandatory' => true,
