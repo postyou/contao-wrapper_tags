@@ -15,7 +15,7 @@ use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
-use Postyou\WrapperTags\ContaoWrapperTags;
+use Postyou\ContaoWrapper_Tags\ContaoWrapper_Tags;
 
 
 class Plugin implements BundlePluginInterface
@@ -26,7 +26,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser): array
     {
         return [
-            BundleConfig::create(ContaoWrapperTags::class)
+            BundleConfig::create(ContaoWrapper_Tags::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
                 ->setReplace(['wrapper_tags']),
         ];
