@@ -21,7 +21,7 @@
   },
   "autoload":{
     "psr-4": {
-      "Oveleon\\ContaoCookiebar\\": "src/"
+      "Postyou\\ContaoWrapperTags\\": "src/"
     }
   },
   "extra": {
@@ -30,6 +30,6 @@
         "": "system/modules/wrapper_tags"
       }
     },
-    "contao-manager-plugin": "Oveleon\\ContaoCookiebar\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Postyou\\ContaoWrapperTags\\ContaoManager\\Plugin"
   }
 }
