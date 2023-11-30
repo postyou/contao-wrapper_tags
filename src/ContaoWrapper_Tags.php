@@ -10,10 +10,10 @@
 
 declare(strict_types=1);
 
-namespace Postyou\WrapperTags;
+namespace Postyou\ContaoWrapper_Tags;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ContaoWrapperTags extends Bundle
+class ContaoWrapper_Tags extends Bundle
 {
 }

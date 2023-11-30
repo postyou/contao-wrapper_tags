@@ -21,7 +21,7 @@
   },
   "autoload":{
     "psr-4": {
-      "Postyou\\ContaoWrapperTags\\": "src/"
+      "Postyou\\ContaoWrapper_Tags\\": "src/"
     }
   },
   "extra": {
@@ -30,6 +30,6 @@
         "": "system/modules/wrapper_tags"
       }
     },
-    "contao-manager-plugin": "Postyou\\ContaoWrapperTags\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Postyou\\ContaoWrapper_Tags\\ContaoManager\\Plugin"
   }
 }

@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace Postyou\WrapperTags\ContaoManager;
+namespace Postyou\ContaoWrapper_Tags\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
