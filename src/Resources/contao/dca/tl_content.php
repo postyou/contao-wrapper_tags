@@ -159,20 +159,20 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
 /*
  * Add stylesheet & javascript to back end.
  */
-if (TL_MODE === 'BE') {
+// if (TL_MODE === 'BE') {
 
-    $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min';
-    $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
+//     $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min';
+//     $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
 
-    if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
-        $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
-    } else {
-        $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . '.css';
-    }
+//     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
+//         $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible' . $version . $min . '.css';
+//     } else {
+//         $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-default' . $version . $min . '.css';
+//     }
 
-    // Only for CTEs list view
-    if (Input::get('do') === 'article' && Input::get('table') === 'tl_content' && Input::get('act') !== 'edit') {
-        $GLOBALS['TL_JAVASCRIPT']['wt_js'] = 'system/modules/wrapper_tags/assets/wrapper-tags' . $min . '.js';
-    }
-}
+//     // Only for CTEs list view
+//     if (Input::get('do') === 'article' && Input::get('table') === 'tl_content' && Input::get('act') !== 'edit') {
+//         $GLOBALS['TL_JAVASCRIPT']['wt_js'] = 'system/modules/wrapper_tags/assets/wrapper-tags' . $min . '.js';
+//     }
+// }
 
