@@ -19,11 +19,17 @@
     "contao/core-bundle": "^4.4 || ^5.2",
     "menatwork/contao-multicolumnwizard-bundle": "^3.6"
   },
+  "autoload":{
+    "psr-4": {
+      "Oveleon\\ContaoCookiebar\\": "src/"
+    }
+  },
   "extra": {
     "contao": {
       "sources": {
         "": "system/modules/wrapper_tags"
       }
-    }
+    },
+    "contao-manager-plugin": "Oveleon\\ContaoCookiebar\\ContaoManager\\Plugin"
   }
 }
