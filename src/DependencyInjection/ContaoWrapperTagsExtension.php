@@ -8,14 +8,14 @@
  * @copyright   Postyou <https://www.postyou.de/>
  */
 
-namespace Postyou\ContaoWrapperTags\DependencyInjection;
+namespace Postyou\ContaoWrapper_Tags\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ContaoWrapperTagsExtension extends Extension
+class ContaoWrapper_TagsExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {

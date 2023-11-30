@@ -1,3 +1,8 @@
 services:
   _defaults:
     autowire: true
+    autoconfigure: true
+
+  Postyou\ContaoWrapper_Tags:
+    resource: ../../../src
+    exclude: ../../../src/{Entity,Model,Widget,DependencyInjection,ContaoManager}
