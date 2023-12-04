@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Contao\StringUtil;
 
-#[AsContentElement(type: 'wrapper_tag_start', category:'texts', template:'ce_wt_opening_tags')]
+#[AsContentElement(type: 'wrapper_tag_start', category:'wrapper_tags', template:'ce_wt_opening_tags')]
 class OpeningTagsElementController extends AbstractContentElementController
 {
 
@@ -31,7 +31,6 @@ class OpeningTagsElementController extends AbstractContentElementController
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        return $template->getResponse();
 
         $model->wt_opening_tags = StringUtil::deserialize($model->wt_opening_tags);
 
