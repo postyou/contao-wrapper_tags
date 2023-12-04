@@ -22,11 +22,11 @@
   },
   "autoload":{
     "psr-4": {
-      "Postyou\\ContaoWrapper_Tags\\": "src/"
+      "Postyou\\ContaoWrapperTags\\": "src/"
     }
   },
   "extra": {
-    "contao-manager-plugin": "Postyou\\ContaoWrapper_Tags\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Postyou\\ContaoWrapperTags\\ContaoManager\\Plugin"
   },
   "config": {
     "allow-plugins": {

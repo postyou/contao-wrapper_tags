@@ -9,13 +9,13 @@
  */
 declare(strict_types=1);
 
-namespace Postyou\ContaoWrapper_Tags\ContaoManager;
+namespace Postyou\ContaoWrapperTags\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
-use Postyou\ContaoWrapper_Tags\ContaoWrapper_Tags;
+use Postyou\ContaoWrapper_Tags\ContaoWrapperTags;
 
 
 class Plugin implements BundlePluginInterface
@@ -26,7 +26,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser): array
     {
         return [
-            BundleConfig::create(ContaoWrapper_Tags::class)
+            BundleConfig::create(ContaoWrapperTags::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
                 ->setReplace(['wrapper_tags']),
         ];

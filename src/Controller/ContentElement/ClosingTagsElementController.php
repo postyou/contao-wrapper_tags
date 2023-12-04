@@ -4,7 +4,7 @@
  * Copyright (C) 2023 Postyou
  */
 
-namespace Postyou\ContaoWrapper_Tags\Controller\ContentElement;
+namespace Postyou\ContaoWrapperTags\Controller\ContentElement;
 
 use Contao\BackendTemplate;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;

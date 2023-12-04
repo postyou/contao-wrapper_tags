@@ -8,7 +8,7 @@
  * @license LGPL-3.0+
  */
 
-namespace Postyou\ContaoWrapper_Tags\EventListener;
+namespace Postyou\ContaoWrapperTags\EventListener;
 
 use Contao\Config;
 use ReflectionClass;
