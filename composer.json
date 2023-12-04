@@ -31,5 +31,11 @@
       }
     },
     "contao-manager-plugin": "Postyou\\ContaoWrapper_Tags\\ContaoManager\\Plugin"
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "php-http/discovery": true
+    }
   }
 }

@@ -9,13 +9,12 @@
  */
 
 
-
 /*
  * Wrappers
  */
-$GLOBALS['TL_WRAPPERS']['start'][] = 'wt_opening_tags';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'wt_closing_tags';
-$GLOBALS['TL_WRAPPERS']['single'][] = 'wt_complete_tags';
+$GLOBALS['TL_WRAPPERS']['start'][] = 'wrapper_tag_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'wrapper_tag_stop';
+$GLOBALS['TL_WRAPPERS']['single'][] = 'wrapper_tag_complete';
 
 /*
  * Config

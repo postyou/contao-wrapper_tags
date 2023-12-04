@@ -9,7 +9,7 @@ namespace Postyou\ContaoWrapper_Tags\Controller\ContentElement;
 use Contao\BackendTemplate;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
-use Contao\Template;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ContentModel;
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Contao\StringUtil;
 
-#[AsContentElement(category:'wrapper_tags', template:'ce_wt_opening_tags')]
+#[AsContentElement(type: 'wrapper_tag_start', category:'texts', template:'ce_wt_opening_tags')]
 class OpeningTagsElementController extends AbstractContentElementController
 {
 
@@ -29,8 +29,9 @@ class OpeningTagsElementController extends AbstractContentElementController
     }
 
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
+        return $template->getResponse();
 
         $model->wt_opening_tags = StringUtil::deserialize($model->wt_opening_tags);
 

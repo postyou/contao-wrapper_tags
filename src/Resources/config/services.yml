@@ -2,6 +2,7 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+    public: true
 
   Postyou\ContaoWrapper_Tags:
     resource: ../../../src

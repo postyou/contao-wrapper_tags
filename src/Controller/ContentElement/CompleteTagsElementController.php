@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Contao\StringUtil;
 
-#[AsContentElement(category:'wrapper_tags', template:'ce_wt_complete_tags')]
+#[AsContentElement(type:'wrapper_tag_complete', category:'wrapper_tags', template:'ce_wt_complete_tags')]
 class CompleteTagsElementController extends AbstractContentElementController
 {
 

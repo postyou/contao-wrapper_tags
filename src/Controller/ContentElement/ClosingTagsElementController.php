@@ -16,7 +16,7 @@ use Contao\StringUtil;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(category:'wrapper_tags', template:'ce_wt_closing_tags')]
+#[AsContentElement(type: 'wrapper_tag_stop', category:'wrapper_tags', template:'ce_wt_closing_tags')]
 class ClosingTagsElementController extends AbstractContentElementController
 {
 
