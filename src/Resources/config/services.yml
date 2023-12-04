@@ -4,6 +4,6 @@ services:
     autoconfigure: true
     public: true
 
-  Postyou\ContaoWrapper_Tags:
+  Postyou\ContaoWrapper_Tags\:
     resource: ../../../src
-    exclude: ../../../src/{Entity,Model,Widget,DependencyInjection,ContaoManager}
+    exclude: ../../../src/{Entity,Model,Widget,DependencyInjection,ContaoManager,Resources,EventListener}

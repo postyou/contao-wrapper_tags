@@ -17,9 +17,9 @@ use Contao\Input;
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_opening_tags'] = '{type_legend},type;{wt_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_closing_tags'] = '{type_legend},type;{wt_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wt_complete_tags'] = '{type_legend},type;{wt_legend},wt_complete_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wrapper_tag_start'] = '{type_legend},type;{wt_legend},wt_opening_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wrapper_tag_stop'] = '{type_legend},type;{wt_legend},wt_closing_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wrapper_tag_complete'] = '{type_legend},type;{wt_legend},wt_complete_tags;{template_legend:hide},customTpl;{invisible_legend:hide},invisible,start,stop';
 
 /*
  * Fields

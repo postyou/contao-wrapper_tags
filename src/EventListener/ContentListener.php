@@ -19,7 +19,7 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 /**
  * Class ContentListener
  */
-class ContentListener extends \tl_content
+class ContentListener
 {
     /**
      * On record save callback.
