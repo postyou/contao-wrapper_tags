@@ -45,7 +45,7 @@ class OpeningTagsElementController extends AbstractContentElementController
             $template->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['wt_opening_tags'][0] . ' (id:' . $model->id . ') ###';
             $template->tags = $model->wt_opening_tags;
 
-            return $template->parse();
+            return $template->getResponse();
         }
 
         // Compile insert tags in the attribute name

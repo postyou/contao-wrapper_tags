@@ -1,6 +1,6 @@
 contao:
     backend:
         custom_js:
-            - files/theme/backend/backend.js
+            - bundles/contaowrappertags/scripts/wrapper-tags.js
         custom_css:
-            - files/theme/backend/backend.css
+            - bundles/contaowrappertags/scripts/wrapper-tags-flexible-c44.min.css

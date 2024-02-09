@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_opening_tags'] = array(
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
                 'inputType' => 'select',
-                'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
+                'options_callback' => array('Postyou\ContaoWrapperTags\EventListener\ContentListener', 'getTags'),
             ),
             'attributes' => array
             (
@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_closing_tags'] = array(
     'eval' => array
     (
         'mandatory' => true,
-        'columnsCallback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onClosingTagsColumnsCallback'),
+        'columnsCallback' => array('Postyou\ContaoWrapperTags\EventListener\ContentListener', 'onClosingTagsColumnsCallback'),
         // 'buttons' => array('new' => true),
         'dragAndDrop' => true
     ),
@@ -107,7 +107,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
                 'inputType' => 'select',
-                'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
+                'options_callback' => array('Postyou\ContaoWrapperTags\EventListener\ContentListener', 'getTags'),
             ),
             'void' => array
             (

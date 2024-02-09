@@ -34,10 +34,6 @@ class ClosingTagsElementController extends AbstractContentElementController
 
             $template = new BackendTemplate('be_wildcard_closing_tags');
             $template->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['wt_closing_tags'][0] . ' (id:' . $model->id . ') ###';
-            $template->tags = $model->wt_closing_tags;
-
-
-            return $template->parse();
         }
 
         $template->tags = $model->wt_closing_tags;

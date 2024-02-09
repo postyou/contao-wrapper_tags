@@ -15,12 +15,30 @@ use ReflectionClass;
 use Contao\StringUtil;
 use Contao\DataContainer;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
+use Contao\Database;
+use tl_content;
 
 /**
  * Class ContentListener
  */
 class ContentListener
 {
+
+
+        /**
+     * Initialize the dca.
+     *
+     * @return void
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    public function __construct()
+    {
+        $GLOBALS['TL_CSS'][] = 'bundles/contaowrappertags/scripts/wrapper-tags-flexible-c5.css';
+        $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaowrappertags/scripts/wrapper-tags.js';
+    }
+
+
     /**
      * On record save callback.
      *
@@ -29,7 +47,7 @@ class ContentListener
      * @return string
      * @throws \Exception
      */
-    #[AsCallback(table: 'tl_content', target: 'field.wt_opening_tags.save', priority: 100)]
+    #[AsCallback(table: 'tl_content', target: 'fields.wt_opening_tags.save', priority: 100)]
     public function onSaveCallback($data, DataContainer $dc)
     {
         $tags = StringUtil::deserialize($data);
@@ -79,6 +97,7 @@ class ContentListener
 
                     // Allow attributes with non-empty name & value
                     if ('' !== $attribute['value'] && '' !== $attribute['name']) {
+
                         $attributes[] = $attribute;
                     }
                 }
@@ -111,8 +130,9 @@ class ContentListener
             }
         }
 
-        // standard Contao child-record-callback
-        return parent::addCteType($row);
+        $content = new tl_content();
+        return $content->addCteType($row);
+
     }
 
     /**
@@ -122,14 +142,15 @@ class ContentListener
      */
     protected function setChildRecordClass($indent)
     {
-        $wrapperTagClass = $indent['type'] === 'wt_opening_tags' || $indent['type'] === 'wt_closing_tags' ? 'wrapper-tag' : '';
+        dump($indent);
+        $wrapperTagClass = $indent['type'] === 'wrapper_tag_start' || $indent['type'] === 'wrapper_tag_stop' ? 'wrapper-tag' : '';
         $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
 
         $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent ' . $wrapperTagClass . ' indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent ' . $wrapperTagClass . ' indent_0 ' . $middleClass;
     }
 
     /**
-     * On columns callback of multiColumnWizard field 'wt_closing_tags'.
+     * On columns callback of multiColumnWizard field 'wrapper_tag_stop'.
      *
      * @return array
      */
@@ -140,10 +161,12 @@ class ContentListener
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_content']['wt_tag'],
                 'inputType' => 'select',
-                'options_callback' => array('Zmyslny\WrapperTags\EventListener\ContentListener', 'getTags'),
+                'options_callback' => array('Postyou\ContaoWrapperTags\EventListener\ContentListener', 'getTags'),
             )
         );
     }
+
+    
 
     /**
      * Returns html tags allowed for wrapper tags.
@@ -159,6 +182,9 @@ class ContentListener
         return $tags;
     }
 
+
+
+
     /**
      * On header callback. Checks whether every start wrapper has its corresponding stop wrapper, recalculates indents,
      * sets css color classes.
@@ -171,18 +197,20 @@ class ContentListener
     public function onHeaderCallback($add, DataContainer $dc)
     {
 
+        // $model = \Contao\ContentModel::findByid($dc->id);
+
         /*
          * Check whether there is any published wrapper-tags cte.
          * Do not use $dc->id to get pid id because in copy mode it is id of element being copied.
          * Instead use CURRENT_ID.
          */
-        $result = $this->Database
+        $result = \Contao\Database::getInstance()
             ->prepare("
                 SELECT id
                 FROM `tl_content`
-                WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('wt_opening_tags','wt_closing_tags')
+                WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('wrapper_tag_start','wrapper_tag_stop')
                 ")
-            ->execute(CURRENT_ID, $dc->parentTable, '1');
+            ->execute($dc->id, $dc->parentTable, '1');
 
         if ($result->numRows === 0) {
 
@@ -198,11 +226,11 @@ class ContentListener
             ORDER BY sorting ASC
         ';
 
-        $stmt = $this->Database->prepare($query);
+        $stmt = \Contao\Database::getInstance()->prepare($query);
 
         // ! do not set limit - validation needs all elements
 
-        $result = $stmt->execute(CURRENT_ID, $dc->parentTable);
+        $result = $stmt->execute($dc->id, $dc->parentTable);
 
         $statusTitle = $GLOBALS['TL_LANG']['MSC']['wt.statusTitle'];
         $status = array();
@@ -221,6 +249,7 @@ class ContentListener
         $hasError = false;
 
         $hideStatus = Config::get('wt_hide_validation_status');
+
         if ($hideStatus) {
             // it turns off validation checking because algorithm will think it already has first error
             $hasError = true;
@@ -229,7 +258,7 @@ class ContentListener
         foreach ($result->fetchAllAssoc() as $index => $cte) {
 
             //fix to add class to first open element
-            if ($index == 0 && $cte['type'] == 'wt_opening_tags') {
+            if ($index == 0 && $cte['type'] == 'wrapper_tag_start') {
                 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = 'indent_0';
             }
 
@@ -238,7 +267,6 @@ class ContentListener
             $isVisible = $cte['invisible'] !== '1';
 
             if ($isWrapperStart) {
-
                 $this->wrapperStart($cte, $isVisible, $statusTitle, $openStack, $indentLevel, $hasError, $status);
 
             } elseif ($isWrapperStop) {
@@ -260,7 +288,7 @@ class ContentListener
                 // check whether there is openingTags element on stack
                 for ($i = count($openStack) - 1; $i >= 0; --$i) {
 
-                    if ($openStack[$i]['type'] === 'wt_opening_tags') {
+                    if ($openStack[$i]['type'] === 'wrapper_tag_start') {
 
                         $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningNoClosing'], $openStack[$i]['tags'][count($openStack[$i]['tags']) - 1]['tag'], $openStack[$i]['id']) . '</span>';
                         $hasError = true;
@@ -291,27 +319,32 @@ class ContentListener
 
             // need to use ReflectionClass in order to get $dc->limit property
 
-            $reflectionClass = new ReflectionClass('DC_Table');
+            $reflectionClass = new ReflectionClass('\Contao\DC_Table');
             $reflectionProperty = $reflectionClass->getProperty('limit');
             $reflectionProperty->setAccessible(true);
             $limit = $reflectionProperty->getValue($dc);
 
             if (strlen($limit)) {
+
                 $limit = explode(',', $limit);
                 $offset = (int)$limit[0];
+                dump($limit);
 
                 // set child_record_class for first CTE on list view - paging is taken into account
-                if ($offset > 0) {
+                // if ($offset > 0) {
+                    dump('asdasadd');
                     $index = 1;
                     $firstElementOnPage = $offset + 1;
+                    dump('asdasd');
                     foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
                         if ($index === $firstElementOnPage) {
+                            dump('asda');
                             $this->setChildRecordClass($indent + array('colorize-class' => ($useColors ? 'colorize-wrapper-tags' : '')));
                             break;
                         }
                         ++$index;
                     }
-                }
+                // }
 
             } else {
                 $this->setChildRecordClass($GLOBALS['WrapperTags']['indents'][key($GLOBALS['WrapperTags']['indents'])]);
@@ -354,7 +387,7 @@ class ContentListener
      */
     protected function wrapperStart($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
     {
-        if ('wt_opening_tags' !== $cte['type']) {
+        if ('wrapper_tag_start' !== $cte['type']) {
 
             if ($isVisible) {
 
@@ -378,7 +411,7 @@ class ContentListener
 
                 // every opened tag from openingTags put on stack
 
-                $startTags = deserialize($cte['wt_opening_tags']);
+                $startTags = StringUtil::deserialize($cte['wt_opening_tags']);
 
                 if (!$hasError) {
                     if (!is_array($startTags)) {
@@ -389,7 +422,7 @@ class ContentListener
 
                 $openStack[] = array(
                     'id' => $cte['id'],
-                    'type' => 'wt_opening_tags',
+                    'type' => 'wrapper_tag_start',
                     'tags' => $startTags,
                     'count' => count($startTags)
                 );
@@ -417,17 +450,18 @@ class ContentListener
      */
     protected function wrapperStop($cte, $isVisible, $statusTitle, &$openStack, &$indentLevel, &$hasError, &$status)
     {
-        if ('wt_closing_tags' !== $cte['type']) {
+        if ('wrapper_tag_stop' !== $cte['type']) {
 
             if ($isVisible) {
 
                 $openingTags = array_pop($openStack);
 
                 if (!$hasError) {
-
-                    // Last opened wrapper is of type 'wt_opening_tags'. Because now we are stepping on closing element
-                    // not of type 'wt_closing_tags' so the pairing is wrong.
-                    if ($openingTags !== null && $openingTags['type'] === 'wt_opening_tags') {
+dump($openingTags);
+dump($hasError);
+                    // Last opened wrapper is of type 'wrapper_tag_start'. Because now we are stepping on closing element
+                    // not of type 'wrapper_tag_stop' so the pairing is wrong.
+                    if ($openingTags !== null && $openingTags['type'] === 'wrapper_tag_start') {
 
                         $status[$statusTitle] = '<span class="tl_red">' . sprintf($GLOBALS['TL_LANG']['MSC']['wt.statusOpeningWrongPairingWithOther'], $openingTags['tags'][count($openingTags['tags']) - 1]['tag'], $openingTags['id'], $GLOBALS['TL_LANG']['CTE'][$cte['type']][0], $cte['id']) . '</span>';
                         $hasError = true;
@@ -449,7 +483,7 @@ class ContentListener
 
             } else {
 
-                $closingTags = deserialize($cte['wt_closing_tags']);
+                $closingTags = StringUtil::deserialize($cte['wt_closing_tags']);
 
                 if (!$hasError) {
                     if (!is_array($closingTags)) {
@@ -469,10 +503,10 @@ class ContentListener
                         $hasError = true;
                     }
 
-                } elseif ('wt_opening_tags' !== $openStack[count($openStack) - 1]['type']) {
+                } elseif ('wrapper_tag_start' !== $openStack[count($openStack) - 1]['type']) {
 
                     /*
-                     * case 2: closing element is paired with wrong opening element - it is not of type 'wt_opening_tags'
+                     * case 2: closing element is paired with wrong opening element - it is not of type 'wrapper_tag_start'
                      */
 
                     $openingTags = array_pop($openStack);
@@ -487,7 +521,7 @@ class ContentListener
                 } else {
 
                     /*
-                     * case 3: proper pairing with type 'wt_opening_tags'
+                     * case 3: proper pairing with type 'wrapper_tag_start'
                      */
 
                     if ($openStack[count($openStack) - 1]['count'] >= count($closingTags)) {

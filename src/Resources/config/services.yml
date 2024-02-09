@@ -6,4 +6,4 @@ services:
 
   Postyou\ContaoWrapperTags\:
     resource: ../../../src
-    exclude: ../../../src/{Entity,Model,Widget,DependencyInjection,ContaoManager,Resources,EventListener}
+    exclude: ../../../src/{Entity,Model,Widget,DependencyInjection,ContaoManager,Resources}

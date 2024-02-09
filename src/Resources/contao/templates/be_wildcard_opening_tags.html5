@@ -4,6 +4,7 @@
         <?php foreach ($this->tags as $tag): ?>
             <?php
             $attributesCount = count($tag['attributes']);
+
             $onlyTag = 0 === $attributesCount && '' === $tag['class'];
             ?>
             <tr>
@@ -14,12 +15,12 @@
                     <?php if ($onlyTag): ?>
                         <span class="closing">&gt;</span>
                     <?php else: ?>
-                        <?php if ('' !== $tag['class']): ?>
+                        <?php if (!empty($tag['class'])): ?>
                             <span class="tl_gray">class:</span><span class="value"><?php echo $tag['class'] ?></span><?php if ($attributesCount): ?>,<?php else: ?><span class="closing">&gt;</span><?php endif ?>
                         <?php endif ?>
-                        <?php foreach ($tag['attributes'] as $index => $attribute): ?>
-                            <span class="tl_gray"><?php echo $attribute['name'] ?>:</span><span class="value"><?php echo $attribute['value'] ?></span><?php if ($attributesCount - 1 > $index): ?>,<?php else: ?><span class="closing">&gt;</span><?php endif ?>
-                        <?php endforeach ?>
+                            <?php foreach ($tag['attributes'] as $index => $attribute): ?>
+                                <span class="tl_gray"><?php echo $attribute['name'] ?>:</span><span class="value"><?php echo $attribute['value'] ?></span><?php if ($attributesCount - 1 > $index): ?>,<?php else: ?><span class="closing">&gt;</span><?php endif ?>
+                            <?php endforeach ?>
                     <?php endif ?>
                 </td>
             </tr>
