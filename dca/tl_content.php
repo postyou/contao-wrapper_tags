@@ -168,7 +168,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
  */
 if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))) {
 
-    $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min';
+    $min = System::getContainer()->getParameter('kernel.debug') ? '' : '.min';
 
     if ('flexible' === $GLOBALS['TL_CONFIG']['backendTheme']) {
         $GLOBALS['TL_CSS']['wt_css'] = '/system/modules/wrapper_tags/assets/wrapper-tags-flexible-c44' . $min . '.css';
