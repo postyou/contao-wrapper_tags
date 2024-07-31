@@ -10,6 +10,7 @@
 
 namespace Zmyslny\WrapperTags\EventListener;
 
+use Contao\Config;
 use Contao\DataContainer;
 use Contao\StringUtil;
 use ReflectionClass;
@@ -149,7 +150,7 @@ class ContentListener extends \tl_content
      */
     public function getTags()
     {
-        $tags = StringUtil::trimsplit('><', \Config::get('wt_allowed_tags'));
+        $tags = StringUtil::trimsplit('><', Config::get('wt_allowed_tags'));
         $tags[0] = str_replace('<', '', $tags[0]);
         $tags[count($tags) - 1] = str_replace('>', '', $tags[count($tags) - 1]);
 
@@ -216,7 +217,7 @@ class ContentListener extends \tl_content
         // helps to show only the first error
         $hasError = false;
 
-        $hideStatus = \Config::get('wt_hide_validation_status');
+        $hideStatus = Config::get('wt_hide_validation_status');
         if ($hideStatus) {
             // it turns off validation checking because algorithm will think it already has first error
             $hasError = true;
@@ -275,7 +276,7 @@ class ContentListener extends \tl_content
             $status = array();
         }
 
-        $useColors = \Config::get('wt_use_colors');
+        $useColors = Config::get('wt_use_colors');
 
         /*
          * Indents will be used in childRecordCallback.
@@ -287,7 +288,7 @@ class ContentListener extends \tl_content
 
             // need to use ReflectionClass in order to get $dc->limit property
 
-            $reflectionClass = new ReflectionClass('DC_Table');
+            $reflectionClass = new ReflectionClass('Contao\DC_Table');
             $reflectionProperty = $reflectionClass->getProperty('limit');
             $reflectionProperty->setAccessible(true);
             $limit = $reflectionProperty->getValue($dc);
