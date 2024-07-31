@@ -65,7 +65,7 @@ class OpeningTagsElement extends ContentElement
         foreach ($tags as $i => $tag) {
             if ($tag['attributes']) {
                 foreach ($tag['attributes'] as $t => $attribute) {
-                    $attribute['name'] = static::replaceInsertTags($attribute['name']);
+                    $attribute['name'] = System::getContainer()->get('contao.insert_tag.parser')->replace($attribute['name']);
 
                     $tags[$i]['attributes'][$t] = $attribute;
                 }
