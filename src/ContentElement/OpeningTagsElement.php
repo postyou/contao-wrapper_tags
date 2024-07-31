@@ -12,6 +12,7 @@ namespace Zmyslny\WrapperTags\ContentElement;
 
 use Contao\BackendTemplate;
 use Contao\ContentElement;
+use Contao\StringUtil;
 
 class OpeningTagsElement extends ContentElement
 {
@@ -29,7 +30,7 @@ class OpeningTagsElement extends ContentElement
      */
     public function generate()
     {
-        $this->wt_opening_tags = deserialize($this->wt_opening_tags);
+        $this->wt_opening_tags = StringUtil::deserialize($this->wt_opening_tags);
 
         // Tags data is incorrect
         if (!is_array($this->wt_opening_tags)) {

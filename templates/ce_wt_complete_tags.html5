@@ -1,15 +1,18 @@
 <?php
+
+use Contao\StringUtil;
+
 if ($this->tags) {
     $tags = '';
     foreach ($this->tags as $tag) {
         $tags .= '<' . $tag['tag'];
         if (isset($tag['attributes'])) {
             foreach ($tag['attributes'] as $attribute) {
-                $tags .= ' ' . $attribute['name'] . '="' . specialchars($attribute['value']) . '"';
+                $tags .= ' ' . $attribute['name'] . '="' . StringUtil::specialchars($attribute['value']) . '"';
             }
         }
         if ($tag['class']) {
-            $tags .= ' class="' . specialchars($tag['class']) . '"';
+            $tags .= ' class="' . StringUtil::specialchars($tag['class']) . '"';
         }
         $tags .= '>';
         $tags .= empty($tag['void']) ? '</' . $tag['tag'] . '>' : '';

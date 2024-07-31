@@ -11,6 +11,7 @@
 namespace Zmyslny\WrapperTags\EventListener;
 
 use Contao\DataContainer;
+use Contao\StringUtil;
 use ReflectionClass;
 
 /**
@@ -29,7 +30,7 @@ class ContentListener extends \tl_content
      */
     public function onSaveCallback($data, DataContainer $dc)
     {
-        $tags = deserialize($data);
+        $tags = StringUtil::deserialize($data);
 
         foreach ($tags as &$tag) {
 
@@ -148,7 +149,7 @@ class ContentListener extends \tl_content
      */
     public function getTags()
     {
-        $tags = trimsplit('><', \Config::get('wt_allowed_tags'));
+        $tags = StringUtil::trimsplit('><', \Config::get('wt_allowed_tags'));
         $tags[0] = str_replace('<', '', $tags[0]);
         $tags[count($tags) - 1] = str_replace('>', '', $tags[count($tags) - 1]);
 
@@ -373,7 +374,7 @@ class ContentListener extends \tl_content
 
                 // every opened tag from openingTags put on stack
 
-                $startTags = deserialize($cte['wt_opening_tags']);
+                $startTags = StringUtil::deserialize($cte['wt_opening_tags']);
 
                 if (!$hasError) {
                     if (!is_array($startTags)) {
@@ -444,7 +445,7 @@ class ContentListener extends \tl_content
 
             } else {
 
-                $closingTags = deserialize($cte['wt_closing_tags']);
+                $closingTags = StringUtil::deserialize($cte['wt_closing_tags']);
 
                 if (!$hasError) {
                     if (!is_array($closingTags)) {
