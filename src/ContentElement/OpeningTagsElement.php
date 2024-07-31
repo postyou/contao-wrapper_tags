@@ -13,6 +13,8 @@ namespace Zmyslny\WrapperTags\ContentElement;
 use Contao\BackendTemplate;
 use Contao\ContentElement;
 use Contao\StringUtil;
+use Contao\System;
+use Symfony\Component\HttpFoundation\Request;
 
 class OpeningTagsElement extends ContentElement
 {
@@ -37,7 +39,7 @@ class OpeningTagsElement extends ContentElement
             $this->wt_opening_tags = array();
         }
 
-        if (TL_MODE === 'BE') {
+        if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))) {
 
             $template = new BackendTemplate('be_wildcard_opening_tags');
             $template->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['wt_opening_tags'][0] . ' (id:' . $this->id . ') ###';

@@ -13,6 +13,8 @@
  */
 
 use Contao\Input;
+use Contao\System;
+use Symfony\Component\HttpFoundation\Request;
 
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onChildRecordCallback');
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onHeaderCallback');
@@ -164,7 +166,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wt_complete_tags'] = array(
 /*
  * Add stylesheet & javascript to back end.
  */
-if (TL_MODE === 'BE') {
+if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))) {
 
     $min = $GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min';
     $version = version_compare(VERSION, '4.4', '>=') ? '-c44' : '-c35';
