@@ -55,3 +55,4 @@ Temporary Items
 .vscode/settings.json
 
 .php-version
+composer.lock
