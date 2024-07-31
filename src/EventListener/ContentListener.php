@@ -179,7 +179,7 @@ class ContentListener extends \tl_content
                 FROM `tl_content`
                 WHERE pid = ? AND ptable = ? AND invisible != ? AND type IN ('wt_opening_tags','wt_closing_tags')
                 ")
-            ->execute(CURRENT_ID, $dc->parentTable, '1');
+            ->execute($dc->currentPid, $dc->parentTable, '1');
 
         if ($result->numRows === 0) {
 
@@ -199,7 +199,7 @@ class ContentListener extends \tl_content
 
         // ! do not set limit - validation needs all elements
 
-        $result = $stmt->execute(CURRENT_ID, $dc->parentTable);
+        $result = $stmt->execute($dc->currentPid, $dc->parentTable);
 
         $statusTitle = $GLOBALS['TL_LANG']['MSC']['wt.statusTitle'];
         $status = array();
