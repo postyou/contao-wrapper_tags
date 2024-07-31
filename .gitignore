@@ -53,3 +53,5 @@ Temporary Items
 *.css.map
 /vendor/
 .vscode/settings.json
+
+.php-version
