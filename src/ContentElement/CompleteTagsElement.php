@@ -45,7 +45,7 @@ class CompleteTagsElement extends ContentElement
             $template->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['wt_complete_tags'][0] . ' (id:' . $this->id . ') ###';
 
             $template->tags = $this->wt_complete_tags;
-            $template->version = version_compare(VERSION, '3.5', '>') ? 'version-over-35' : 'version-35';
+            $template->version = 'version-over-35';
 
             return $template->parse();
         }
