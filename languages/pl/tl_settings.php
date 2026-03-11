@@ -12,7 +12,6 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_settings']['wt_allowed_tags'] = array('Dostępne znaczniki', 'Wpisz HTML-owe znaczniki dostępne do użycia.');
-$GLOBALS['TL_LANG']['tl_settings']['wt_use_colors'] = array('Kolorowanie', 'Koloruj elementy treści na zapleczu.');
 $GLOBALS['TL_LANG']['tl_settings']['wt_hide_validation_status'] = array('Ukrywanie walidacji', 'Ukryj wynik walidacji na zapleczu.');
 
 /*

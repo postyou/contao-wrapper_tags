@@ -31,7 +31,6 @@ $GLOBALS['TL_WRAPPERS']['single'][] = 'wt_complete_tags';
 /*
  * Config
  */
-$GLOBALS['TL_CONFIG']['wt_use_colors'] = true;
 $GLOBALS['TL_CONFIG']['wt_hide_validation_status'] = false;
 $GLOBALS['TL_CONFIG']['wt_allowed_tags']
     = '<div><span><article><aside>'

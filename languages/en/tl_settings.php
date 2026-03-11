@@ -12,7 +12,6 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_settings']['wt_allowed_tags'] = array('HTML tags allowed', 'Please enter the list of HTML tags allowed for usage.');
-$GLOBALS['TL_LANG']['tl_settings']['wt_use_colors'] = array('Colorize', 'Colorize opening & closing content elements at the beck end.');
 $GLOBALS['TL_LANG']['tl_settings']['wt_hide_validation_status'] = array('Hide validation', 'Hide validation status at the beck end.');
 
 /*

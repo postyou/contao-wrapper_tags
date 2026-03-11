@@ -13,7 +13,6 @@ namespace Zmyslny\WrapperTags\EventListener;
 use Contao\Config;
 use Contao\DataContainer;
 use Contao\StringUtil;
-use ReflectionClass;
 
 /**
  * Class ContentListener
@@ -90,43 +89,6 @@ class ContentListener extends \tl_content
     }
 
     /**
-     * Set html class on each CTE from list view.
-     *
-     * Class being set in this function will be set to the next CTE then CTE of $row element. That is why
-     * $GLOBALS['WrapperTags']['indents'] array was offset so every cteId point to class of the next element.
-     *
-     * @param $row
-     * @return string
-     */
-    public function onChildRecordCallback($row)
-    {
-        if (isset($GLOBALS['WrapperTags']['indents']) && is_array($GLOBALS['WrapperTags']['indents'])) {
-
-            $indent = $GLOBALS['WrapperTags']['indents'][$row['id']];
-
-            if (null !== $indent) {
-                $this->setChildRecordClass($indent);
-            }
-        }
-
-        // standard Contao child-record-callback
-        return parent::addCteType($row);
-    }
-
-    /**
-     * Sets css class into "child_record_class" setting.
-     *
-     * @param array $indent
-     */
-    protected function setChildRecordClass($indent)
-    {
-        $wrapperTagClass = $indent['type'] === 'wt_opening_tags' || $indent['type'] === 'wt_closing_tags' ? 'wrapper-tag' : '';
-        $middleClass = (isset($indent['middle'])) ? ' indent-tags-closing-middle' : '';
-
-        $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = $indent['value'] > 0 ? 'clear-indent ' . $wrapperTagClass . ' indent indent_' . $indent['value'] . $middleClass . ' ' . $indent['colorize-class'] : 'clear-indent ' . $wrapperTagClass . ' indent_0 ' . $middleClass;
-    }
-
-    /**
      * On columns callback of multiColumnWizard field 'wt_closing_tags'.
      *
      * @return array
@@ -158,8 +120,7 @@ class ContentListener extends \tl_content
     }
 
     /**
-     * On header callback. Checks whether every start wrapper has its corresponding stop wrapper, recalculates indents,
-     * sets css color classes.
+     * On header callback. Checks whether every start wrapper has its corresponding stop wrapper, recalculates indents.
      *
      * @param $add
      * @param DataContainer $dc
@@ -225,11 +186,6 @@ class ContentListener extends \tl_content
 
         foreach ($result->fetchAllAssoc() as $index => $cte) {
 
-            //fix to add class to first open element
-            if ($index == 0 && $cte['type'] == 'wt_opening_tags') {
-                $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_class'] = 'indent_0';
-            }
-
             $isWrapperStart = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['start']) && !empty($cte['wt_opening_tags']);
             $isWrapperStop = in_array($cte['type'], $GLOBALS['TL_WRAPPERS']['stop']);
             $isVisible = $cte['invisible'] !== '1';
@@ -275,65 +231,6 @@ class ContentListener extends \tl_content
         if ($hideStatus) {
             $status = array();
         }
-
-        $useColors = Config::get('wt_use_colors');
-
-        /*
-         * Indents will be used in childRecordCallback.
-         *
-         * First element child_record_class must be set before child_record_callback is called, e.g. in this function.
-         */
-
-        if (class_exists('ReflectionClass')) {
-
-            // need to use ReflectionClass in order to get $dc->limit property
-
-            $reflectionClass = new ReflectionClass('Contao\DC_Table');
-            $reflectionProperty = $reflectionClass->getProperty('limit');
-            $reflectionProperty->setAccessible(true);
-            $limit = $reflectionProperty->getValue($dc);
-
-            if (strlen($limit)) {
-                $limit = explode(',', $limit);
-                $offset = (int)$limit[0];
-
-                // set child_record_class for first CTE on list view - paging is taken into account
-                if ($offset > 0) {
-                    $index = 1;
-                    $firstElementOnPage = $offset + 1;
-                    foreach ($GLOBALS['WrapperTags']['indents'] as $indent) {
-                        if ($index === $firstElementOnPage) {
-                            $this->setChildRecordClass($indent + array('colorize-class' => ($useColors ? 'colorize-wrapper-tags' : '')));
-                            break;
-                        }
-                        ++$index;
-                    }
-                }
-
-            } else {
-                $this->setChildRecordClass($GLOBALS['WrapperTags']['indents'][key($GLOBALS['WrapperTags']['indents'])]);
-            }
-        }
-
-        /*
-         * When we set child_record_class in child_record_callback, it will be set for the next element then element
-         * for which that function is called. So indent values must be offset. Every element id must point to the indent
-         * value of the next element.
-         */
-
-        end($GLOBALS['WrapperTags']['indents']);
-        $lastKey = key($GLOBALS['WrapperTags']['indents']);
-        $lastIndent = $GLOBALS['WrapperTags']['indents'][$lastKey];
-
-        $reversed = array_reverse($GLOBALS['WrapperTags']['indents'], true);
-
-        foreach ($reversed as $id => &$indent) {
-            $nowIndent = $indent;
-            $indent = $lastIndent + array('colorize-class' => ($useColors ? 'colorize-wrapper-tags' : ''));
-            $lastIndent = $nowIndent;
-        }
-
-        $GLOBALS['WrapperTags']['indents'] = array_reverse($reversed, true);
 
         return $add + $status;
     }

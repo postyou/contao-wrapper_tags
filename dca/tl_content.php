@@ -16,7 +16,6 @@ use Contao\Input;
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
 
-$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['child_record_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onChildRecordCallback');
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['header_callback'] = array('Zmyslny\WrapperTags\EventListener\ContentListener', 'onHeaderCallback');
 
 /*
